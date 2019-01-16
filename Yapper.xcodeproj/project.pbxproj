@@ -16,7 +16,7 @@
 		07CA3B6321E62A3300A53F10 /* YapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B6221E62A3300A53F10 /* YapperTests.swift */; };
 		07CA3B6E21E62A3300A53F10 /* YapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B6D21E62A3300A53F10 /* YapperUITests.swift */; };
 		07CA3B7C21E62F6100A53F10 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B7B21E62F6100A53F10 /* LoginViewController.swift */; };
-		07CA3B7E21E630CC00A53F10 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B7D21E630CC00A53F10 /* RootViewController.swift */; };
+		07CA3B7E21E630CC00A53F10 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B7D21E630CC00A53F10 /* SignupViewController.swift */; };
 		07FEF02B21EF1F5D00964B0D /* YapperSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FEF02A21EF1F5D00964B0D /* YapperSplitViewController.swift */; };
 		07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FEF02F21EF286A00964B0D /* RoundedButton.swift */; };
 		07FEF03221EF551600964B0D /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FEF03121EF551600964B0D /* Themes.swift */; };
@@ -60,7 +60,7 @@
 		07CA3B6D21E62A3300A53F10 /* YapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YapperUITests.swift; sourceTree = "<group>"; };
 		07CA3B6F21E62A3300A53F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07CA3B7B21E62F6100A53F10 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		07CA3B7D21E630CC00A53F10 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		07CA3B7D21E630CC00A53F10 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		07FEF02A21EF1F5D00964B0D /* YapperSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YapperSplitViewController.swift; sourceTree = "<group>"; };
 		07FEF02F21EF286A00964B0D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		07FEF03121EF551600964B0D /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				07CA3B7B21E62F6100A53F10 /* LoginViewController.swift */,
-				07CA3B7D21E630CC00A53F10 /* RootViewController.swift */,
+				07CA3B7D21E630CC00A53F10 /* SignupViewController.swift */,
 				07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */,
 				07CA3B4F21E62A3000A53F10 /* DetailViewController.swift */,
 				07FEF02A21EF1F5D00964B0D /* YapperSplitViewController.swift */,
@@ -501,7 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */,
-				07CA3B7E21E630CC00A53F10 /* RootViewController.swift in Sources */,
+				07CA3B7E21E630CC00A53F10 /* SignupViewController.swift in Sources */,
 				07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */,
 				07FEF03221EF551600964B0D /* Themes.swift in Sources */,
 				07CA3B4E21E62A3000A53F10 /* MasterViewController.swift in Sources */,

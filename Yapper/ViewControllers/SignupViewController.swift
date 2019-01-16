@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignupViewController.swift
 //  Yapper
 //
 //  Created by Jonas Theslöf on 2019-01-09.
@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
-
+class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var submitButton: RoundedButton!
-    @IBOutlet weak var signupButton: UIButton!
-
+    @IBOutlet weak var signupButton: RoundedButton!
+    
     var spinner: UIActivityIndicatorView?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,7 +36,7 @@ class LoginViewController: UIViewController {
         let auth = Auth.auth()
         
         if auth.currentUser != nil {
-            self.performSegue(withIdentifier: "segueShowMainView", sender: self)
+            self.dismiss(animated: true, completion: nil)
         } else {
             self.spinner?.stopAnimating()
         }
@@ -49,7 +54,7 @@ class LoginViewController: UIViewController {
         spinner.style = .whiteLarge
         spinner.color = UIColor.black
         spinner.isOpaque = true
-
+        
         NSLayoutConstraint.activate([
             spinner.topAnchor.constraint(equalTo: view.topAnchor),
             spinner.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -70,7 +75,7 @@ class LoginViewController: UIViewController {
             self.errorLabel.isHidden = true
         })
     }
-
+    
     @IBAction func actionSubmit(_ sender: UIButton) {
         self.hideError()
         self.submitButton.isEnabled = false
@@ -79,22 +84,28 @@ class LoginViewController: UIViewController {
         let auth = Auth.auth()
         guard let username = emailTextField.text,
             let password = passwordTextField.text else { return }
-        auth.signIn(withEmail: username, password: password, completion: { (result, error) in
+        auth.createUser(withEmail: username, password: password, completion: { (result, error) in
             self.submitButton.isEnabled = true
             self.spinner?.stopAnimating()
             
             if let errCode = error?._code, let errorCode = AuthErrorCode(rawValue: errCode) {
                 switch errorCode {
-                case .invalidEmail, .userNotFound, .wrongPassword:
-                    self.showError("Incorrect username or password")
-                case .userDisabled:
-                    self.showError("User account disabled")
+                case .invalidEmail:
+                    self.showError("Email was not acceped as a valid format")
+                case .emailAlreadyInUse:
+                    self.showError("User already exists")
+                case .weakPassword:
+                    self.showError("Please create a stronger password")
                 default:
                     self.showError(error!.localizedDescription)
                 }
             } else if result != nil {
-                self.performSegue(withIdentifier: "segueShowMainView", sender: self)
+                self.dismiss(animated: true, completion: nil)
             }
         })
+    }
+    
+    @IBAction func actionCancel(_ sender: RoundedButton) {
+        dismiss(animated: true, completion: nil)
     }
 }

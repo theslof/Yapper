@@ -23,8 +23,8 @@ class RoundedButton: UIButton {
     }
 
     private func commonInit() {
-        self.layer.cornerRadius = 8.0
-        self.layer.backgroundColor = UIColor.blue.cgColor
-        self.titleLabel?.textColor = UIColor.white
+        self.layer.cornerRadius = Theme.currentTheme.cornerRadius
+        self.layer.backgroundColor = Theme.currentTheme.primary.cgColor
+        self.setTitleColor(Theme.currentTheme.text, for: .normal)
     }
 }

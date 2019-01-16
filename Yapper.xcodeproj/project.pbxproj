@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4821E62A3000A53F10 /* AppDelegate.swift */; };
-		07CA3B4C21E62A3000A53F10 /* Yapper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4A21E62A3000A53F10 /* Yapper.xcdatamodeld */; };
 		07CA3B4E21E62A3000A53F10 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */; };
 		07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4F21E62A3000A53F10 /* DetailViewController.swift */; };
 		07CA3B5321E62A3000A53F10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CA3B5121E62A3000A53F10 /* Main.storyboard */; };
@@ -18,6 +17,9 @@
 		07CA3B6E21E62A3300A53F10 /* YapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B6D21E62A3300A53F10 /* YapperUITests.swift */; };
 		07CA3B7C21E62F6100A53F10 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B7B21E62F6100A53F10 /* LoginViewController.swift */; };
 		07CA3B7E21E630CC00A53F10 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B7D21E630CC00A53F10 /* RootViewController.swift */; };
+		07FEF02B21EF1F5D00964B0D /* YapperSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FEF02A21EF1F5D00964B0D /* YapperSplitViewController.swift */; };
+		07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FEF02F21EF286A00964B0D /* RoundedButton.swift */; };
+		07FEF03221EF551600964B0D /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FEF03121EF551600964B0D /* Themes.swift */; };
 		5BB6366115E0B5393409026F /* Pods_YapperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD3C8B057989642DC1BE2352 /* Pods_YapperUITests.framework */; };
 		68E58A1369E592F2007DBB04 /* Pods_Yapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DED2FFA4C54F93DA2BBBEED /* Pods_Yapper.framework */; };
 		8A80E6B60FA975FCC0447760 /* Pods_YapperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B876BBCDFD05C0A108D6B3 /* Pods_YapperTests.framework */; };
@@ -45,7 +47,6 @@
 /* Begin PBXFileReference section */
 		07CA3B4521E62A3000A53F10 /* Yapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CA3B4821E62A3000A53F10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07CA3B4B21E62A3000A53F10 /* Yapper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Yapper.xcdatamodel; sourceTree = "<group>"; };
 		07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		07CA3B4F21E62A3000A53F10 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		07CA3B5221E62A3000A53F10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +61,9 @@
 		07CA3B6F21E62A3300A53F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07CA3B7B21E62F6100A53F10 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		07CA3B7D21E630CC00A53F10 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		07FEF02A21EF1F5D00964B0D /* YapperSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YapperSplitViewController.swift; sourceTree = "<group>"; };
+		07FEF02F21EF286A00964B0D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		07FEF03121EF551600964B0D /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		15112198E2F4B1B4B7DF7A1F /* Pods-YapperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapperTests.debug.xcconfig"; path = "Target Support Files/Pods-YapperTests/Pods-YapperTests.debug.xcconfig"; sourceTree = "<group>"; };
 		29226B2A670CF69775B08F6A /* Pods-YapperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapperUITests.debug.xcconfig"; path = "Target Support Files/Pods-YapperUITests/Pods-YapperUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2CCACD75BFA9E76BC0B71D5C /* Pods-Yapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yapper.release.xcconfig"; path = "Target Support Files/Pods-Yapper/Pods-Yapper.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,14 +131,15 @@
 		07CA3B4721E62A3000A53F10 /* Yapper */ = {
 			isa = PBXGroup;
 			children = (
+				07FEF02C21EF278A00964B0D /* UI Elements */,
 				07CA3B7F21E6322F00A53F10 /* ViewControllers */,
 				07CA3B4821E62A3000A53F10 /* AppDelegate.swift */,
 				07CA3B5121E62A3000A53F10 /* Main.storyboard */,
 				07CA3B5621E62A3300A53F10 /* LaunchScreen.storyboard */,
 				07CA3B5421E62A3300A53F10 /* Assets.xcassets */,
 				07CA3B5921E62A3300A53F10 /* Info.plist */,
-				07CA3B4A21E62A3000A53F10 /* Yapper.xcdatamodeld */,
 				AF90043B5626A2ACA065A1E6 /* GoogleService-Info.plist */,
+				07FEF03121EF551600964B0D /* Themes.swift */,
 			);
 			path = Yapper;
 			sourceTree = "<group>";
@@ -164,8 +169,17 @@
 				07CA3B7D21E630CC00A53F10 /* RootViewController.swift */,
 				07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */,
 				07CA3B4F21E62A3000A53F10 /* DetailViewController.swift */,
+				07FEF02A21EF1F5D00964B0D /* YapperSplitViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		07FEF02C21EF278A00964B0D /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				07FEF02F21EF286A00964B0D /* RoundedButton.swift */,
+			);
+			path = "UI Elements";
 			sourceTree = "<group>";
 		};
 		1C64ED73BFE46CA6F29BBE30 /* Frameworks */ = {
@@ -486,12 +500,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07CA3B4C21E62A3000A53F10 /* Yapper.xcdatamodeld in Sources */,
 				07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */,
 				07CA3B7E21E630CC00A53F10 /* RootViewController.swift in Sources */,
+				07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */,
+				07FEF03221EF551600964B0D /* Themes.swift in Sources */,
 				07CA3B4E21E62A3000A53F10 /* MasterViewController.swift in Sources */,
 				07CA3B7C21E62F6100A53F10 /* LoginViewController.swift in Sources */,
 				07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */,
+				07FEF02B21EF1F5D00964B0D /* YapperSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,19 +842,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		07CA3B4A21E62A3000A53F10 /* Yapper.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				07CA3B4B21E62A3000A53F10 /* Yapper.xcdatamodel */,
-			);
-			currentVersion = 07CA3B4B21E62A3000A53F10 /* Yapper.xcdatamodel */;
-			path = Yapper.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 07CA3B3D21E62A3000A53F10 /* Project object */;
 }

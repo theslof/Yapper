@@ -95,9 +95,9 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMU-pz-U1k">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMU-pz-U1k" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
                                         <rect key="frame" x="8" y="211.5" width="359" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="actionSubmit:" destination="lat-XC-t21" eventType="touchUpInside" id="NEF-fl-ILl"/>
@@ -122,11 +122,6 @@
                                     <constraint firstItem="SMU-pz-U1k" firstAttribute="top" secondItem="Gol-uh-whB" secondAttribute="bottom" constant="8" id="wcn-LC-NPM"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YF6-VT-lOB">
-                                <rect key="frame" x="0.0" y="10" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -139,7 +134,6 @@
                     </view>
                     <connections>
                         <outlet property="errorLabel" destination="Gol-uh-whB" id="EKb-vQ-vPz"/>
-                        <outlet property="loadingSpinner" destination="YF6-VT-lOB" id="VCQ-Ij-6fq"/>
                         <outlet property="passwordTextField" destination="BKq-5W-89X" id="pNy-2l-cqE"/>
                         <outlet property="submitButton" destination="SMU-pz-U1k" id="Hz1-ei-L9n"/>
                         <outlet property="usernameTextField" destination="btI-Zh-xYx" id="gGg-yG-ilL"/>
@@ -150,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="-1732" y="-331"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Yapper Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>
-                <splitViewController id="H1p-Uh-vWS" sceneMemberID="viewController">
+                <splitViewController id="H1p-Uh-vWS" customClass="YapperSplitViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
@@ -201,7 +195,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Yapper" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -225,6 +219,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>
 </document>

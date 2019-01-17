@@ -10,15 +10,13 @@ import UIKit
 import Firebase
 
 class MasterViewController: UITableViewController {
+    private static let TAG = "MasterViewController"
 
     var detailViewController: DetailViewController? = nil
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
         
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -26,20 +24,24 @@ class MasterViewController: UITableViewController {
         }
         
         tableView.tableFooterView = UIView(frame: .zero)
+        
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let yourViewController: LoginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let window = appDelegate.window!
+                UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    window.rootViewController = yourViewController
+                })
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
-    }
-
-    @objc
-    func insertNewObject(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch let error {
-            print(error.localizedDescription)
-        }
     }
 
     // MARK: - Segues
@@ -71,6 +73,10 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         return cell
+    }
+    
+    @IBAction func actionSignOut(_ sender: Any) {
+        DatabaseManager.shared.auth.signOut()
     }
 }
 

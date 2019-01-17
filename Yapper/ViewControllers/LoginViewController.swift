@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
+    private static let TAG = "LoginViewController"
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -76,22 +77,23 @@ class LoginViewController: UIViewController {
         self.submitButton.isEnabled = false
         self.spinner?.startAnimating()
         
-        let auth = Auth.auth()
+        let auth = DatabaseManager.shared.auth
         guard let username = emailTextField.text,
             let password = passwordTextField.text else { return }
         auth.signIn(withEmail: username, password: password, completion: { (result, error) in
             self.submitButton.isEnabled = true
             self.spinner?.stopAnimating()
             
-            if let errCode = error?._code, let errorCode = AuthErrorCode(rawValue: errCode) {
+            if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                 switch errorCode {
                 case .invalidEmail, .userNotFound, .wrongPassword:
                     self.showError("Incorrect username or password")
                 case .userDisabled:
                     self.showError("User account disabled")
                 default:
-                    self.showError(error!.localizedDescription)
+                    self.showError(error.localizedDescription)
                 }
+                Log.e(LoginViewController.TAG, error.localizedDescription)
             } else if result != nil {
                 self.performSegue(withIdentifier: "segueShowMainView", sender: self)
             }

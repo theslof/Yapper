@@ -11,6 +11,9 @@ import Firebase
 import FirebaseAuth
 
 class SignupViewController: UIViewController {
+    private static let TAG = "SignupViewController"
+
+    @IBOutlet weak var displaynameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -81,14 +84,19 @@ class SignupViewController: UIViewController {
         self.submitButton.isEnabled = false
         self.spinner?.startAnimating()
         
-        let auth = Auth.auth()
-        guard let username = emailTextField.text,
-            let password = passwordTextField.text else { return }
-        auth.createUser(withEmail: username, password: password, completion: { (result, error) in
+        guard
+            let username = emailTextField.text, username != "",
+            let password = passwordTextField.text, password != "",
+            let displayname = displaynameTextField.text, displayname != ""
+        else {
+            self.showError("Please fill in all fields!")
+            return
+        }
+        DatabaseManager.shared.auth.signUp(email: username, password: password, displayName: displayname) { (result, error) in
             self.submitButton.isEnabled = true
             self.spinner?.stopAnimating()
             
-            if let errCode = error?._code, let errorCode = AuthErrorCode(rawValue: errCode) {
+            if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                 switch errorCode {
                 case .invalidEmail:
                     self.showError("Email was not acceped as a valid format")
@@ -97,12 +105,13 @@ class SignupViewController: UIViewController {
                 case .weakPassword:
                     self.showError("Please create a stronger password")
                 default:
-                    self.showError(error!.localizedDescription)
+                    self.showError(error.localizedDescription)
                 }
+                Log.e(SignupViewController.TAG, error.localizedDescription)
             } else if result != nil {
                 self.dismiss(animated: true, completion: nil)
             }
-        })
+        }
     }
     
     @IBAction func actionCancel(_ sender: RoundedButton) {

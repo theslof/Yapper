@@ -63,7 +63,7 @@
         <!--Login View Controller-->
         <scene sceneID="pW9-Un-za8">
             <objects>
-                <viewController id="lat-XC-t21" customClass="LoginViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="lat-XC-t21" customClass="LoginViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cAF-CF-Yrh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,7 +162,6 @@
         <!--Signup View Controller-->
         <scene sceneID="1ho-aG-eHZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aQE-dG-142" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="1G8-Dj-Vq5" customClass="SignupViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tJc-xF-OOE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -175,19 +174,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ScR-Eu-ufA">
-                                <rect key="frame" x="20" y="149" width="335" height="30"/>
+                                <rect key="frame" x="20" y="199" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VXK-uY-xDG">
-                                <rect key="frame" x="20" y="187" width="335" height="30"/>
+                                <rect key="frame" x="20" y="237" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDb-yk-8Vp" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="248" width="80" height="32"/>
+                                <rect key="frame" x="147.5" y="298" width="80" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="AHf-5N-rTp"/>
                                     <constraint firstAttribute="height" constant="32" id="Gzp-ry-DaZ"/>
@@ -198,7 +197,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AvV-Vv-b9b" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="300" width="80" height="32"/>
+                                <rect key="frame" x="147.5" y="350" width="80" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="j2a-Tf-Eol"/>
                                     <constraint firstAttribute="width" constant="80" id="r5F-ef-uvQ"/>
@@ -209,24 +208,33 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHR-Z7-lbq">
-                                <rect key="frame" x="20" y="225" width="335" height="15"/>
+                                <rect key="frame" x="20" y="275" width="335" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-0u-MNr">
+                                <rect key="frame" x="20" y="161" width="335" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9sz-ax-Abd" firstAttribute="trailing" secondItem="VXK-uY-xDG" secondAttribute="trailing" constant="20" id="1pT-rU-qPl"/>
                             <constraint firstItem="dDb-yk-8Vp" firstAttribute="top" secondItem="WHR-Z7-lbq" secondAttribute="bottom" constant="8" id="7M4-Cj-aoF"/>
+                            <constraint firstItem="9sz-ax-Abd" firstAttribute="trailing" secondItem="g5U-0u-MNr" secondAttribute="trailing" constant="20" id="8B8-0i-j4u"/>
+                            <constraint firstItem="g5U-0u-MNr" firstAttribute="top" secondItem="dhp-6y-YGB" secondAttribute="bottom" constant="20" id="Bce-xt-PtI"/>
                             <constraint firstItem="AvV-Vv-b9b" firstAttribute="centerX" secondItem="tJc-xF-OOE" secondAttribute="centerX" id="FCi-FS-GJg"/>
+                            <constraint firstItem="g5U-0u-MNr" firstAttribute="leading" secondItem="9sz-ax-Abd" secondAttribute="leading" constant="20" id="J8H-rZ-qF0"/>
                             <constraint firstItem="dhp-6y-YGB" firstAttribute="top" secondItem="9sz-ax-Abd" secondAttribute="top" constant="100" id="JJn-Dg-axM"/>
                             <constraint firstItem="VXK-uY-xDG" firstAttribute="leading" secondItem="9sz-ax-Abd" secondAttribute="leading" constant="20" id="JtI-4N-QWg"/>
                             <constraint firstItem="9sz-ax-Abd" firstAttribute="trailing" secondItem="ScR-Eu-ufA" secondAttribute="trailing" constant="20" id="O4q-xD-hoA"/>
                             <constraint firstItem="9sz-ax-Abd" firstAttribute="trailing" secondItem="WHR-Z7-lbq" secondAttribute="trailing" constant="20" id="QhI-Dy-hSH"/>
                             <constraint firstItem="dDb-yk-8Vp" firstAttribute="centerX" secondItem="tJc-xF-OOE" secondAttribute="centerX" id="U6H-NP-TvR"/>
-                            <constraint firstItem="ScR-Eu-ufA" firstAttribute="top" secondItem="dhp-6y-YGB" secondAttribute="bottom" constant="8" id="aQH-sg-jBU"/>
                             <constraint firstItem="VXK-uY-xDG" firstAttribute="top" secondItem="ScR-Eu-ufA" secondAttribute="bottom" constant="8" id="bMT-t6-egb"/>
+                            <constraint firstItem="ScR-Eu-ufA" firstAttribute="top" secondItem="g5U-0u-MNr" secondAttribute="bottom" constant="8" id="e82-sA-FzV"/>
                             <constraint firstItem="AvV-Vv-b9b" firstAttribute="top" secondItem="dDb-yk-8Vp" secondAttribute="bottom" constant="20" id="fWa-hJ-INI"/>
                             <constraint firstItem="WHR-Z7-lbq" firstAttribute="top" secondItem="VXK-uY-xDG" secondAttribute="bottom" constant="8" id="hoL-Z3-unh"/>
                             <constraint firstItem="ScR-Eu-ufA" firstAttribute="leading" secondItem="9sz-ax-Abd" secondAttribute="leading" constant="20" id="lAV-Oi-oRu"/>
@@ -236,6 +244,7 @@
                         <viewLayoutGuide key="safeArea" id="9sz-ax-Abd"/>
                     </view>
                     <connections>
+                        <outlet property="displaynameTextField" destination="g5U-0u-MNr" id="tJs-9S-3wh"/>
                         <outlet property="emailTextField" destination="ScR-Eu-ufA" id="LIS-ik-frH"/>
                         <outlet property="errorLabel" destination="WHR-Z7-lbq" id="eOO-AS-DsE"/>
                         <outlet property="passwordTextField" destination="VXK-uY-xDG" id="hke-4w-ayC"/>
@@ -243,6 +252,7 @@
                         <outlet property="submitButton" destination="dDb-yk-8Vp" id="hzD-4m-tdX"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQE-dG-142" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1732" y="480"/>
         </scene>
@@ -297,7 +307,13 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Yapper" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Yapper" id="Zdf-7t-Un8">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="ZNA-vl-LeS">
+                            <connections>
+                                <action selector="actionSignOut:" destination="7bK-jq-Zjz" id="nWl-hU-hYh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>

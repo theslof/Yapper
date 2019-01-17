@@ -24,7 +24,6 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         
         createAndSetupSpinner()
-        spinner?.startAnimating()
         errorLabel.textColor = Theme.defaultTheme.error
     }
     

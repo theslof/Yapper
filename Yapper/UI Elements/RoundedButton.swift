@@ -9,22 +9,38 @@
 import UIKit
 
 @IBDesignable
-class RoundedButton: UIButton {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
+open class RoundedButton: UIButton {
+    @IBInspectable var error: Bool = false {
+        didSet {
+            setStyle()
+        }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setStyle()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        commonInit()
+        setStyle()
+    }
+    
+    open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        setStyle()
     }
 
-    private func commonInit() {
+    private func setStyle() {
+        if error {
+            self.layer.backgroundColor = Theme.currentTheme.error.cgColor
+            self.setTitleColor(Theme.currentTheme.textError, for: .normal)
+        } else {
+            self.layer.backgroundColor = Theme.currentTheme.primary.cgColor
+            self.setTitleColor(Theme.currentTheme.text, for: .normal)
+        }
         self.layer.cornerRadius = Theme.currentTheme.cornerRadius
-        self.layer.backgroundColor = Theme.currentTheme.primary.cgColor
-        self.setTitleColor(Theme.currentTheme.text, for: .normal)
     }
 }

@@ -183,7 +183,7 @@
                                 <rect key="frame" x="20" y="237" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDb-yk-8Vp" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
                                 <rect key="frame" x="147.5" y="298" width="80" height="32"/>
@@ -203,6 +203,9 @@
                                     <constraint firstAttribute="width" constant="80" id="r5F-ef-uvQ"/>
                                 </constraints>
                                 <state key="normal" title="Cancel"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="error" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="actionCancel:" destination="1G8-Dj-Vq5" eventType="touchUpInside" id="sDb-At-3SE"/>
                                 </connections>

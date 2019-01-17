@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
 
 class SignupViewController: UIViewController {
@@ -31,7 +30,6 @@ class SignupViewController: UIViewController {
         super.viewWillAppear(animated)
         
         createAndSetupSpinner()
-        spinner?.startAnimating()
         errorLabel.textColor = Theme.defaultTheme.error
     }
     
@@ -90,6 +88,8 @@ class SignupViewController: UIViewController {
             let displayname = displaynameTextField.text, displayname != ""
         else {
             self.showError("Please fill in all fields!")
+            self.submitButton.isEnabled = true
+            self.spinner?.stopAnimating()
             return
         }
         DatabaseManager.shared.auth.signUp(email: username, password: password, displayName: displayname) { (result, error) in

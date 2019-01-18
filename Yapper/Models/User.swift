@@ -7,34 +7,45 @@
 //
 
 import Foundation
+import Firebase
 
 struct User {
     let uid: String
-    let displayName: String
-    let profileImage: String?
+    var displayName: String
+    var profileImage: String
     
-    init(uid: String, displayName: String, profileImage: String? = nil) {
+    // MARK: - Constructors
+    
+    init(uid: String, displayName: String, profileImage: String = "") {
         self.uid = uid
         self.displayName = displayName
         self.profileImage = profileImage
     }
     
-    init?(dictionary: [String : Any]) {
+    init?(from dictionary: [String : Any]) {
         guard
             let uid = dictionary[FirestoreKeys.uid.rawValue] as? String,
             let displayName = dictionary[FirestoreKeys.displayName.rawValue] as? String
             else { return nil }
-        self.uid = uid
-        self.displayName = displayName
-        self.profileImage = dictionary[FirestoreKeys.profileImage.rawValue] as? String
+        let profileImage = dictionary[FirestoreKeys.profileImage.rawValue] as? String ?? ""
+        self.init(uid: uid, displayName: displayName, profileImage: profileImage)
     }
     
-    var dictionary: [String : Any] {
-        var dict: [String : Any] = [ : ]
-        dict[FirestoreKeys.uid.rawValue] = uid
-        dict[FirestoreKeys.displayName.rawValue] = displayName
-        dict[FirestoreKeys.profileImage.rawValue] = profileImage
-        return dict
+    init?(from doc: DocumentSnapshot?){
+        guard
+            let data: [String : Any] = doc?.data()
+            else { return nil }
+        self.init(from: data)
+    }
+    
+    // MARK: - Utilities
+    
+    func toDictionary() -> [String : Any] {
+        return [
+            FirestoreKeys.uid.rawValue : uid,
+            FirestoreKeys.displayName.rawValue : displayName,
+            FirestoreKeys.profileImage.rawValue : profileImage
+        ]
     }
     
     enum FirestoreKeys: String {

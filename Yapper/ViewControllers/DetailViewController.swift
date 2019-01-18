@@ -11,13 +11,14 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    
+    var user: User?
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
+        if let detail = user {
             if let label = detailDescriptionLabel {
-                label.text = detail
+                label.text = detail.displayName
             }
         }
     }

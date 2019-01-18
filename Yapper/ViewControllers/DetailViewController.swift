@@ -12,13 +12,13 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
-    var user: User?
+    var conversation: Conversation?
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = user {
+        if let detail = conversation {
             if let label = detailDescriptionLabel {
-                label.text = detail.displayName
+                label.text = detail.members.joined(separator: ", ")
             }
         }
     }

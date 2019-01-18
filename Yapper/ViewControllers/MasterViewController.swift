@@ -14,8 +14,9 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     
-    var data: [User] = []
-
+    var data: [Conversation] = []
+    
+    var conversationsListener: ListenerRegistration? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,20 +40,26 @@ class MasterViewController: UITableViewController {
                 })
             }
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
+        super.viewWillAppear(animated)
         
-        DatabaseManager.shared.users.getUsers() { (users, error) in
-            if !users.isEmpty {
-                self.data = users
+        conversationsListener = DatabaseManager.shared.messages.getConversations { (snapshot, error) in
+            if let conversations = snapshot?.documents {
+                self.data = conversations.compactMap(Conversation.init(from: ))
                 self.tableView.reloadData()
             } else if let error = error {
                 Log.e(MasterViewController.TAG, error.localizedDescription)
             }
         }
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
-        super.viewWillAppear(animated)
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        conversationsListener?.remove()
     }
 
     // MARK: - Segues
@@ -60,9 +67,9 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let user = data[indexPath.row]
+                let conversation = data[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.user = user
+                controller.conversation = conversation
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -77,7 +84,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.row].displayName
+        cell.textLabel?.text = data[indexPath.row].members.joined(separator: ", ")
         return cell
     }
     

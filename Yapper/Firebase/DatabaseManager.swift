@@ -14,10 +14,12 @@ class DatabaseManager {
     private let db: Firestore
     let users: UserManager
     let auth: LoginManager
+    let messages: ConversationManager
     
     private init() {
         db = Firestore.firestore()
         users = UserManager(database: db)
         auth = LoginManager()
-    }
+        messages = ConversationManager(database: db)
+    }    
 }

@@ -10,35 +10,41 @@ import Foundation
 import Firebase
 
 struct Conversation {
-    let members: [User]
+    private static let TAG = "ConversationManager"
+    let members: [String]
     let lastUpdated: Timestamp
     let messages: [Message]
     
-    init(members: [User], lastUpdated: Timestamp, messages: [Message]) {
+    init(members: [String], lastUpdated: Timestamp, messages: [Message]) {
         self.members = members
         self.lastUpdated = lastUpdated
         self.messages = messages
     }
     
-    init(members: [[String: Any]], lastUpdated: Timestamp, messages: [[String : Any]]) {
-        self.members = members.compactMap(User.init(from:))
+    init(members: [String], lastUpdated: Timestamp, messages: [[String : Any]]) {
+        self.members = members
         self.lastUpdated = lastUpdated
         self.messages = messages.compactMap(Conversation.parse(message: ))
     }
     
     init?(from dictionary: [String : Any]) {
         guard
-        let members = dictionary[FirestoreKeys.members.rawValue] as? [[String : Any]],
-            let lastUpdated = dictionary[FirestoreKeys.lastUpdated.rawValue] as? Timestamp,
-        let messages = dictionary[FirestoreKeys.messages.rawValue] as? [[String : Any]]
-            else { return nil }
-        self.init(members: members, lastUpdated: lastUpdated, messages: messages)
+            let members = dictionary[FirestoreKeys.members.rawValue] as? [String],
+            let lastUpdated = dictionary[FirestoreKeys.lastUpdated.rawValue] as? Date,
+            let messages = dictionary[FirestoreKeys.messages.rawValue] as? [[String : Any]]
+            else {
+                Log.e(Conversation.TAG, "Unable to parse dictionary to Converstion")
+                return nil }
+        self.init(members: members, lastUpdated: Timestamp(date: lastUpdated), messages: messages)
     }
     
     init?(from doc: DocumentSnapshot?){
         guard
             let data: [String : Any] = doc?.data()
-            else { return nil }
+            else {
+                Log.e(Conversation.TAG, "Unable to read data")
+                return nil
+        }
         self.init(from: data)
     }
     
@@ -48,7 +54,7 @@ struct Conversation {
     
     func toDictionary() -> [String : Any] {
         return [
-            FirestoreKeys.members.rawValue : members.map { $0.toDictionary() },
+            FirestoreKeys.members.rawValue : members,
             FirestoreKeys.lastUpdated.rawValue : lastUpdated,
             FirestoreKeys.messages.rawValue : messages.map { $0.toDictionary() }
         ]

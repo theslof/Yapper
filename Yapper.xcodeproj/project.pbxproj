@@ -10,6 +10,7 @@
 		075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F021F1CBBD00CCABC3 /* Message.swift */; };
 		075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F221F1DEA600CCABC3 /* TextMessage.swift */; };
 		075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F621F1F83700CCABC3 /* Conversation.swift */; };
+		075E13FB21F2108000CCABC3 /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13FA21F2108000CCABC3 /* ConversationManager.swift */; };
 		07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4821E62A3000A53F10 /* AppDelegate.swift */; };
 		07CA3B4E21E62A3000A53F10 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */; };
 		07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4F21E62A3000A53F10 /* DetailViewController.swift */; };
@@ -57,6 +58,7 @@
 		075E13F021F1CBBD00CCABC3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		075E13F221F1DEA600CCABC3 /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		075E13F621F1F83700CCABC3 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		075E13FA21F2108000CCABC3 /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
 		07CA3B4521E62A3000A53F10 /* Yapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CA3B4821E62A3000A53F10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				07FEF03621F06EA900964B0D /* DatabaseManager.swift */,
 				07FEF03821F082BE00964B0D /* FirebaseDefaults.swift */,
 				07FEF03D21F098D300964B0D /* LoginManager.swift */,
+				075E13FA21F2108000CCABC3 /* ConversationManager.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				07FEF03521F06DA200964B0D /* UserManager.swift in Sources */,
 				07FEF03721F06EA900964B0D /* DatabaseManager.swift in Sources */,
 				07CA3B7E21E630CC00A53F10 /* SignupViewController.swift in Sources */,
+				075E13FB21F2108000CCABC3 /* ConversationManager.swift in Sources */,
 				07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */,
 				07FEF03E21F098D300964B0D /* LoginManager.swift in Sources */,
 				075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */,

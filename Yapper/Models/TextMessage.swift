@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 struct TextMessage: Message {
+    private static let TAG = "TextMessage"
     static let type: MessageType = .text
     let sender: String
     let timestamp: Timestamp
@@ -23,13 +24,16 @@ struct TextMessage: Message {
     
     init?(from dictionary: [String : Any]) {
         guard
-            let type = dictionary[MessageKeys.type.rawValue] as? MessageType,
+            let typeString = dictionary[MessageKeys.type.rawValue] as? String,
+            let type = MessageType(rawValue: typeString),
             type == TextMessage.type,
             let sender = dictionary[MessageKeys.sender.rawValue] as? String,
-            let timestamp = dictionary[MessageKeys.timestamp.rawValue] as? Timestamp,
+            let date = dictionary[MessageKeys.timestamp.rawValue] as? Date,
             let data = dictionary[MessageKeys.data.rawValue] as? String
-            else { return nil }
-        self.init(sender: sender, timestamp: timestamp, data: data)
+            else {
+                Log.e(TextMessage.TAG, "Failed to parse message: \(dictionary.description)")
+                return nil }
+        self.init(sender: sender, timestamp: Timestamp(date: date), data: data)
     }
     
     init?(from doc: DocumentSnapshot?){
@@ -47,7 +51,7 @@ struct TextMessage: Message {
     
     func toDictionary() -> [String : Any] {
         return [
-            MessageKeys.type.rawValue : TextMessage.type,
+            MessageKeys.type.rawValue : TextMessage.type.rawValue,
             MessageKeys.sender.rawValue : sender,
             MessageKeys.timestamp.rawValue : timestamp,
             MessageKeys.data.rawValue : data

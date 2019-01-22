@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		07152E4721F5D022005EADB2 /* ConversationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E4621F5D022005EADB2 /* ConversationTableView.swift */; };
+		07152E4B21F5E9CA005EADB2 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E4A21F5E9CA005EADB2 /* RoundedImage.swift */; };
+		07152E4D21F5ECB7005EADB2 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E4C21F5ECB7005EADB2 /* ConversationTableViewCell.swift */; };
+		07152E4F21F7228C005EADB2 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E4E21F7228C005EADB2 /* RoundedLabel.swift */; };
 		075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F021F1CBBD00CCABC3 /* Message.swift */; };
 		075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F221F1DEA600CCABC3 /* TextMessage.swift */; };
 		075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F621F1F83700CCABC3 /* Conversation.swift */; };
@@ -57,6 +60,9 @@
 
 /* Begin PBXFileReference section */
 		07152E4621F5D022005EADB2 /* ConversationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableView.swift; sourceTree = "<group>"; };
+		07152E4A21F5E9CA005EADB2 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
+		07152E4C21F5ECB7005EADB2 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		07152E4E21F7228C005EADB2 /* RoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
 		075E13F021F1CBBD00CCABC3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		075E13F221F1DEA600CCABC3 /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		075E13F621F1F83700CCABC3 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -204,6 +210,9 @@
 			children = (
 				07FEF02F21EF286A00964B0D /* RoundedButton.swift */,
 				07152E4621F5D022005EADB2 /* ConversationTableView.swift */,
+				07152E4A21F5E9CA005EADB2 /* RoundedImage.swift */,
+				07152E4C21F5ECB7005EADB2 /* ConversationTableViewCell.swift */,
+				07152E4E21F7228C005EADB2 /* RoundedLabel.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -533,16 +542,19 @@
 				07CA3B7E21E630CC00A53F10 /* SignupViewController.swift in Sources */,
 				075E13FB21F2108000CCABC3 /* ConversationManager.swift in Sources */,
 				07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */,
+				07152E4F21F7228C005EADB2 /* RoundedLabel.swift in Sources */,
 				07FEF03E21F098D300964B0D /* LoginManager.swift in Sources */,
 				075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */,
 				07FEF03221EF551600964B0D /* Themes.swift in Sources */,
 				07CA3B4E21E62A3000A53F10 /* MasterViewController.swift in Sources */,
+				07152E4B21F5E9CA005EADB2 /* RoundedImage.swift in Sources */,
 				07FEF04121F0A6CC00964B0D /* Log.swift in Sources */,
 				07CA3B7C21E62F6100A53F10 /* LoginViewController.swift in Sources */,
 				075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */,
 				07FEF03C21F088C400964B0D /* User.swift in Sources */,
 				07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */,
 				075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */,
+				07152E4D21F5ECB7005EADB2 /* ConversationTableViewCell.swift in Sources */,
 				07FEF02B21EF1F5D00964B0D /* YapperSplitViewController.swift in Sources */,
 				07152E4721F5D022005EADB2 /* ConversationTableView.swift in Sources */,
 				07FEF03921F082BE00964B0D /* FirebaseDefaults.swift in Sources */,

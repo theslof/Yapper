@@ -27,8 +27,8 @@ class Theme {
     private static let secondaryDark: UIColor = UIColor(rgb: 0x0097c7)
     private static let error: UIColor = UIColor.red
     private static let background: UIColor = UIColor.white
-    private static let text: UIColor = UIColor.white
-    private static let textSecondary: UIColor = UIColor.black
+    private static let text: UIColor = UIColor.black
+    private static let textSecondary: UIColor = UIColor.white
     private static let textError: UIColor = UIColor.white
     private static let cornerRadius: CGFloat = 8
 

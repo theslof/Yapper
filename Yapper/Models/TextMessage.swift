@@ -28,12 +28,12 @@ struct TextMessage: Message {
             let type = MessageType(rawValue: typeString),
             type == TextMessage.type,
             let sender = dictionary[MessageKeys.sender.rawValue] as? String,
-            let date = dictionary[MessageKeys.timestamp.rawValue] as? Date,
+            let timestamp = dictionary[MessageKeys.timestamp.rawValue] as? Timestamp,
             let data = dictionary[MessageKeys.data.rawValue] as? String
             else {
                 Log.e(TextMessage.TAG, "Failed to parse message: \(dictionary.description)")
                 return nil }
-        self.init(sender: sender, timestamp: Timestamp(date: date), data: data)
+        self.init(sender: sender, timestamp: timestamp, data: data)
     }
     
     init?(from doc: DocumentSnapshot?){

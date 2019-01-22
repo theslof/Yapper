@@ -38,7 +38,7 @@ struct Conversation {
                 Log.e(Conversation.TAG, dictionary[FirestoreKeys.owners.rawValue].debugDescription)
                 return nil }
         guard
-            let lastUpdated = dictionary[FirestoreKeys.lastUpdated.rawValue] as? Date else {
+            let lastUpdated = dictionary[FirestoreKeys.lastUpdated.rawValue] as? Timestamp else {
                 Log.e(Conversation.TAG, "Unable to parse dictionary to Converstion, key: lastUpdated")
                 return nil }
         guard
@@ -46,7 +46,7 @@ struct Conversation {
                 Log.e(Conversation.TAG, "Unable to parse dictionary to Converstion, key: id")
                 Log.e(Conversation.TAG, dictionary[FirestoreKeys.id.rawValue].debugDescription)
                 return nil }
-        self.init(id: id, members: members, owners: owners, lastUpdated: Timestamp(date: lastUpdated))
+        self.init(id: id, members: members, owners: owners, lastUpdated: lastUpdated)
     }
     
     init?(from doc: DocumentSnapshot?){

@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9tT-Zm-E8C" customClass="ConversationTableView" customModule="Yapper" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="uMp-ZS-EgA" style="IBUITableViewCellStyleDefault" id="fCt-PN-uCS">
@@ -61,13 +61,57 @@
                                     <outlet property="delegate" destination="JEX-9P-axG" id="Buu-zo-N7b"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-Gq-mD4" userLabel="InputView">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c16-wx-5Xm" userLabel="Divider">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="5FG-ze-Lmh"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YgI-g7-1bP">
+                                        <rect key="frame" x="0.0" y="0.0" width="339" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <action selector="actionSend" destination="JEX-9P-axG" eventType="primaryActionTriggered" id="Hps-ye-FDZ"/>
+                                            <outlet property="delegate" destination="JEX-9P-axG" id="X0J-tO-ctX"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USd-EQ-VMi" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
+                                        <rect key="frame" x="339" y="0.0" width="36" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="actionSend" destination="JEX-9P-axG" eventType="touchUpInside" id="i3i-WA-Z4t"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="top" id="2Tp-ee-vMK"/>
+                                    <constraint firstItem="USd-EQ-VMi" firstAttribute="leading" secondItem="YgI-g7-1bP" secondAttribute="trailing" id="5UJ-mJ-9KS"/>
+                                    <constraint firstItem="USd-EQ-VMi" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="top" id="JCP-Jq-pdM"/>
+                                    <constraint firstAttribute="bottom" secondItem="USd-EQ-VMi" secondAttribute="bottom" id="SPc-Hl-K5l"/>
+                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="hKZ-AK-wBI"/>
+                                    <constraint firstAttribute="trailing" secondItem="USd-EQ-VMi" secondAttribute="trailing" id="lrW-H1-8Pp"/>
+                                    <constraint firstItem="c16-wx-5Xm" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="min-PB-61l"/>
+                                    <constraint firstAttribute="bottom" secondItem="YgI-g7-1bP" secondAttribute="bottom" id="pvs-TT-JN4"/>
+                                    <constraint firstItem="c16-wx-5Xm" firstAttribute="top" secondItem="ySc-Gq-mD4" secondAttribute="top" id="vCP-S7-svj"/>
+                                    <constraint firstAttribute="trailing" secondItem="c16-wx-5Xm" secondAttribute="trailing" id="ycP-cl-cxQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="9tT-Zm-E8C" secondAttribute="trailing" id="AB8-8B-vLk"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="ySc-Gq-mD4" secondAttribute="trailing" id="FSS-5A-uaf"/>
                             <constraint firstItem="9tT-Zm-E8C" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="GWG-4l-Zwt"/>
+                            <constraint firstItem="ySc-Gq-mD4" firstAttribute="top" secondItem="9tT-Zm-E8C" secondAttribute="bottom" id="NEL-EZ-uGE"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="bottom" secondItem="ySc-Gq-mD4" secondAttribute="bottom" id="XsG-K6-Jkm"/>
                             <constraint firstItem="9tT-Zm-E8C" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="f4R-w4-Xyr"/>
-                            <constraint firstItem="VUw-jc-0yf" firstAttribute="bottom" secondItem="9tT-Zm-E8C" secondAttribute="bottom" id="mxv-Gb-GHX"/>
+                            <constraint firstItem="ySc-Gq-mD4" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="l6k-vS-Ywr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
@@ -80,6 +124,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonSend" destination="USd-EQ-VMi" id="kNH-lb-7H6"/>
+                        <outlet property="inputTextField" destination="YgI-g7-1bP" id="Bdw-nQ-c9h"/>
+                        <outlet property="inputViewBottomConstraint" destination="XsG-K6-Jkm" id="Z76-Ps-wJP"/>
                         <outlet property="tableView" destination="9tT-Zm-E8C" id="a6X-uY-RZr"/>
                     </connections>
                 </viewController>
@@ -309,21 +356,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="&quot;Cell&quot;" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="&quot;Cell&quot;" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="WCw-Qf-5nD" customClass="ConversationTableViewCell" customModule="Yapper" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>

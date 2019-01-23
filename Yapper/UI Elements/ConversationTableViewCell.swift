@@ -42,8 +42,8 @@ class ConversationTableViewCell: UITableViewCell {
     }
     
     private func drawProfileImages() {
-        let height = self.layer.frame.size.height
-        let offset = -20
+        let offset = -16
+        let size: CGFloat = 44
 
         DatabaseManager.shared.users.getUsers(completion: { (users, error) in
             var filtered = users.filter({ (user) -> Bool in
@@ -53,23 +53,23 @@ class ConversationTableViewCell: UITableViewCell {
             let extras = max(0, filtered.count - 5)
             filtered = Array(filtered.dropLast(extras))
             filtered.forEach({ (user) in
-                let image = RoundedImage(frame: CGRect(x: 0, y: 0, width: height, height: height))
+                let image = RoundedImage(frame: .zero, size: size)
                 image.translatesAutoresizingMaskIntoConstraints = false
                 self.contentView.addSubview(image)
                 self.profileImages.append(image)
                 
                 if let last = last {
                     NSLayoutConstraint.activate([
-                        image.topAnchor.constraint(equalTo: self.topAnchor),
-                        image.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                        image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
                         image.leadingAnchor.constraint(equalTo: last.trailingAnchor, constant: CGFloat(offset)),
+                        image.heightAnchor.constraint(equalToConstant: size),
                         image.widthAnchor.constraint(equalTo: image.heightAnchor)
                         ])
                 } else {
                 NSLayoutConstraint.activate([
-                    image.topAnchor.constraint(equalTo: self.topAnchor),
-                    image.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                    image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+                    image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                    image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+                    image.heightAnchor.constraint(equalToConstant: size),
                     image.widthAnchor.constraint(equalTo: image.heightAnchor)
                     ])
                 }
@@ -77,15 +77,15 @@ class ConversationTableViewCell: UITableViewCell {
                 image.image = UIImage(named: user.profileImage.rawValue)
             })
             if extras > 0 {
-                let image = RoundedLabel(frame: CGRect(x: 0, y: 0, width: height, height: height))
+                let image = RoundedLabel(frame: .zero, size: size)
                 self.numberImage = image
                 self.contentView.addSubview(image)
                 image.text = "+\(extras)"
                 image.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
-                    image.topAnchor.constraint(equalTo: self.topAnchor),
-                    image.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                    image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
                     image.leadingAnchor.constraint(equalTo: last!.trailingAnchor, constant: CGFloat(offset)),
+                    image.heightAnchor.constraint(equalToConstant: size),
                     image.widthAnchor.constraint(equalTo: image.heightAnchor)
                     ])
             }

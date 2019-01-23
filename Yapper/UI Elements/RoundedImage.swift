@@ -10,19 +10,23 @@ import UIKit
 
 @IBDesignable
 class RoundedImage: UIImageView {
-    override init(frame: CGRect) {
+    private let size: CGFloat
+    
+    init(frame: CGRect, size: CGFloat) {
+        self.size = size
         super.init(frame: frame)
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.size = 44
         super.init(coder: aDecoder)
         commonInit()
     }
     
     func commonInit() {
         self.clipsToBounds = true
-        self.layer.cornerRadius = self.layer.frame.size.height / 2
+        self.layer.cornerRadius = size / 2
         self.layer.borderWidth = 2
         self.layer.borderColor = Theme.currentTheme.background.cgColor
         
@@ -33,5 +37,4 @@ class RoundedImage: UIImageView {
         self.layer.shadowOffset = CGSize(width: -1.5, height: 1.5)
         prepareForInterfaceBuilder()
     }
-    
 }

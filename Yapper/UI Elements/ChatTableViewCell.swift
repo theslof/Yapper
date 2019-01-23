@@ -139,7 +139,7 @@ class ChatTableViewCell: UITableViewCell {
                 let calendar = Calendar.current
                 
                 if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month, .day, .hour], from: date)) {
-                    formatter.dateFormat = "mm:ss"
+                    formatter.dateFormat = "HH:mm"
                 } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month, .day], from: date)) {
                     formatter.dateFormat = "HH:mm"
                 } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month], from: date)) {

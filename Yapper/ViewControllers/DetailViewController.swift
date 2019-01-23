@@ -20,6 +20,8 @@ class DetailViewController: UIViewController {
     var conversation: Conversation?
     var messages: [Message] = []
     var listener: ListenerRegistration?
+    private var atBottom: Bool = false
+    private var firstView: Bool = true
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -34,8 +36,9 @@ class DetailViewController: UIViewController {
                         .compactMap { Conversation.parse(message: $0.data()) }
                         .sorted(by: { $0.timestamp.dateValue() < $1.timestamp.dateValue() })
                     self.tableView.reloadData()
-                    if let last = self.messages.last?.sender, let user = Auth.auth().currentUser?.uid, last == user {
+                    if let last = self.messages.last?.sender, let user = Auth.auth().currentUser?.uid, last == user || self.atBottom || self.firstView {
                         self.tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                        self.firstView = false
                     }
                 } else if let error = error {
                     Log.e(DetailViewController.TAG, error.localizedDescription)
@@ -72,6 +75,7 @@ class DetailViewController: UIViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
         guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         inputViewBottomConstraint.constant = frame.cgRectValue.height
+        self.tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
         view.layoutIfNeeded()
     }
     
@@ -109,5 +113,9 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ChatTableViewCell ?? ChatTableViewCell()
         cell.set(message: messages[indexPath.row])
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        atBottom = scrollView.contentSize.height - scrollView.contentOffset.y - scrollView.frame.height < 100
     }
 }

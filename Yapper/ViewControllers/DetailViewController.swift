@@ -30,9 +30,13 @@ class DetailViewController: UIViewController {
             listener = DatabaseManager.shared.messages.getMessages(for: conversation) { snapshot, error in
                 if let messages = snapshot?.documents {
                     Log.d(DetailViewController.TAG, "Messages updated! Found \(messages.count) messages!")
-                    //TODO: Sort messages based on timestamp
-                    self.messages = messages.compactMap { Conversation.parse(message: $0.data()) }
+                    self.messages = messages
+                        .compactMap { Conversation.parse(message: $0.data()) }
+                        .sorted(by: { $0.timestamp.dateValue() < $1.timestamp.dateValue() })
                     self.tableView.reloadData()
+                    if let last = self.messages.last?.sender, let user = Auth.auth().currentUser?.uid, last == user {
+                        self.tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                    }
                 } else if let error = error {
                     Log.e(DetailViewController.TAG, error.localizedDescription)
                 }
@@ -102,8 +106,8 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = messages[indexPath.row].data
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ChatTableViewCell ?? ChatTableViewCell()
+        cell.set(message: messages[indexPath.row])
         return cell
     }
 }

@@ -46,6 +46,8 @@ struct TextMessage: Message {
     func getView() -> UIView {
         let view = UITextView(frame: .zero)
         view.text = data
+        view.isScrollEnabled = false
+        view.isEditable = false
         return view
     }
     

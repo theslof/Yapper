@@ -19,7 +19,8 @@ class Theme {
     let textSecondary: UIColor
     let textError: UIColor
     let cornerRadius: CGFloat
-    
+    let margin: CGFloat
+
     static var currentTheme: Theme = defaultTheme
     private static let primary: UIColor = UIColor(rgb: 0x007AFF)
     private static let primaryDark: UIColor = UIColor(rgb: 0x004fcb)
@@ -31,8 +32,9 @@ class Theme {
     private static let textSecondary: UIColor = UIColor.white
     private static let textError: UIColor = UIColor.white
     private static let cornerRadius: CGFloat = 8
+    private static let margin: CGFloat = 8
 
-    init(primary: UIColor = primary, primaryDark: UIColor = primaryDark, secondary: UIColor = secondary, secondaryDark: UIColor = secondaryDark, error: UIColor = error, background: UIColor = background, text: UIColor = text, textSecondary: UIColor = textSecondary, textError: UIColor = textError, cornerRadius: CGFloat = cornerRadius) {
+    init(primary: UIColor = primary, primaryDark: UIColor = primaryDark, secondary: UIColor = secondary, secondaryDark: UIColor = secondaryDark, error: UIColor = error, background: UIColor = background, text: UIColor = text, textSecondary: UIColor = textSecondary, textError: UIColor = textError, cornerRadius: CGFloat = cornerRadius, margin: CGFloat = margin) {
         self.primary = primary
         self.primaryDark = primaryDark
         self.secondary = secondary
@@ -43,6 +45,7 @@ class Theme {
         self.textSecondary = textSecondary
         self.textError = textError
         self.cornerRadius = cornerRadius
+        self.margin = margin
     }
 }
 

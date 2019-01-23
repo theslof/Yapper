@@ -68,7 +68,7 @@ class ConversationTableViewCell: UITableViewCell {
                 } else {
                 NSLayoutConstraint.activate([
                     image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                    image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+                    image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Theme.currentTheme.margin),
                     image.heightAnchor.constraint(equalToConstant: size),
                     image.widthAnchor.constraint(equalTo: image.heightAnchor)
                     ])

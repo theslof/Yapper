@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
-class ConversationTableViewCell: UITableViewCell {    
+class ConversationTableViewCell: UITableViewCell {
+    private static let TAG = "ConversationTableViewCell"
     private var profileImages: [RoundedImage] = []
     private var numberImage: RoundedLabel?
     
@@ -46,8 +48,16 @@ class ConversationTableViewCell: UITableViewCell {
         let size: CGFloat = 44
 
         DatabaseManager.shared.users.getUsers(completion: { (users, error) in
+            print("Got callback from usermanager")
+            guard let users = users, let currentUser = Auth.auth().currentUser?.uid else {
+                if let error = error {
+                    Log.e(ConversationTableViewCell.TAG, error.localizedDescription)
+                }
+                return
+            }
+            
             var filtered = users.filter({ (user) -> Bool in
-                self.users.contains(user.uid)
+                self.users.contains(user.uid) && user.uid != currentUser
             })
             var last: RoundedImage?
             let extras = max(0, filtered.count - 5)
@@ -89,7 +99,22 @@ class ConversationTableViewCell: UITableViewCell {
                     image.widthAnchor.constraint(equalTo: image.heightAnchor)
                     ])
             }
-
+            if filtered.count == 1,
+                let other = filtered.first(where: { $0.uid != currentUser }),
+                let last = last
+            {
+                let title = UILabel(frame: .zero)
+                title.text = other.displayName
+                
+                self.addSubview(title)
+                title.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    title.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                    title.leadingAnchor.constraint(equalTo: last.trailingAnchor, constant: Theme.currentTheme.margin),
+                    title.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+                    ])
+            }
+            
         })
     }
 

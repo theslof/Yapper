@@ -14,7 +14,10 @@ class ChatTableViewCell: UITableViewCell {
     var userName: UILabel?
     var timestamp: UILabel?
     var view: UIView?
+    let size: CGFloat = 44.0
     
+    var _constraints: [NSLayoutConstraint] = []
+
     override func prepareForReuse() {
         super.prepareForReuse()
         profileImage?.removeFromSuperview()
@@ -37,7 +40,6 @@ class ChatTableViewCell: UITableViewCell {
     
     func set(message: Message) {
         guard let user = Auth.auth().currentUser else { return }
-        let size: CGFloat = 44.0
         self.backgroundColor = nil
         self.isOpaque = false
         self.layer.masksToBounds = true
@@ -46,6 +48,14 @@ class ChatTableViewCell: UITableViewCell {
         self.contentView.addSubview(messageView)
         self.view = messageView
         messageView.setContentCompressionResistancePriority(.required, for: .vertical)
+        messageView.layer.cornerRadius = Theme.currentTheme.cornerRadius
+        messageView.sizeToFit()
+        messageView.layer.masksToBounds = false
+        messageView.layer.shadowColor = Theme.currentTheme.text.cgColor
+        messageView.layer.shadowOpacity = 0.1
+        messageView.layer.shadowRadius = 1.5
+        messageView.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+
 
         let profileView = RoundedImage(frame: .zero, size: size)
         self.contentView.addSubview(profileView)
@@ -69,64 +79,10 @@ class ChatTableViewCell: UITableViewCell {
         usernameView.translatesAutoresizingMaskIntoConstraints = false
         timeView.translatesAutoresizingMaskIntoConstraints = false
 
-        messageView.backgroundColor = UIColor.white
-        messageView.isOpaque = true
-        messageView.layer.cornerRadius = Theme.currentTheme.cornerRadius
-        messageView.layer.masksToBounds = true
-        messageView.sizeToFit()
-        
-        let commonConstraints: [NSLayoutConstraint] = [
-            profileView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: Theme.currentTheme.margin),
-            profileView.heightAnchor.constraint(equalToConstant: size),
-            profileView.widthAnchor.constraint(equalTo: profileView.heightAnchor),
-            
-            usernameView.topAnchor.constraint(equalTo: profileView.topAnchor),
-            usernameView.heightAnchor.constraint(equalToConstant: 20),
-            
-            timeView.topAnchor.constraint(equalTo: profileView.topAnchor),
-            timeView.heightAnchor.constraint(equalToConstant: 20),
-            
-            messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin),
-            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
-        ]
-        
-        let leftConstraints: [NSLayoutConstraint] = [
-            profileView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Theme.currentTheme.margin),
-            
-            usernameView.leadingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: Theme.currentTheme.margin),
-            
-            timeView.leadingAnchor.constraint(equalTo: usernameView.trailingAnchor, constant: Theme.currentTheme.margin),
-            timeView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Theme.currentTheme.margin),
-            
-            messageView.leadingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: Theme.currentTheme.margin),
-            messageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Theme.currentTheme.margin)
-        ]
-        
-        let rightConstraints: [NSLayoutConstraint] = [
-            profileView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Theme.currentTheme.margin),
-            
-            usernameView.trailingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: -Theme.currentTheme.margin),
-            
-            timeView.trailingAnchor.constraint(equalTo: usernameView.leadingAnchor, constant: -Theme.currentTheme.margin),
-            timeView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Theme.currentTheme.margin),
-            
-            messageView.trailingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: -Theme.currentTheme.margin),
-            messageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Theme.currentTheme.margin)
-        ]
-
-        NSLayoutConstraint.activate(commonConstraints)
         if user.uid == message.sender {
-            timeView.textAlignment = .left
-            usernameView.textAlignment = .right
-            messageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
-            NSLayoutConstraint.deactivate(leftConstraints)
-            NSLayoutConstraint.activate(rightConstraints)
+            loadRightConstraints()
         } else {
-            timeView.textAlignment = .right
-            usernameView.textAlignment = .left
-            messageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
-            NSLayoutConstraint.deactivate(rightConstraints)
-            NSLayoutConstraint.activate(leftConstraints)
+            loadLeftConstraints()
         }
         
         DatabaseManager.shared.users.getUser(uid: message.sender) { (user, error) in
@@ -134,24 +90,113 @@ class ChatTableViewCell: UITableViewCell {
                 profileView.image = UIImage(named: user.profileImage.rawValue)
                 usernameView.text = user.displayName
                 
-                let date = message.timestamp.dateValue()
-                let formatter = DateFormatter()
-                let calendar = Calendar.current
-                
-                if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month, .day, .hour], from: date)) {
-                    formatter.dateFormat = "HH:mm"
-                } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month, .day], from: date)) {
-                    formatter.dateFormat = "HH:mm"
-                } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month], from: date)) {
-                    formatter.dateFormat = "MMM dd HH:mm"
-                } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year], from: date)) {
-                    formatter.dateFormat = "MMM dd"
-                } else {
-                    formatter.dateFormat = "MMM dd yyyy"
-                }
-                timeView.text = formatter.string(from: date)
+                timeView.text = self.formattedTimeFrom(timestamp: message.timestamp)
             }
         }
+        
+        userName?.textColor = Theme.currentTheme.text
+        timestamp?.textColor = Theme.currentTheme.text
     }
+    
+    var commonConstraint: [NSLayoutConstraint] {
+        guard
+            let profileView = profileImage,
+            let usernameView = userName,
+            let timeView = timestamp,
+            let messageView = view
+            else { return [] }
+        
+        return [
+            profileView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: Theme.currentTheme.margin),
+            profileView.heightAnchor.constraint(equalToConstant: size),
+            profileView.widthAnchor.constraint(equalTo: profileView.heightAnchor),
+            
+            usernameView.topAnchor.constraint(equalTo: profileView.topAnchor),
+            usernameView.heightAnchor.constraint(equalToConstant: 14),
+            
+            timeView.bottomAnchor.constraint(equalTo: usernameView.bottomAnchor),
+            
+            messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin),
+            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
+            ]
+    }
+    
+    func loadRightConstraints() {
+        guard
+            let profileView = profileImage,
+            let usernameView = userName,
+            let timeView = timestamp,
+            let messageView = view
+            else { return }
+        
+        timeView.textAlignment = .left
+        usernameView.textAlignment = .right
+        messageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+        
+        NSLayoutConstraint.deactivate(_constraints)
+        
+        _constraints = [
+            profileView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Theme.currentTheme.margin),
+            
+            usernameView.trailingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: -Theme.currentTheme.margin),
+            
+            timeView.trailingAnchor.constraint(equalTo: usernameView.leadingAnchor, constant: -Theme.currentTheme.margin),
+            timeView.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: Theme.currentTheme.margin),
+            
+            messageView.trailingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: -Theme.currentTheme.margin),
+            messageView.leadingAnchor.constraint(equalTo: self.contentView.readableContentGuide.leadingAnchor, constant: Theme.currentTheme.margin)
+        ]
+        
+        _constraints.append(contentsOf: commonConstraint)
+        
+        NSLayoutConstraint.activate(_constraints)
+    }
+    
+    func loadLeftConstraints() {
+        guard
+            let profileView = profileImage,
+            let usernameView = userName,
+            let timeView = timestamp,
+            let messageView = view
+            else { return }
 
+        timeView.textAlignment = .right
+        usernameView.textAlignment = .left
+        messageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
+
+        NSLayoutConstraint.deactivate(_constraints)
+
+        _constraints = [
+            profileView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Theme.currentTheme.margin),
+            
+            usernameView.leadingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: Theme.currentTheme.margin),
+            
+            timeView.leadingAnchor.constraint(equalTo: usernameView.trailingAnchor, constant: Theme.currentTheme.margin),
+            timeView.trailingAnchor.constraint(equalTo: messageView.trailingAnchor, constant: -Theme.currentTheme.margin),
+            
+            messageView.leadingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: Theme.currentTheme.margin),
+            messageView.trailingAnchor.constraint(equalTo: self.contentView.readableContentGuide.trailingAnchor, constant: -Theme.currentTheme.margin)
+        ]
+        
+        _constraints.append(contentsOf: commonConstraint)
+        
+        NSLayoutConstraint.activate(_constraints)
+    }
+    
+    func formattedTimeFrom(timestamp: Timestamp) -> String {
+        let date = timestamp.dateValue()
+        let formatter = DateFormatter()
+        let calendar = Calendar.current
+        
+        if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month, .day], from: date)) {
+            formatter.dateFormat = "HH:mm"
+        } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month], from: date)) {
+            formatter.dateFormat = "MMM dd HH:mm"
+        } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year], from: date)) {
+            formatter.dateFormat = "MMM dd"
+        } else {
+            formatter.dateFormat = "MMM dd yyyy"
+        }
+        return formatter.string(from: date)
+    }
 }

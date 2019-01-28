@@ -13,9 +13,29 @@ class UserManager {
     private static let TAG: String = "UserManager"
     private let db: Firestore
     private var users: [String: User] = [:]
+    private var userListener: ListenerRegistration?
+    private var callbacks: [([User]?, Error?) -> Void] = []
     
     init(database: Firestore) {
         self.db = database
+        userListener = db.collection(FirebaseDefaults.CollectionUsers.rawValue)
+            .addSnapshotListener { (snapshot, error) in
+                if let documents = snapshot?.documents {
+                    documents.compactMap(User.init(from:)).forEach({ user in
+                        self.users[user.uid] = user
+                    })
+                    for callback in self.callbacks {
+                        let users = Array(self.users.values)
+                        callback(users, nil)
+                    }
+                } else if let error = error {
+                    Log.e(UserManager.TAG, error.localizedDescription)
+                    for callback in self.callbacks {
+                        callback(nil, error)
+                    }
+                }
+                self.callbacks.removeAll()
+        }
     }
     
     /**
@@ -43,19 +63,19 @@ class UserManager {
         }
     }
     
-    func getUsers(completion: @escaping ([User], Error?) -> Void) {
-        db.collection(FirebaseDefaults.CollectionUsers.rawValue).getDocuments { (snapshot, error) in
-            var users: [User] = []
-            if let documents = snapshot?.documents {
-                for document in documents {
-                    if let user = User(from: document) {
-                        users.append(user)
-                    }
-                }
-            }
-            completion(users, error)
+    func getUsers(completion: @escaping ([User]?, Error?) -> Void) {
+        if users.isEmpty {
+            Log.d(UserManager.TAG, "Loading users, adding callback")
+            self.callbacks.append(completion)
+        } else {
+            Log.d(UserManager.TAG, "Users were already loaded, executing callback")
+            completion(Array(users.values), nil)
         }
     }
+    
+//    func getUsers() -> [User] {
+//        return Array(users.values)
+//    }
     
     /**
      * Create a User document in Firestore database

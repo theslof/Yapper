@@ -26,8 +26,6 @@ class MasterViewController: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        tableView.tableFooterView = UIView(frame: .zero)
-        
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -54,6 +52,10 @@ class MasterViewController: UITableViewController {
                 Log.e(MasterViewController.TAG, error.localizedDescription)
             }
         }
+        
+        tableView.backgroundColor = Theme.currentTheme.background
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = Theme.currentTheme.background
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +71,7 @@ class MasterViewController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let conversation = data[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.conversation = conversation
+                controller.detailItem = conversation
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -88,8 +90,32 @@ class MasterViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44))
+        footer.backgroundColor = Theme.currentTheme.backgroundText
+        let button = UIButton(type: .roundedRect)
+        button.addTarget(self, action: #selector(actionStartConversation), for: .touchUpInside)
+        button.setTitle("Start conversation", for: .normal)
+        button.setTitleColor(Theme.currentTheme.primary, for: .normal)
+        footer.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: footer.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: footer.centerYAnchor)
+            ])
+        return footer
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
     @IBAction func actionSignOut(_ sender: Any) {
         DatabaseManager.shared.auth.signOut()
+    }
+    
+    @objc func actionStartConversation() {
+        Log.d(MasterViewController.TAG, "Tried to start a new conversation, not yet implemented!")
     }
 }
 

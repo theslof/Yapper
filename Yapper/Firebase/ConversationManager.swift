@@ -11,7 +11,7 @@ import Firebase
 
 class ConversationManager {
     private static let TAG = "ConversationManager"
-    let db: Firestore
+    private let db: Firestore
     
     init(database: Firestore) {
         self.db = database

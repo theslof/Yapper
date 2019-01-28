@@ -28,13 +28,13 @@ class RoundedImage: UIImageView {
         self.clipsToBounds = true
         self.layer.cornerRadius = size / 2
         self.layer.borderWidth = 2
-        self.layer.borderColor = Theme.currentTheme.background.cgColor
+        self.layer.borderColor = Theme.currentTheme.backgroundText.cgColor
         
         self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowColor = Theme.currentTheme.text.cgColor
         self.layer.shadowOpacity = 0.25
         self.layer.shadowRadius = 1.5
-        self.layer.shadowOffset = CGSize(width: -1.5, height: 1.5)
+        self.layer.shadowOffset = CGSize(width: 0, height: 1.5)
         prepareForInterfaceBuilder()
     }
 }

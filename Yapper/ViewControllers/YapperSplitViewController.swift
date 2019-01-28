@@ -16,6 +16,10 @@ class YapperSplitViewController: UISplitViewController {
         let navigationController = self.viewControllers[self.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = self.displayModeButtonItem
         self.delegate = self
+        
+        if( UIDevice.current.userInterfaceIdiom == .pad ) {
+            self.preferredDisplayMode = UISplitViewController.DisplayMode.allVisible
+        }
     }
 }
 

@@ -48,6 +48,10 @@ struct TextMessage: Message {
         view.text = data
         view.isScrollEnabled = false
         view.isEditable = false
+        view.textColor = Theme.currentTheme.text
+        view.backgroundColor = Theme.currentTheme.backgroundText
+        view.isOpaque = true
+
         return view
     }
     

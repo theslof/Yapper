@@ -41,7 +41,7 @@ class RoundedLabel: UIView {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.25
         self.layer.shadowRadius = 1.5
-        self.layer.shadowOffset = CGSize(width: -1.5, height: 1.5)
+        self.layer.shadowOffset = CGSize(width: 0, height: 1.5)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: self.centerYAnchor),

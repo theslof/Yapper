@@ -21,6 +21,7 @@ protocol Message {
 
 enum MessageType: String {
     case text = "text"
+    case image = "image"
 }
 
 enum MessageKeys: String {

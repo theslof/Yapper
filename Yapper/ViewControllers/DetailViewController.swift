@@ -12,6 +12,7 @@ import Firebase
 class DetailViewController: UIViewController {
     private static let TAG = "DetailViewController"
 
+    @IBOutlet weak var buttonAttach: RoundedButton!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var buttonSend: RoundedButton!
     @IBOutlet weak var tableView: ConversationTableView!
@@ -98,6 +99,9 @@ class DetailViewController: UIViewController {
     }
     
     func scrollTo(row: Int, animated: Bool) {
+        if row < 1 {
+            return
+        }
         let indexPath = IndexPath(row: row, section: 0)
         self.tableView.selectRow(at: indexPath, animated: animated, scrollPosition: .bottom)
     }
@@ -107,7 +111,7 @@ class DetailViewController: UIViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
         guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         inputViewBottomConstraint.constant = frame.cgRectValue.height
-        self.tableView.scrollToRow(at: IndexPath(row: messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+        self.scrollTo(row: messages.count - 1, animated: true)
         view.layoutIfNeeded()
     }
     
@@ -134,6 +138,12 @@ class DetailViewController: UIViewController {
         DatabaseManager.shared.messages.add(message: message, to: id)
     }
     
+    @IBAction func actionAttach() {
+        Log.d(DetailViewController.TAG, "Attempted to send an object message, not yet implemented")
+        guard let id = detailItem?.id, let user = Auth.auth().currentUser?.uid else { return }
+        let message = ImageMessage(sender: user, timestamp: Timestamp.init(), data: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg")
+        DatabaseManager.shared.messages.add(message: message, to: id)
+    }
 }
 
 extension DetailViewController: UITableViewDataSource, UITableViewDelegate {

@@ -82,6 +82,8 @@ struct Conversation {
             switch type {
             case .text:
                 if let message = TextMessage(from: message) { return message }
+            case .image:
+                if let message = ImageMessage(from: message) { return message }
             }
         }
         return nil

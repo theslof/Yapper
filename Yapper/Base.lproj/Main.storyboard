@@ -62,7 +62,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YgI-g7-1bP">
-                                        <rect key="frame" x="0.0" y="0.0" width="339" height="30"/>
+                                        <rect key="frame" x="30" y="0.0" width="301" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -72,10 +72,17 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USd-EQ-VMi" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="339" y="0.0" width="36" height="30"/>
-                                        <state key="normal" title="Send"/>
+                                        <rect key="frame" x="331" y="0.0" width="44" height="30"/>
+                                        <state key="normal" title=" Send "/>
                                         <connections>
                                             <action selector="actionSend" destination="JEX-9P-axG" eventType="touchUpInside" id="i3i-WA-Z4t"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmN-rQ-qfc" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="actionAttach" destination="JEX-9P-axG" eventType="touchUpInside" id="gmM-OE-HOw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -84,10 +91,13 @@
                                     <constraint firstItem="YgI-g7-1bP" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="top" id="2Tp-ee-vMK"/>
                                     <constraint firstItem="USd-EQ-VMi" firstAttribute="leading" secondItem="YgI-g7-1bP" secondAttribute="trailing" id="5UJ-mJ-9KS"/>
                                     <constraint firstItem="USd-EQ-VMi" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="top" id="JCP-Jq-pdM"/>
+                                    <constraint firstAttribute="bottom" secondItem="WmN-rQ-qfc" secondAttribute="bottom" id="JkU-oH-dGT"/>
                                     <constraint firstAttribute="bottom" secondItem="USd-EQ-VMi" secondAttribute="bottom" id="SPc-Hl-K5l"/>
-                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="hKZ-AK-wBI"/>
+                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="leading" secondItem="WmN-rQ-qfc" secondAttribute="trailing" id="TBw-hT-YAb"/>
+                                    <constraint firstItem="WmN-rQ-qfc" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="fZq-qT-p5s"/>
                                     <constraint firstAttribute="trailing" secondItem="USd-EQ-VMi" secondAttribute="trailing" id="lrW-H1-8Pp"/>
                                     <constraint firstItem="c16-wx-5Xm" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="min-PB-61l"/>
+                                    <constraint firstItem="WmN-rQ-qfc" firstAttribute="top" secondItem="ySc-Gq-mD4" secondAttribute="top" id="pIv-Gs-eNZ"/>
                                     <constraint firstAttribute="bottom" secondItem="YgI-g7-1bP" secondAttribute="bottom" id="pvs-TT-JN4"/>
                                     <constraint firstItem="c16-wx-5Xm" firstAttribute="top" secondItem="ySc-Gq-mD4" secondAttribute="top" id="vCP-S7-svj"/>
                                     <constraint firstAttribute="trailing" secondItem="c16-wx-5Xm" secondAttribute="trailing" id="ycP-cl-cxQ"/>
@@ -115,6 +125,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonAttach" destination="WmN-rQ-qfc" id="S0K-xP-qbc"/>
                         <outlet property="buttonSend" destination="USd-EQ-VMi" id="kNH-lb-7H6"/>
                         <outlet property="inputTextField" destination="YgI-g7-1bP" id="Bdw-nQ-c9h"/>
                         <outlet property="inputViewBottomConstraint" destination="XsG-K6-Jkm" id="Z76-Ps-wJP"/>

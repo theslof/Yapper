@@ -48,8 +48,8 @@ class ChatTableViewCell: UITableViewCell {
         self.contentView.addSubview(messageView)
         self.view = messageView
         messageView.setContentCompressionResistancePriority(.required, for: .vertical)
+        messageView.setContentHuggingPriority(.required, for: .vertical)
         messageView.layer.cornerRadius = Theme.currentTheme.cornerRadius
-        messageView.sizeToFit()
         messageView.layer.masksToBounds = false
         messageView.layer.shadowColor = Theme.currentTheme.text.cgColor
         messageView.layer.shadowOpacity = 0.1
@@ -65,7 +65,6 @@ class ChatTableViewCell: UITableViewCell {
         self.contentView.addSubview(usernameView)
         self.userName = usernameView
         usernameView.textColor = Theme.currentTheme.textSecondary
-//        usernameView.setContentCompressionResistancePriority(.required, for: .vertical)
 
         let timeView = UILabel(frame: .zero)
         self.contentView.addSubview(timeView)
@@ -117,7 +116,7 @@ class ChatTableViewCell: UITableViewCell {
             timeView.bottomAnchor.constraint(equalTo: usernameView.bottomAnchor),
             
             messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin / 2),
-            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
+            messageView.bottomAnchor.constraint(lessThanOrEqualTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
             ]
     }
     

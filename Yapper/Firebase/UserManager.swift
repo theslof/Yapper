@@ -63,6 +63,9 @@ class UserManager {
         }
     }
     
+    /**
+     * Get a list of all Users, or add the completion callback to the queue that is processed as soon as they are fetched from Firestore
+     */
     func getUsers(completion: @escaping ([User]?, Error?) -> Void) {
         if users.isEmpty {
             Log.d(UserManager.TAG, "Loading users, adding callback")
@@ -73,18 +76,63 @@ class UserManager {
         }
     }
     
-//    func getUsers() -> [User] {
-//        return Array(users.values)
-//    }
+    func getUsersFor(_ uids: [String], completion: @escaping ([User]?, Error?) -> Void) {
+        if users.isEmpty {
+            Log.d(UserManager.TAG, "Loading users, adding callback")
+            self.callbacks.append {users, error in
+                if let users = users {
+                    completion(
+                        users.filter({ user -> Bool in uids.contains(user.uid) }),
+                        error)
+                } else {
+                    completion(users, error)
+                }
+            }
+        } else {
+            Log.d(UserManager.TAG, "Users were already loaded, executing callback")
+            completion(
+                Array(users.filter({ (uid, user) -> Bool in uids.contains(uid) }).values), nil)
+        }
+    }
     
     /**
      * Create a User document in Firestore database
      */
     func createUser(user: User, completion: ((Error?) -> Void)? ) {
-        db.collection(FirebaseDefaults.CollectionUsers.rawValue).document(user.uid).setData(user.toDictionary(), completion: completion)
+        db
+            .collection(FirebaseDefaults.CollectionUsers.rawValue)
+            .document(user.uid).setData(user.toDictionary(), completion: completion)
     }
     
     func updateUser(user: User, completion: ((Error?) -> Void)?) {
-        db.collection(FirebaseDefaults.CollectionUsers.rawValue).document(user.uid).updateData(user.toDictionary(), completion: completion)
+        db
+            .collection(FirebaseDefaults.CollectionUsers.rawValue)
+            .document(user.uid).updateData(user.toDictionary(), completion: completion)
+    }
+    
+    func getFriendlistFor(_ user: String, completion: @escaping ([FriendListItem]?, Error?) -> Void) {
+        db
+            .collection(FirebaseDefaults.CollectionUsers.rawValue)
+            .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue).getDocuments { (snapshot, error) in
+                if let documents = snapshot?.documents {
+                    completion(documents.compactMap(FriendListItem.init(from:)), error)
+                } else if let error = error {
+                    completion(nil, error)
+                }
+        }
+    }
+    
+    func setFriendFor(_ user: String, friend: String, isFriend: Bool, completion: ((Error?) -> Void)? = nil) {
+        db
+            .collection(FirebaseDefaults.CollectionUsers.rawValue)
+            .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue)
+            .document(friend).setData([FriendListItem.FirestoreKeys.isFriend.rawValue : isFriend], merge: true, completion: completion)
+    }
+    
+    func setIgnoredFor(_ user: String, friend: String, isIgnored: Bool, completion: ((Error?) -> Void)? = nil) {
+        db
+            .collection(FirebaseDefaults.CollectionUsers.rawValue)
+            .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue)
+            .document(friend).setData([FriendListItem.FirestoreKeys.isIgnored.rawValue : isIgnored], merge: true, completion: completion)
     }
 }

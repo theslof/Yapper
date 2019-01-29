@@ -46,7 +46,9 @@ class MasterViewController: UITableViewController {
         
         conversationsListener = DatabaseManager.shared.messages.getConversations { (snapshot, error) in
             if let conversations = snapshot?.documents {
-                self.data = conversations.compactMap(Conversation.init(from: ))
+                self.data = conversations.compactMap(Conversation.init(from: )).sorted(by: { (c1, c2) -> Bool in
+                    c1.lastUpdated.dateValue() < c2.lastUpdated.dateValue()
+                })
                 self.tableView.reloadData()
             } else if let error = error {
                 Log.e(MasterViewController.TAG, error.localizedDescription)
@@ -86,13 +88,13 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ConversationTableViewCell
-        cell.users = data[indexPath.row].members
+        cell.conversation = data[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44))
-        footer.backgroundColor = Theme.currentTheme.backgroundText
+        footer.backgroundColor = Theme.currentTheme.background
         let button = UIButton(type: .roundedRect)
         button.addTarget(self, action: #selector(actionStartConversation), for: .touchUpInside)
         button.setTitle("Start conversation", for: .normal)

@@ -65,14 +65,14 @@ class ChatTableViewCell: UITableViewCell {
         self.contentView.addSubview(usernameView)
         self.userName = usernameView
         usernameView.textColor = Theme.currentTheme.textSecondary
-        usernameView.setContentCompressionResistancePriority(.required, for: .vertical)
+//        usernameView.setContentCompressionResistancePriority(.required, for: .vertical)
 
         let timeView = UILabel(frame: .zero)
         self.contentView.addSubview(timeView)
         self.timestamp = timeView
         timeView.textColor = Theme.currentTheme.textSecondary
-        timeView.setContentCompressionResistancePriority(.required, for: .vertical)
-        timeView.font = timeView.font.withSize(12)
+        timeView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        timeView.font = timeView.font.withSize(10.0)
 
         messageView.translatesAutoresizingMaskIntoConstraints = false
         profileView.translatesAutoresizingMaskIntoConstraints = false
@@ -90,7 +90,7 @@ class ChatTableViewCell: UITableViewCell {
                 profileView.image = UIImage(named: user.profileImage.rawValue)
                 usernameView.text = user.displayName
                 
-                timeView.text = self.formattedTimeFrom(timestamp: message.timestamp)
+                timeView.text = formattedTimeFrom(timestamp: message.timestamp)
             }
         }
         
@@ -116,7 +116,7 @@ class ChatTableViewCell: UITableViewCell {
             
             timeView.bottomAnchor.constraint(equalTo: usernameView.bottomAnchor),
             
-            messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin),
+            messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin / 2),
             messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
             ]
     }
@@ -141,7 +141,7 @@ class ChatTableViewCell: UITableViewCell {
             usernameView.trailingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: -Theme.currentTheme.margin),
             
             timeView.trailingAnchor.constraint(equalTo: usernameView.leadingAnchor, constant: -Theme.currentTheme.margin),
-            timeView.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: Theme.currentTheme.margin),
+            timeView.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: Theme.currentTheme.margin / 2),
             
             messageView.trailingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: -Theme.currentTheme.margin),
             messageView.leadingAnchor.constraint(equalTo: self.contentView.readableContentGuide.leadingAnchor, constant: Theme.currentTheme.margin)
@@ -172,7 +172,7 @@ class ChatTableViewCell: UITableViewCell {
             usernameView.leadingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: Theme.currentTheme.margin),
             
             timeView.leadingAnchor.constraint(equalTo: usernameView.trailingAnchor, constant: Theme.currentTheme.margin),
-            timeView.trailingAnchor.constraint(equalTo: messageView.trailingAnchor, constant: -Theme.currentTheme.margin),
+            timeView.trailingAnchor.constraint(equalTo: messageView.trailingAnchor, constant: -Theme.currentTheme.margin / 2),
             
             messageView.leadingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: Theme.currentTheme.margin),
             messageView.trailingAnchor.constraint(equalTo: self.contentView.readableContentGuide.trailingAnchor, constant: -Theme.currentTheme.margin)
@@ -181,22 +181,5 @@ class ChatTableViewCell: UITableViewCell {
         _constraints.append(contentsOf: commonConstraint)
         
         NSLayoutConstraint.activate(_constraints)
-    }
-    
-    func formattedTimeFrom(timestamp: Timestamp) -> String {
-        let date = timestamp.dateValue()
-        let formatter = DateFormatter()
-        let calendar = Calendar.current
-        
-        if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month, .day], from: date)) {
-            formatter.dateFormat = "HH:mm"
-        } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year, .month], from: date)) {
-            formatter.dateFormat = "MMM dd HH:mm"
-        } else if calendar.date(Date(), matchesComponents: calendar.dateComponents([.year], from: date)) {
-            formatter.dateFormat = "MMM dd"
-        } else {
-            formatter.dateFormat = "MMM dd yyyy"
-        }
-        return formatter.string(from: date)
     }
 }

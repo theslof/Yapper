@@ -13,19 +13,24 @@ class ConversationTableViewCell: UITableViewCell {
     private static let TAG = "ConversationTableViewCell"
     private var profileImages: [RoundedImage] = []
     private var numberImage: RoundedLabel?
+    private var title: UILabel?
+    private var timeLabel: UILabel?
     
-    var users: [String] = [] {
+    var conversation: Conversation? {
         willSet {
-            clearProfileImages()
+            clearViews()
         }
         didSet {
-            drawProfileImages()
+            if let conversation = conversation {
+                drawViews(for: conversation)
+            }
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        clearViews()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -34,21 +39,27 @@ class ConversationTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    private func clearProfileImages() {
+    private func clearViews() {
         profileImages.forEach { (image) in
             image.removeFromSuperview()
         }
+        profileImages.removeAll()
+        
         self.numberImage?.removeFromSuperview()
         self.numberImage = nil
-        profileImages = []
+        
+        self.title?.removeFromSuperview()
+        self.title = nil
+        
+        self.timeLabel?.removeFromSuperview()
+        self.timeLabel = nil
     }
     
-    private func drawProfileImages() {
+    private func drawViews(for conversation: Conversation) {
         let offset = -16
         let size: CGFloat = 44
 
-        DatabaseManager.shared.users.getUsers(completion: { (users, error) in
-            print("Got callback from usermanager")
+        DatabaseManager.shared.users.getUsersFor(conversation.members, completion: { (users, error) in
             guard let users = users, let currentUser = Auth.auth().currentUser?.uid else {
                 if let error = error {
                     Log.e(ConversationTableViewCell.TAG, error.localizedDescription)
@@ -56,12 +67,13 @@ class ConversationTableViewCell: UITableViewCell {
                 return
             }
             
-            var filtered = users.filter({ (user) -> Bool in
-                self.users.contains(user.uid) && user.uid != currentUser
-            })
-            var last: RoundedImage?
+            var filtered = users.filter { $0.uid != currentUser }
+            
+            var last: UIView?
             let extras = max(0, filtered.count - 5)
             filtered = Array(filtered.dropLast(extras))
+            
+            // Draw profile images for the first five members
             filtered.forEach({ (user) in
                 let image = RoundedImage(frame: .zero, size: size)
                 image.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +98,8 @@ class ConversationTableViewCell: UITableViewCell {
                 last = image
                 image.image = UIImage(named: user.profileImage.rawValue)
             })
+            
+            // Draw a rounded label with the number of conversation members > 5
             if extras > 0 {
                 let image = RoundedLabel(frame: .zero, size: size)
                 self.numberImage = image
@@ -99,9 +113,11 @@ class ConversationTableViewCell: UITableViewCell {
                     image.widthAnchor.constraint(equalTo: image.heightAnchor)
                     ])
             }
+            
+            // Add a conversation title if there's only one other member
             if filtered.count == 1,
                 let other = filtered.first(where: { $0.uid != currentUser }),
-                let last = last
+                let _last = last
             {
                 let title = UILabel(frame: .zero)
                 title.text = other.displayName
@@ -110,11 +126,29 @@ class ConversationTableViewCell: UITableViewCell {
                 title.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
                     title.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                    title.leadingAnchor.constraint(equalTo: last.trailingAnchor, constant: Theme.currentTheme.margin),
-                    title.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+                    title.leadingAnchor.constraint(equalTo: _last.trailingAnchor, constant: Theme.currentTheme.margin),
                     ])
+                last = title
+                self.title = title
             }
             
+            // Add a timestamp
+            if let last = last {
+                let timestamp = UILabel(frame: .zero)
+                timestamp.text = formattedTimeFrom(timestamp: conversation.lastUpdated)
+                timestamp.font = timestamp.font.withSize(10.0)
+                timestamp.textAlignment = .right
+                
+                self.addSubview(timestamp)
+                timestamp.setContentCompressionResistancePriority(.required, for: .horizontal)
+                timestamp.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    timestamp.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                    timestamp.leadingAnchor.constraint(equalTo: last.trailingAnchor, constant: Theme.currentTheme.margin),
+                    timestamp.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Theme.currentTheme.margin)
+                    ])
+                self.timeLabel = timestamp
+            }
         })
     }
 

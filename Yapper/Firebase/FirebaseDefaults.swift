@@ -12,5 +12,5 @@ enum FirebaseDefaults: String {
     case CollectionUsers = "users"
     case CollectionConversations = "conversations"
     case CollectionMessages = "messages"
-    case FieldConversationMembers = "members"
+    case CollectionFriendsList = "friendsList"
 }

@@ -43,6 +43,19 @@ class ConversationManager {
             .addDocument(data: message.toDictionary()) { (error) in
                 if let error = error {
                     Log.e(ConversationManager.TAG, error.localizedDescription)
+                } else {
+                    self.setLastUpdatedTo(message.timestamp, for: conversation)
+                }
+        }
+    }
+    
+    private func setLastUpdatedTo(_ timestamp: Timestamp, for conversation: String) {
+        self.db
+            .collection(FirebaseDefaults.CollectionConversations.rawValue)
+            .document(conversation)
+            .updateData([Conversation.FirestoreKeys.lastUpdated.rawValue : timestamp]) { error in
+                if let error = error {
+                    Log.e(ConversationManager.TAG, error.localizedDescription)
                 }
         }
     }

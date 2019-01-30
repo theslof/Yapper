@@ -11,13 +11,14 @@ import Firebase
 
 struct ImageMessage: Message {
     private static let TAG = "ImageMessage"
-    private static let placeholder = "image_placeholder"
     static let type: MessageType = .image
+    let mid: String?
     let sender: String
     let timestamp: Timestamp
     let data: String
     
-    init(sender: String, timestamp: Timestamp, data: String) {
+    init(mid: String? = nil, sender: String, timestamp: Timestamp, data: String) {
+        self.mid = mid
         self.sender = sender
         self.timestamp = timestamp
         self.data = data
@@ -25,6 +26,7 @@ struct ImageMessage: Message {
     
     init?(from dictionary: [String : Any]) {
         guard
+            let mid = dictionary[MessageKeys.mid.rawValue] as? String,
             let typeString = dictionary[MessageKeys.type.rawValue] as? String,
             let type = MessageType(rawValue: typeString),
             type == ImageMessage.type,
@@ -34,7 +36,7 @@ struct ImageMessage: Message {
             else {
                 Log.e(ImageMessage.TAG, "Failed to parse message: \(dictionary.description)")
                 return nil }
-        self.init(sender: sender, timestamp: timestamp, data: data)
+        self.init(mid: mid.isEmpty ? nil : mid, sender: sender, timestamp: timestamp, data: data)
     }
     
     init?(from doc: DocumentSnapshot?){
@@ -46,41 +48,26 @@ struct ImageMessage: Message {
     
     func getView() -> UIView {
         let view = UIView(frame: .zero)
-        let imageView = UIImageView(frame: .zero)
+        let imageView = MessageImageView(frame: .zero)
         view.addSubview(imageView)
         view.contentMode = .scaleAspectFit
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.center = view.center
+        
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = Theme.currentTheme.cornerRadius / 2
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: Theme.currentTheme.margin),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Theme.currentTheme.margin),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Theme.currentTheme.margin),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Theme.currentTheme.margin)
             ])
-
-        let placeholderImage: UIImage = UIImage(named: ImageMessage.placeholder)!
         
-        imageView.image = placeholderImage
+        imageView.loadImageFrom(message: self)
         
-        guard let url = URL(string: self.data) else { return view }
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            let imageData = NSData(contentsOf: url)!
-            DispatchQueue.main.async {
-                let image = UIImage(data: imageData as Data)
-                imageView.image = image
-                
-//                let width = min(imageView.frame.width, image?.size.width ?? 0)
-//                let ratio = (image?.size.height ?? 1) / (image?.size.width ?? 1)
-//                let height = width * ratio
-                
-//                view.frame.size = CGSize(width: width, height: height)
-//                imageView.sizeToFit()
-//                view.sizeToFit()
-            }
-        }
         view.backgroundColor = Theme.currentTheme.backgroundText
         view.isOpaque = true
         
@@ -89,6 +76,7 @@ struct ImageMessage: Message {
     
     func toDictionary() -> [String : Any] {
         return [
+            MessageKeys.mid.rawValue : mid ?? "",
             MessageKeys.type.rawValue : ImageMessage.type.rawValue,
             MessageKeys.sender.rawValue : sender,
             MessageKeys.timestamp.rawValue : timestamp,

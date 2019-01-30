@@ -31,8 +31,7 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        // configureView()
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification(_:)), name: Notification.Name("didChangeImageSize"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,6 +117,16 @@ class DetailViewController: UIViewController {
     @objc func keyboardWillHide(_ notification: Notification) {
         inputViewBottomConstraint.constant = 0
         view.layoutIfNeeded()
+    }
+    
+    @objc func didReceiveNotification(_ notification: Notification) {
+        if
+            let _mid = notification.userInfo?["messageID"],
+            let mid = _mid as? String, !mid.isEmpty,
+            let index = messages.firstIndex(where: { $0.mid == mid }) {
+            self.tableView.reloadInputViews()
+//            self.tableView.cellForRow(at: IndexPath(row: index, section: 0))?.reloadInputViews()
+        }
     }
     
     @IBAction func actionSend() {

@@ -15,6 +15,7 @@
 		07152E5522004C99005EADB2 /* TimestampUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E5422004C99005EADB2 /* TimestampUtils.swift */; };
 		07152E57220053F7005EADB2 /* FriendListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E56220053F7005EADB2 /* FriendListItem.swift */; };
 		07152E592200754E005EADB2 /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E582200754E005EADB2 /* ImageMessage.swift */; };
+		07152E5B2201AF31005EADB2 /* MessageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E5A2201AF31005EADB2 /* MessageImageView.swift */; };
 		075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F021F1CBBD00CCABC3 /* Message.swift */; };
 		075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F221F1DEA600CCABC3 /* TextMessage.swift */; };
 		075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F621F1F83700CCABC3 /* Conversation.swift */; };
@@ -71,6 +72,7 @@
 		07152E5422004C99005EADB2 /* TimestampUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampUtils.swift; sourceTree = "<group>"; };
 		07152E56220053F7005EADB2 /* FriendListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListItem.swift; sourceTree = "<group>"; };
 		07152E582200754E005EADB2 /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
+		07152E5A2201AF31005EADB2 /* MessageImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageImageView.swift; sourceTree = "<group>"; };
 		075E13F021F1CBBD00CCABC3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		075E13F221F1DEA600CCABC3 /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		075E13F621F1F83700CCABC3 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				07152E4C21F5ECB7005EADB2 /* ConversationTableViewCell.swift */,
 				07152E4E21F7228C005EADB2 /* RoundedLabel.swift */,
 				07152E5221F87B91005EADB2 /* ChatTableViewCell.swift */,
+				07152E5A2201AF31005EADB2 /* MessageImageView.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				07FEF03521F06DA200964B0D /* UserManager.swift in Sources */,
 				07FEF03721F06EA900964B0D /* DatabaseManager.swift in Sources */,
 				07CA3B7E21E630CC00A53F10 /* SignupViewController.swift in Sources */,
+				07152E5B2201AF31005EADB2 /* MessageImageView.swift in Sources */,
 				075E13FB21F2108000CCABC3 /* ConversationManager.swift in Sources */,
 				07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */,
 				07152E4F21F7228C005EADB2 /* RoundedLabel.swift in Sources */,

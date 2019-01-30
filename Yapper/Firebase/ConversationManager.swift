@@ -37,10 +37,13 @@ class ConversationManager {
     }
     
     func add(message: Message, to conversation: String) {
-        db
+        let doc = db
             .collection(FirebaseDefaults.CollectionConversations.rawValue)
             .document(conversation).collection(FirebaseDefaults.CollectionMessages.rawValue)
-            .addDocument(data: message.toDictionary()) { (error) in
+            .document()
+        var messageData = message.toDictionary()
+        messageData[MessageKeys.mid.rawValue] = doc.documentID
+        doc.setData(messageData) { (error) in
                 if let error = error {
                     Log.e(ConversationManager.TAG, error.localizedDescription)
                 } else {

@@ -12,11 +12,13 @@ import Firebase
 struct TextMessage: Message {
     private static let TAG = "TextMessage"
     static let type: MessageType = .text
+    let mid: String?
     let sender: String
     let timestamp: Timestamp
     let data: String
     
-    init(sender: String, timestamp: Timestamp, data: String) {
+    init(mid: String? = nil, sender: String, timestamp: Timestamp, data: String) {
+        self.mid = mid
         self.sender = sender
         self.timestamp = timestamp
         self.data = data
@@ -24,6 +26,7 @@ struct TextMessage: Message {
     
     init?(from dictionary: [String : Any]) {
         guard
+            let mid = dictionary[MessageKeys.mid.rawValue] as? String,
             let typeString = dictionary[MessageKeys.type.rawValue] as? String,
             let type = MessageType(rawValue: typeString),
             type == TextMessage.type,
@@ -33,7 +36,7 @@ struct TextMessage: Message {
             else {
                 Log.e(TextMessage.TAG, "Failed to parse message: \(dictionary.description)")
                 return nil }
-        self.init(sender: sender, timestamp: timestamp, data: data)
+        self.init(mid: mid.isEmpty ? nil : mid, sender: sender, timestamp: timestamp, data: data)
     }
     
     init?(from doc: DocumentSnapshot?){
@@ -57,6 +60,7 @@ struct TextMessage: Message {
     
     func toDictionary() -> [String : Any] {
         return [
+            MessageKeys.mid.rawValue : mid ?? "",
             MessageKeys.type.rawValue : TextMessage.type.rawValue,
             MessageKeys.sender.rawValue : sender,
             MessageKeys.timestamp.rawValue : timestamp,

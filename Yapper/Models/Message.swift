@@ -11,6 +11,7 @@ import Firebase
 
 protocol Message {
     static var type: MessageType { get }
+    var mid: String? { get }
     var sender: String { get }
     var timestamp: Timestamp { get }
     var data: String { get }
@@ -25,6 +26,7 @@ enum MessageType: String {
 }
 
 enum MessageKeys: String {
+    case mid = "mid"
     case type = "type"
     case sender = "sender"
     case timestamp = "timestamp"

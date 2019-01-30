@@ -47,8 +47,6 @@ class ChatTableViewCell: UITableViewCell {
         let messageView = message.getView()
         self.contentView.addSubview(messageView)
         self.view = messageView
-        messageView.setContentCompressionResistancePriority(.required, for: .vertical)
-        messageView.setContentHuggingPriority(.required, for: .vertical)
         messageView.layer.cornerRadius = Theme.currentTheme.cornerRadius
         messageView.layer.masksToBounds = false
         messageView.layer.shadowColor = Theme.currentTheme.text.cgColor
@@ -84,6 +82,11 @@ class ChatTableViewCell: UITableViewCell {
             loadLeftConstraints()
         }
         
+        if message is ImageMessage {
+            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin).isActive = false
+            messageView.heightAnchor.constraint(equalTo: messageView.widthAnchor).isActive = true
+        }
+        
         DatabaseManager.shared.users.getUser(uid: message.sender) { (user, error) in
             if let user = user {
                 profileView.image = UIImage(named: user.profileImage.rawValue)
@@ -116,7 +119,7 @@ class ChatTableViewCell: UITableViewCell {
             timeView.bottomAnchor.constraint(equalTo: usernameView.bottomAnchor),
             
             messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin / 2),
-            messageView.bottomAnchor.constraint(lessThanOrEqualTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
+            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin)
             ]
     }
     
@@ -143,7 +146,7 @@ class ChatTableViewCell: UITableViewCell {
             timeView.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: Theme.currentTheme.margin / 2),
             
             messageView.trailingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: -Theme.currentTheme.margin),
-            messageView.leadingAnchor.constraint(equalTo: self.contentView.readableContentGuide.leadingAnchor, constant: Theme.currentTheme.margin)
+            messageView.leadingAnchor.constraint(greaterThanOrEqualTo: self.contentView.readableContentGuide.leadingAnchor, constant: Theme.currentTheme.margin)
         ]
         
         _constraints.append(contentsOf: commonConstraint)
@@ -174,7 +177,7 @@ class ChatTableViewCell: UITableViewCell {
             timeView.trailingAnchor.constraint(equalTo: messageView.trailingAnchor, constant: -Theme.currentTheme.margin / 2),
             
             messageView.leadingAnchor.constraint(equalTo: profileView.trailingAnchor, constant: Theme.currentTheme.margin),
-            messageView.trailingAnchor.constraint(equalTo: self.contentView.readableContentGuide.trailingAnchor, constant: -Theme.currentTheme.margin)
+            messageView.trailingAnchor.constraint(lessThanOrEqualTo: self.contentView.readableContentGuide.trailingAnchor, constant: -Theme.currentTheme.margin)
         ]
         
         _constraints.append(contentsOf: commonConstraint)

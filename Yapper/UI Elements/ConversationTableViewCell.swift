@@ -58,7 +58,8 @@ class ConversationTableViewCell: UITableViewCell {
     private func drawViews(for conversation: Conversation) {
         let offset = -16
         let size: CGFloat = 44
-
+        self.contentView.backgroundColor = Theme.currentTheme.background
+        
         DatabaseManager.shared.users.getUsersFor(conversation.members, completion: { (users, error) in
             guard let users = users, let currentUser = Auth.auth().currentUser?.uid else {
                 if let error = error {
@@ -138,6 +139,16 @@ class ConversationTableViewCell: UITableViewCell {
                 timestamp.text = formattedTimeFrom(timestamp: conversation.lastUpdated)
                 timestamp.font = timestamp.font.withSize(10.0)
                 timestamp.textAlignment = .right
+                
+                if let cid = conversation.id {
+                    let lastUpdated = SaveData.shared.getLastUpdated(forConversation: cid) ?? Timestamp(seconds: 0, nanoseconds: 0)
+                    if lastUpdated.dateValue() < conversation.lastUpdated.dateValue() {
+                        timestamp.textColor = Theme.currentTheme.primary
+                    } else {
+                        timestamp.textColor = Theme.currentTheme.text
+                    }
+                }
+
                 
                 self.addSubview(timestamp)
                 timestamp.setContentCompressionResistancePriority(.required, for: .horizontal)

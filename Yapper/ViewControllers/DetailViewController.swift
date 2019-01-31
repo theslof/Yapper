@@ -17,6 +17,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var buttonSend: RoundedButton!
     @IBOutlet weak var tableView: ConversationTableView!
     @IBOutlet weak var inputViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var viewNewMessages: UIView!
+    @IBOutlet weak var labelNewMessages: UILabel!
+    @IBOutlet weak var constraintTopNewMessages: NSLayoutConstraint!
     
     var messages: [Message] = []
     var listener: ListenerRegistration?
@@ -31,7 +34,6 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification(_:)), name: Notification.Name("didChangeImageSize"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +43,16 @@ class DetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         self.view.backgroundColor = Theme.currentTheme.background
+        self.viewNewMessages.backgroundColor = Theme.currentTheme.backgroundText
+        self.viewNewMessages.layer.masksToBounds = false
+        self.viewNewMessages.layer.shadowColor = Theme.currentTheme.text.cgColor
+        self.viewNewMessages.layer.shadowOpacity = 0.25
+        self.viewNewMessages.layer.shadowRadius = 1.5
+        self.viewNewMessages.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+
+        self.labelNewMessages.textColor = Theme.currentTheme.text
+        self.constraintTopNewMessages.constant = -self.viewNewMessages.frame.height
+        
         if detailItem?.members.count == 2,
             let user = Auth.auth().currentUser?.uid,
             let other = detailItem?.members.first(where: { $0 != user }) {
@@ -82,22 +94,59 @@ class DetailViewController: UIViewController {
                 .sorted(by: { $0.timestamp.dateValue() < $1.timestamp.dateValue() })
             self.tableView.reloadData()
             
-            if
-                let last = self.messages.last?.sender,
+            if tableView.contentSize.height < tableView.frame.height, let cid = detailItem?.id {
+                SaveData.shared.update(lastUpdated: Timestamp(), forConversation: cid)
+            }
+            
+            if let last = self.messages.last,
                 let user = Auth.auth().currentUser?.uid,
-                last == user || // If the user posted the newest message
-                    self.atBottom || // or if the user is viewing the bottom of the convo
-                    self.firstView { // or if this is the fist time data is loaded:
-                // Scroll to the last message of the conversation
-                self.scrollTo(row: self.messages.count - 1, animated: !self.firstView)
-                self.firstView = false
+                last.sender == user {
+                // If the last message was sent by the user we just scroll to the bottom
+                self.scrollTo(row: self.messages.count, animated: true)
+            } else {
+                // Otherwise we find out how many new messages there are
+                let firstIndex = updateNewMessages()
+                
+                // and scroll to the last seen message if this is the first time after loading the view
+                if firstView {
+                    self.scrollTo(row: firstIndex, animated: false)
+                }
+                firstView = false
             }
         } else if let error = error {
             Log.e(DetailViewController.TAG, error.localizedDescription)
         }
     }
     
+    func updateNewMessages() -> Int {
+        var newMessages = 0
+        var firstNewMessage = 0
+        if let cid = detailItem?.id,
+            let lastUpdated = SaveData.shared.getLastUpdated(forConversation: cid) {
+            firstNewMessage = self.messages.firstIndex { lastUpdated.dateValue() <= $0.timestamp.dateValue() } ?? messages.count
+            newMessages = messages.count - firstNewMessage
+        }
+        
+        if newMessages > 0 {
+            labelNewMessages.text = "\(newMessages) new messages!"
+            UIView.animate(withDuration: 0.75) {
+                self.constraintTopNewMessages.constant = 0
+            }
+        } else {
+            labelNewMessages.text = "No new messages!"
+            UIView.animate(withDuration: 0.75) {
+                self.constraintTopNewMessages.constant = -self.viewNewMessages.frame.height
+            }
+        }
+        return firstNewMessage
+    }
+    
+    @IBAction func actionGoToLast() {
+        scrollTo(row: messages.count, animated: true)
+    }
+    
     func scrollTo(row: Int, animated: Bool) {
+        let row = row >= messages.count ? messages.count - 1 : row
         if row < 1 {
             return
         }
@@ -118,17 +167,7 @@ class DetailViewController: UIViewController {
         inputViewBottomConstraint.constant = 0
         view.layoutIfNeeded()
     }
-    
-    @objc func didReceiveNotification(_ notification: Notification) {
-        if
-            let _mid = notification.userInfo?["messageID"],
-            let mid = _mid as? String, !mid.isEmpty,
-            let index = messages.firstIndex(where: { $0.mid == mid }) {
-            self.tableView.reloadInputViews()
-//            self.tableView.cellForRow(at: IndexPath(row: index, section: 0))?.reloadInputViews()
-        }
-    }
-    
+
     @IBAction func actionSend() {
         inputTextField.resignFirstResponder()
         guard
@@ -148,10 +187,27 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func actionAttach() {
-        Log.d(DetailViewController.TAG, "Attempted to send an object message, not yet implemented")
-        guard let id = detailItem?.id, let user = Auth.auth().currentUser?.uid else { return }
-        let message = ImageMessage(sender: user, timestamp: Timestamp.init(), data: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg")
-        DatabaseManager.shared.messages.add(message: message, to: id)
+        var text: UITextField?
+        let alert = UIAlertController(title: "Send image", message: "Input an image URL", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textField in
+            text = textField
+            textField.placeholder = "Image URL"
+        })
+        alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action) in
+            guard
+                let textField = text,
+                let url = textField.text,
+                !url.isEmpty,
+                URL(string: url) != nil,
+                let id = self.detailItem?.id,
+                let user = Auth.auth().currentUser?.uid else {
+                    Log.e(DetailViewController.TAG, "Could not read a URL from alert input")
+                    return }
+            let message = ImageMessage(sender: user, timestamp: Timestamp.init(), data: url)
+            DatabaseManager.shared.messages.add(message: message, to: id)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 
@@ -167,6 +223,12 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        atBottom = scrollView.contentSize.height - scrollView.contentOffset.y - scrollView.frame.height < 100
+        atBottom = scrollView.contentSize.height - scrollView.contentOffset.y - scrollView.frame.height < 10
+        if atBottom {
+            if let cid = detailItem?.id {
+                SaveData.shared.update(lastUpdated: Timestamp(), forConversation: cid)
+            }
+            _ = updateNewMessages()
+        }
     }
 }

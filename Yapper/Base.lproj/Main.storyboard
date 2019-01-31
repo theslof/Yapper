@@ -103,21 +103,47 @@
                                     <constraint firstAttribute="trailing" secondItem="c16-wx-5Xm" secondAttribute="trailing" id="ycP-cl-cxQ"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiZ-LS-3FB" userLabel="New messages">
+                                <rect key="frame" x="0.0" y="64" width="375" height="21"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No new messages!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6X-Ov-4cm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="C6X-Ov-4cm" firstAttribute="top" secondItem="FiZ-LS-3FB" secondAttribute="top" id="0gW-EP-LUL"/>
+                                    <constraint firstAttribute="bottom" secondItem="C6X-Ov-4cm" secondAttribute="bottom" id="8hV-xo-2Mf"/>
+                                    <constraint firstAttribute="trailing" secondItem="C6X-Ov-4cm" secondAttribute="trailing" id="Izb-wN-QAJ"/>
+                                    <constraint firstItem="C6X-Ov-4cm" firstAttribute="leading" secondItem="FiZ-LS-3FB" secondAttribute="leading" id="hHB-bJ-QkI"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="0Im-il-DlF" appends="YES" id="LTp-nh-haT"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="9tT-Zm-E8C" secondAttribute="trailing" id="AB8-8B-vLk"/>
+                            <constraint firstItem="FiZ-LS-3FB" firstAttribute="top" secondItem="9tT-Zm-E8C" secondAttribute="top" id="DCF-x7-ptY"/>
                             <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="ySc-Gq-mD4" secondAttribute="trailing" id="FSS-5A-uaf"/>
                             <constraint firstItem="9tT-Zm-E8C" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="GWG-4l-Zwt"/>
                             <constraint firstItem="ySc-Gq-mD4" firstAttribute="top" secondItem="9tT-Zm-E8C" secondAttribute="bottom" id="NEL-EZ-uGE"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="FiZ-LS-3FB" secondAttribute="trailing" id="WcN-hk-7d1"/>
                             <constraint firstItem="VUw-jc-0yf" firstAttribute="bottom" secondItem="ySc-Gq-mD4" secondAttribute="bottom" id="XsG-K6-Jkm"/>
                             <constraint firstItem="9tT-Zm-E8C" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="f4R-w4-Xyr"/>
                             <constraint firstItem="ySc-Gq-mD4" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="l6k-vS-Ywr"/>
+                            <constraint firstItem="FiZ-LS-3FB" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="uzF-O7-OZS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                    <navigationItem key="navigationItem" id="mOI-FS-AaM">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZP7-Ch-9qW">
                             <connections>
                                 <action selector="actionAdd" destination="JEX-9P-axG" id="KC5-Dr-68g"/>
@@ -127,14 +153,50 @@
                     <connections>
                         <outlet property="buttonAttach" destination="WmN-rQ-qfc" id="S0K-xP-qbc"/>
                         <outlet property="buttonSend" destination="USd-EQ-VMi" id="kNH-lb-7H6"/>
+                        <outlet property="constraintTopNewMessages" destination="DCF-x7-ptY" id="TEN-Ml-gfs"/>
                         <outlet property="inputTextField" destination="YgI-g7-1bP" id="Bdw-nQ-c9h"/>
                         <outlet property="inputViewBottomConstraint" destination="XsG-K6-Jkm" id="Z76-Ps-wJP"/>
+                        <outlet property="labelNewMessages" destination="C6X-Ov-4cm" id="g7h-Tm-RZj"/>
                         <outlet property="tableView" destination="9tT-Zm-E8C" id="a6X-uY-RZr"/>
+                        <outlet property="viewNewMessages" destination="FiZ-LS-3FB" id="d0M-Dn-J9L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0Im-il-DlF">
+                    <connections>
+                        <action selector="actionGoToLast" destination="JEX-9P-axG" id="osH-QW-721"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="709" y="129"/>
+            <point key="canvasLocation" x="708" y="128.18590704647679"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="Cjy-2x-ibG">
+            <objects>
+                <viewController storyboardIdentifier="profileViewController" id="Hpa-Ar-Ow3" customClass="ProfileViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x6E-0S-uOc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dVo-Ao-EzX" customClass="RoundedImage" customModule="Yapper" customModuleProvider="target">
+                                <rect key="frame" x="112.5" y="40" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="S8Q-6I-rcC"/>
+                                    <constraint firstAttribute="width" secondItem="dVo-Ao-EzX" secondAttribute="height" id="hP3-9h-wQs"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dVo-Ao-EzX" firstAttribute="centerX" secondItem="x6E-0S-uOc" secondAttribute="centerX" id="gH2-kZ-Amw"/>
+                            <constraint firstItem="dVo-Ao-EzX" firstAttribute="top" secondItem="mc6-pE-W1z" secondAttribute="top" constant="20" id="iTy-RK-u9V"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mc6-pE-W1z"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yuV-Ze-XEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="708" y="946"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="pW9-Un-za8">

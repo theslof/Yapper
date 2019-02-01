@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MessageImageView: UIImageView {
+class MessageImageView: UIView {
     private static let placeholder = "image_placeholder"
     private var heightConstraint: NSLayoutConstraint = NSLayoutConstraint()
-    private var message: Message?
+    var message: Message?
+    private var imageView: UIImageView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,8 +25,26 @@ class MessageImageView: UIImageView {
     }
     
     private func commonInit() {
+        imageView = UIImageView(frame: self.frame)
+        self.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFill
+        imageView.center = self.center
+        imageView.isUserInteractionEnabled = true
+        
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = Theme.currentTheme.cornerRadius / 2
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: Theme.currentTheme.margin),
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Theme.currentTheme.margin),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Theme.currentTheme.margin),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Theme.currentTheme.margin)
+            ])
+        
         let placeholderImage: UIImage = UIImage(named: MessageImageView.placeholder)!
-        self.image = placeholderImage
+        self.imageView.image = placeholderImage
     }
     
     func loadImageFrom(message: Message) {
@@ -35,7 +54,7 @@ class MessageImageView: UIImageView {
             let imageData = NSData(contentsOf: url)!
             DispatchQueue.main.async {
                 let image = UIImage(data: imageData as Data)
-                self.image = image
+                self.imageView.image = image
             }
         }
     }

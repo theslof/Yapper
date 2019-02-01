@@ -9,8 +9,8 @@
 import UIKit
 import Firebase
 
-class ChatTableViewCell: UITableViewCell {
-    var profileImage: RoundedImage?
+class ChatTableViewTextMessageCell: ChatTableViewMessageCell {
+    var profileImage: ProfileImage?
     var userName: UILabel?
     var timestamp: UILabel?
     var view: UIView?
@@ -38,7 +38,7 @@ class ChatTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func set(message: Message) {
+    override func set(message: Message) {
         guard let user = Auth.auth().currentUser else { return }
         self.backgroundColor = nil
         self.isOpaque = false
@@ -55,9 +55,11 @@ class ChatTableViewCell: UITableViewCell {
         messageView.layer.shadowOffset = CGSize(width: 0, height: 1.5)
 
 
-        let profileView = RoundedImage(frame: .zero, size: size)
+        let profileView = ProfileImage(frame: .zero, size: size)
         self.contentView.addSubview(profileView)
         self.profileImage = profileView
+        profileView.uid = message.sender
+        profileView.isUserInteractionEnabled = true
 
         let usernameView = UILabel(frame: .zero)
         self.contentView.addSubview(usernameView)
@@ -80,11 +82,6 @@ class ChatTableViewCell: UITableViewCell {
             loadRightConstraints()
         } else {
             loadLeftConstraints()
-        }
-        
-        if message is ImageMessage {
-            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin).isActive = false
-            messageView.heightAnchor.constraint(equalTo: messageView.widthAnchor).isActive = true
         }
         
         DatabaseManager.shared.users.getUser(uid: message.sender) { (user, error) in
@@ -183,5 +180,9 @@ class ChatTableViewCell: UITableViewCell {
         _constraints.append(contentsOf: commonConstraint)
         
         NSLayoutConstraint.activate(_constraints)
+    }
+    
+    override func getProfileImageView() -> ProfileImage? {
+        return profileImage
     }
 }

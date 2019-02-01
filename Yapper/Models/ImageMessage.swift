@@ -16,6 +16,7 @@ struct ImageMessage: Message {
     let sender: String
     let timestamp: Timestamp
     let data: String
+    var imageView: MessageImageView?
     
     init(mid: String? = nil, sender: String, timestamp: Timestamp, data: String) {
         self.mid = mid
@@ -47,31 +48,19 @@ struct ImageMessage: Message {
     }
     
     func getView() -> UIView {
-        let view = UIView(frame: .zero)
-        let imageView = MessageImageView(frame: .zero)
-        view.addSubview(imageView)
+        let view = MessageImageView(frame: .zero)
         view.contentMode = .scaleAspectFit
-        imageView.contentMode = .scaleAspectFill
-        imageView.center = view.center
-        
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = Theme.currentTheme.cornerRadius / 2
-
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: Theme.currentTheme.margin),
-            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Theme.currentTheme.margin),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Theme.currentTheme.margin),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Theme.currentTheme.margin)
-            ])
-        
-        imageView.loadImageFrom(message: self)
-        
+        view.isUserInteractionEnabled = true
         view.backgroundColor = Theme.currentTheme.backgroundText
         view.isOpaque = true
         
+        view.loadImageFrom(message: self)
+        
         return view
+    }
+    
+    func loadFullImage() {
+        
     }
     
     func toDictionary() -> [String : Any] {

@@ -217,9 +217,59 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ChatTableViewCell ?? ChatTableViewCell()
-        cell.set(message: messages[indexPath.row])
+        let message = messages[indexPath.row]
+        var cell: ChatTableViewMessageCell
+        
+        switch message {
+        case is TextMessage:
+            cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath) as? ChatTableViewTextMessageCell ?? ChatTableViewTextMessageCell()
+            cell.set(message: message)
+        case is ImageMessage:
+            let _cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as? ChatTableViewImageMessageCell ?? ChatTableViewImageMessageCell()
+            _cell.set(message: message)
+            
+            if let view = _cell.view {
+                let tap = UITapGestureRecognizer(target: self, action: #selector(showFullImage(_:)))
+                view.addGestureRecognizer(tap)
+            }
+            
+            cell = _cell
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ChatTableViewMessageCell ?? ChatTableViewMessageCell()
+            cell.set(message: message)
+        }
+
+        if let profile = cell.getProfileImageView() {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(showProfile(_:)))
+            profile.addGestureRecognizer(tap)
+        }
         return cell
+    }
+
+    @objc func showProfile(_ sender: UITapGestureRecognizer? = nil) {
+        print("Fired tap event")
+        if let profileImage = sender?.view as? ProfileImage,
+            let uid = profileImage.uid,
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+            print("Executing event")
+            controller.uid = uid
+            self.present(controller, animated: true, completion: nil)
+        } else {
+            Log.e(DetailViewController.TAG, "Tapped on profile image, failed to parse")
+        }
+    }
+
+    @objc func showFullImage(_ sender: UITapGestureRecognizer? = nil) {
+        print("Image was tapped")
+        if let message = sender?.view as? MessageImageView,
+            let data = message.message?.data,
+            let url = URL(string: data),
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "imageViewController") as? ImageViewController {
+            controller.imageURL = url
+            self.present(controller, animated: true, completion: nil)
+        } else {
+            Log.e(DetailViewController.TAG, "Tapped on message, failed to parse")
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

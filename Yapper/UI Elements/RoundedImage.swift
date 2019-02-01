@@ -23,7 +23,7 @@ class RoundedImage: UIView {
     
     override var frame: CGRect {
         didSet {
-            self.layer.cornerRadius = self.frame.width / 2
+            recalculateSize()
         }
     }
 
@@ -43,6 +43,7 @@ class RoundedImage: UIView {
         self.imageView = imageView
         self.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
         
         imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -50,7 +51,11 @@ class RoundedImage: UIView {
         imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         
         self.image = UIImage(named: "placeholder")!
-
+        
+        decorate()
+    }
+    
+    private func decorate() {
         self.clipsToBounds = true
         self.layer.cornerRadius = size / 2
         self.layer.borderWidth = 2
@@ -61,5 +66,10 @@ class RoundedImage: UIView {
         self.layer.shadowOpacity = 0.25
         self.layer.shadowRadius = 1.5
         self.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+    }
+    
+    func recalculateSize() {
+        self.size = self.frame.width
+        decorate()
     }
 }

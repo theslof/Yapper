@@ -12,14 +12,11 @@ import Firebase
 class DatabaseManager {
     static let shared: DatabaseManager = DatabaseManager()
     private let db: Firestore
-    let users: UserManager
-    let auth: LoginManager
-    let messages: ConversationManager
+    lazy var users: UserManager = UserManager(database: db)
+    lazy var auth: LoginManager = LoginManager()
+    lazy var messages: ConversationManager = ConversationManager(database: db)
     
     private init() {
         db = Firestore.firestore()
-        users = UserManager(database: db)
-        auth = LoginManager()
-        messages = ConversationManager(database: db)
-    }    
+    }
 }

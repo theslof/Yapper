@@ -24,6 +24,7 @@ class UserManager {
                     documents.compactMap(User.init(from:)).forEach({ user in
                         self.users[user.uid] = user
                     })
+                    Log.d(UserManager.TAG, "Data fetched, executing \(self.callbacks.count) callbacks")
                     for callback in self.callbacks {
                         let users = Array(self.users.values)
                         callback(users, nil)

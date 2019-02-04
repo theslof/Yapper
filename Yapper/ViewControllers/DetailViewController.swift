@@ -253,7 +253,9 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
             print("Executing event")
             controller.uid = uid
+//            self.show(controller, sender: self)
             self.present(controller, animated: true, completion: nil)
+            print("Executed event")
         } else {
             Log.e(DetailViewController.TAG, "Tapped on profile image, failed to parse")
         }
@@ -266,6 +268,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             let url = URL(string: data),
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "imageViewController") as? ImageViewController {
             controller.imageURL = url
+//            self.show(controller, sender: self)
             self.present(controller, animated: true, completion: nil)
         } else {
             Log.e(DetailViewController.TAG, "Tapped on message, failed to parse")

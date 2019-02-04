@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9tT-Zm-E8C" customClass="ConversationTableView" customModule="Yapper" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="572"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" id="fCt-PN-uCS" customClass="ChatTableViewTextMessageCell" customModule="Yapper" customModuleProvider="target">
@@ -69,16 +69,17 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-Gq-mD4" userLabel="InputView">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="636" width="375" height="31"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c16-wx-5Xm" userLabel="Divider">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="5FG-ze-Lmh"/>
+                                            <constraint firstAttribute="height" constant="1" id="5FG-ze-Lmh"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YgI-g7-1bP">
-                                        <rect key="frame" x="30" y="0.0" width="301" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YgI-g7-1bP">
+                                        <rect key="frame" x="30" y="1" width="301" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -88,33 +89,32 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USd-EQ-VMi" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="331" y="0.0" width="44" height="30"/>
+                                        <rect key="frame" x="331" y="1" width="44" height="30"/>
                                         <state key="normal" title=" Send "/>
                                         <connections>
                                             <action selector="actionSend" destination="JEX-9P-axG" eventType="touchUpInside" id="i3i-WA-Z4t"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmN-rQ-qfc" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <state key="normal" title="+"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gH7-ds-p8V" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="30" height="30"/>
+                                        <state key="normal" title=" + "/>
                                         <connections>
-                                            <action selector="actionAttach" destination="JEX-9P-axG" eventType="touchUpInside" id="gmM-OE-HOw"/>
+                                            <action selector="actionAttach" destination="JEX-9P-axG" eventType="touchUpInside" id="2lx-PO-0PX"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="top" id="2Tp-ee-vMK"/>
+                                    <constraint firstItem="gH7-ds-p8V" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="2Jx-NY-umH"/>
+                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="bottom" id="2Tp-ee-vMK"/>
                                     <constraint firstItem="USd-EQ-VMi" firstAttribute="leading" secondItem="YgI-g7-1bP" secondAttribute="trailing" id="5UJ-mJ-9KS"/>
-                                    <constraint firstItem="USd-EQ-VMi" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="top" id="JCP-Jq-pdM"/>
-                                    <constraint firstAttribute="bottom" secondItem="WmN-rQ-qfc" secondAttribute="bottom" id="JkU-oH-dGT"/>
+                                    <constraint firstItem="USd-EQ-VMi" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="bottom" id="JCP-Jq-pdM"/>
                                     <constraint firstAttribute="bottom" secondItem="USd-EQ-VMi" secondAttribute="bottom" id="SPc-Hl-K5l"/>
-                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="leading" secondItem="WmN-rQ-qfc" secondAttribute="trailing" id="TBw-hT-YAb"/>
-                                    <constraint firstItem="WmN-rQ-qfc" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="fZq-qT-p5s"/>
+                                    <constraint firstAttribute="bottom" secondItem="gH7-ds-p8V" secondAttribute="bottom" id="gKi-4n-0EV"/>
                                     <constraint firstAttribute="trailing" secondItem="USd-EQ-VMi" secondAttribute="trailing" id="lrW-H1-8Pp"/>
                                     <constraint firstItem="c16-wx-5Xm" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="min-PB-61l"/>
-                                    <constraint firstItem="WmN-rQ-qfc" firstAttribute="top" secondItem="ySc-Gq-mD4" secondAttribute="top" id="pIv-Gs-eNZ"/>
                                     <constraint firstAttribute="bottom" secondItem="YgI-g7-1bP" secondAttribute="bottom" id="pvs-TT-JN4"/>
+                                    <constraint firstItem="gH7-ds-p8V" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="bottom" id="tbX-IO-Eiv"/>
+                                    <constraint firstItem="YgI-g7-1bP" firstAttribute="leading" secondItem="gH7-ds-p8V" secondAttribute="trailing" id="uZn-q9-sAk"/>
                                     <constraint firstItem="c16-wx-5Xm" firstAttribute="top" secondItem="ySc-Gq-mD4" secondAttribute="top" id="vCP-S7-svj"/>
                                     <constraint firstAttribute="trailing" secondItem="c16-wx-5Xm" secondAttribute="trailing" id="ycP-cl-cxQ"/>
                                 </constraints>
@@ -167,7 +167,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="buttonAttach" destination="WmN-rQ-qfc" id="S0K-xP-qbc"/>
+                        <outlet property="buttonAttach" destination="gH7-ds-p8V" id="uKS-KD-CBd"/>
                         <outlet property="buttonSend" destination="USd-EQ-VMi" id="kNH-lb-7H6"/>
                         <outlet property="constraintTopNewMessages" destination="DCF-x7-ptY" id="TEN-Ml-gfs"/>
                         <outlet property="inputTextField" destination="YgI-g7-1bP" id="Bdw-nQ-c9h"/>
@@ -360,13 +360,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMU-pz-U1k" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="147.5" y="211.5" width="80" height="32"/>
+                                        <rect key="frame" x="153.5" y="211.5" width="68" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="LNl-Ju-fyu"/>
                                             <constraint firstAttribute="height" constant="32" id="rZi-NI-5qd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="Submit"/>
+                                        <state key="normal" title="  Submit  "/>
                                         <connections>
                                             <action selector="actionSubmit:" destination="lat-XC-t21" eventType="touchUpInside" id="NEF-fl-ILl"/>
                                         </connections>
@@ -450,23 +449,21 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDb-yk-8Vp" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="298" width="80" height="32"/>
+                                <rect key="frame" x="155" y="298" width="65" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="AHf-5N-rTp"/>
                                     <constraint firstAttribute="height" constant="32" id="Gzp-ry-DaZ"/>
                                 </constraints>
-                                <state key="normal" title="Submit"/>
+                                <state key="normal" title="  Submit  "/>
                                 <connections>
                                     <action selector="actionSubmit:" destination="1G8-Dj-Vq5" eventType="touchUpInside" id="1Al-lF-ZKc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AvV-Vv-b9b" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="350" width="80" height="32"/>
+                                <rect key="frame" x="155.5" y="350" width="64" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="j2a-Tf-Eol"/>
-                                    <constraint firstAttribute="width" constant="80" id="r5F-ef-uvQ"/>
                                 </constraints>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="  Cancel  "/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="error" value="YES"/>
                                 </userDefinedRuntimeAttributes>

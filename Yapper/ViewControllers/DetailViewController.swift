@@ -129,14 +129,17 @@ class DetailViewController: UIViewController {
         
         if newMessages > 0 {
             labelNewMessages.text = "\(newMessages) new messages!"
+            labelNewMessages.isHidden = false
             UIView.animate(withDuration: 0.75) {
                 self.constraintTopNewMessages.constant = 0
             }
         } else {
             labelNewMessages.text = "No new messages!"
-            UIView.animate(withDuration: 0.75) {
+            UIView.animate(withDuration: 0.75, animations: {
                 self.constraintTopNewMessages.constant = -self.viewNewMessages.frame.height
-            }
+            }, completion: { done in
+                self.labelNewMessages.isHidden = done
+            })
         }
         return firstNewMessage
     }

@@ -79,6 +79,17 @@ class MasterViewController: UITableViewController {
             }
         }
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func actionStartNewConversation(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func actionViewUsers(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func actionSettings(_ sender: UIBarButtonItem) {
+    }
 
     // MARK: - Table View
 
@@ -93,27 +104,12 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44))
-        footer.backgroundColor = Theme.currentTheme.background
-        let button = UIButton(type: .roundedRect)
-        button.addTarget(self, action: #selector(actionStartConversation), for: .touchUpInside)
-        button.setTitle("Start conversation", for: .normal)
-        button.setTitleColor(Theme.currentTheme.primary, for: .normal)
-        footer.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: footer.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: footer.centerYAnchor)
-            ])
+        let footer = UIView(frame: .zero)
         return footer
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 44
-    }
-    
-    @IBAction func actionSignOut(_ sender: Any) {
-        DatabaseManager.shared.auth.signOut()
     }
     
     @objc func actionStartConversation() {

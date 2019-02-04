@@ -78,7 +78,7 @@
                                             <constraint firstAttribute="height" constant="1" id="5FG-ze-Lmh"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YgI-g7-1bP">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YgI-g7-1bP">
                                         <rect key="frame" x="30" y="1" width="301" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -95,9 +95,12 @@
                                             <action selector="actionSend" destination="JEX-9P-axG" eventType="touchUpInside" id="i3i-WA-Z4t"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gH7-ds-p8V" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="249" verticalCompressionResistancePriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gH7-ds-p8V" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="30" height="30"/>
-                                        <state key="normal" title=" + "/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="gH7-ds-p8V" secondAttribute="height" id="X5f-4o-2hj"/>
+                                        </constraints>
+                                        <state key="normal" image="paperclip"/>
                                         <connections>
                                             <action selector="actionAttach" destination="JEX-9P-axG" eventType="touchUpInside" id="2lx-PO-0PX"/>
                                         </connections>
@@ -113,6 +116,7 @@
                                     <constraint firstAttribute="trailing" secondItem="USd-EQ-VMi" secondAttribute="trailing" id="lrW-H1-8Pp"/>
                                     <constraint firstItem="c16-wx-5Xm" firstAttribute="leading" secondItem="ySc-Gq-mD4" secondAttribute="leading" id="min-PB-61l"/>
                                     <constraint firstAttribute="bottom" secondItem="YgI-g7-1bP" secondAttribute="bottom" id="pvs-TT-JN4"/>
+                                    <constraint firstItem="gH7-ds-p8V" firstAttribute="height" secondItem="USd-EQ-VMi" secondAttribute="height" id="rMg-cN-ozz"/>
                                     <constraint firstItem="gH7-ds-p8V" firstAttribute="top" secondItem="c16-wx-5Xm" secondAttribute="bottom" id="tbX-IO-Eiv"/>
                                     <constraint firstItem="YgI-g7-1bP" firstAttribute="leading" secondItem="gH7-ds-p8V" secondAttribute="trailing" id="uZn-q9-sAk"/>
                                     <constraint firstItem="c16-wx-5Xm" firstAttribute="top" secondItem="ySc-Gq-mD4" secondAttribute="top" id="vCP-S7-svj"/>
@@ -565,11 +569,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Yapper" id="Zdf-7t-Un8">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="ZNA-vl-LeS">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="settings" id="V66-Ec-UKv">
                             <connections>
-                                <action selector="actionSignOut:" destination="7bK-jq-Zjz" id="nWl-hU-hYh"/>
+                                <action selector="actionSettings:" destination="7bK-jq-Zjz" id="5jq-zE-tZB"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Fwv-K5-kcV">
+                                <connections>
+                                    <action selector="actionStartNewConversation:" destination="7bK-jq-Zjz" id="o5V-Ef-WIw"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="bookmarks" id="nF7-Ah-vtH">
+                                <connections>
+                                    <action selector="actionViewUsers:" destination="7bK-jq-Zjz" id="hYr-9s-tw8"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
@@ -593,6 +609,10 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="paperclip" width="512" height="512"/>
+        <image name="settings" width="1.2000000476837158" height="1.2000000476837158"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>

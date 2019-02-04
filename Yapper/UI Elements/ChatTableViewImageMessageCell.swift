@@ -84,8 +84,6 @@ class ChatTableViewImageMessageCell: ChatTableViewMessageCell {
             loadLeftConstraints()
         }
         
-        messageView.widthAnchor.constraint(equalTo: messageView.heightAnchor).isActive = true
-        
         DatabaseManager.shared.users.getUser(uid: message.sender) { (user, error) in
             if let user = user {
                 profileView.image = UIImage(named: user.profileImage.rawValue)
@@ -118,7 +116,8 @@ class ChatTableViewImageMessageCell: ChatTableViewMessageCell {
             timeView.bottomAnchor.constraint(equalTo: usernameView.bottomAnchor),
             
             messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin / 2),
-            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin)
+            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
+            messageView.widthAnchor.constraint(equalTo: messageView.heightAnchor),
             ]
     }
     

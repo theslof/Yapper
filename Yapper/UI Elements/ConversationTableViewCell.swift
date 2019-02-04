@@ -76,7 +76,7 @@ class ConversationTableViewCell: UITableViewCell {
             
             // Draw profile images for the first five members
             filtered.forEach({ (user) in
-                let image = RoundedImage(frame: .zero, size: size)
+                let image = ProfileImage(frame: .zero, size: size)
                 image.translatesAutoresizingMaskIntoConstraints = false
                 self.contentView.addSubview(image)
                 self.profileImages.append(image)

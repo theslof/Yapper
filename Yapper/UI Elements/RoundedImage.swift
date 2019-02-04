@@ -56,6 +56,10 @@ class RoundedImage: UIView {
     }
     
     private func decorate() {
+        self.imageView?.clipsToBounds = true
+        self.imageView?.layer.masksToBounds = true
+        self.imageView?.layer.cornerRadius = size / 2
+
         self.clipsToBounds = true
         self.layer.cornerRadius = size / 2
         self.layer.borderWidth = 2

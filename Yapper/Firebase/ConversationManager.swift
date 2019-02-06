@@ -33,6 +33,11 @@ class ConversationManager {
         return doc.documentID
     }
     
+    func addUsersToConversation(users: [String], conversation: String, completion: ((Error?) -> Void)? = nil) {
+        db.collection(FirebaseDefaults.CollectionConversations.rawValue).document(conversation)
+            .updateData([Conversation.FirestoreKeys.members.rawValue: FieldValue.arrayUnion(users)], completion: completion)
+    }
+    
     func getMessages(for conversation: String, listener: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration{
         return db
             .collection(FirebaseDefaults.CollectionConversations.rawValue).document(conversation)

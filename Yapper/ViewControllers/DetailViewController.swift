@@ -185,9 +185,10 @@ class DetailViewController: ThemedViewController {
     }
     
     @IBAction func actionAdd() {
-        guard let id = detailItem?.id, let user = Auth.auth().currentUser?.uid else { return }
-        let message = TextMessage(sender: user, timestamp: Timestamp.init(), data: Date().description)
-        DatabaseManager.shared.messages.add(message: message, to: id)
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "userPickerNavigationController") as? UINavigationController, let picker = controller.viewControllers.first as? UserPickerViewController {
+            picker.delegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     @IBAction func actionAttach() {
@@ -287,5 +288,12 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             }
             _ = updateNewMessages()
         }
+    }
+}
+
+extension DetailViewController: UserPickerDelegate {
+    func userPicker(_ userPicker: UserPickerViewController, didFinishPickingUsersWithUsers users: [String]) {
+        guard let id = detailItem?.id else { return }
+        DatabaseManager.shared.messages.addUsersToConversation(users: users, conversation: id)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: ThemedViewController {
     @IBOutlet weak var profileImage: RoundedImage!
     @IBOutlet weak var displayName: UILabel!
     

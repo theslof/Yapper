@@ -11,7 +11,8 @@ import UIKit
 class RoundedLabel: UIView {
     private let size: CGFloat
     
-    var label: UILabel = UILabel()
+    var label: ThemedLabel = ThemedLabel(frame: .zero)
+
     var text: String? {
         get {
             return self.label.text
@@ -34,9 +35,7 @@ class RoundedLabel: UIView {
     }
     
     func commonInit() {
-        self.label = UILabel(frame: .zero)
         self.addSubview(label)
-
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.25

@@ -47,7 +47,7 @@ class MasterViewController: UITableViewController {
         conversationsListener = DatabaseManager.shared.messages.getConversations { (snapshot, error) in
             if let conversations = snapshot?.documents {
                 self.data = conversations.compactMap(Conversation.init(from: )).sorted(by: { (c1, c2) -> Bool in
-                    c1.lastUpdated.dateValue() < c2.lastUpdated.dateValue()
+                    c1.lastUpdated.dateValue() > c2.lastUpdated.dateValue()
                 })
                 self.tableView.reloadData()
             } else if let error = error {
@@ -55,9 +55,10 @@ class MasterViewController: UITableViewController {
             }
         }
         
-        tableView.backgroundColor = Theme.currentTheme.background
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = Theme.currentTheme.background
+        self.view.backgroundColor = Theme.currentTheme.background
+//        tableView.backgroundColor = Theme.currentTheme.background
+//        tableView.separatorStyle = .singleLine
+//        tableView.separatorColor = Theme.currentTheme.background
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,6 +84,10 @@ class MasterViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func actionStartNewConversation(_ sender: UIBarButtonItem) {
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "userPickerNavigationController") as? UINavigationController, let picker = controller.viewControllers.first as? UserPickerViewController {
+            picker.delegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     @IBAction func actionViewUsers(_ sender: UIBarButtonItem) {
@@ -109,11 +114,14 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 44
-    }
-    
-    @objc func actionStartConversation() {
-        Log.d(MasterViewController.TAG, "Tried to start a new conversation, not yet implemented!")
+        return 1
     }
 }
 
+extension MasterViewController: UserPickerDelegate {
+    func userPicker(_ userPicker: UserPickerViewController, didFinishPickingUsersWithUsers users: [String]) {
+        print(users.description)
+        guard let user = Auth.auth().currentUser?.uid, !users.isEmpty else { return }
+        let conversation = DatabaseManager.shared.messages.startConversation(user: user, members: users)
+    }
+}

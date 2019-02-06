@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: ThemedViewController {
     private static let TAG = "LoginViewController"
 
     @IBOutlet weak var emailTextField: UITextField!

@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class ChatTableViewImageMessageCell: ChatTableViewMessageCell {
+class ChatTableViewTextMessageCell: ChatTableViewMessageCell {
     var profileImage: ProfileImage?
-    var userName: UILabel?
-    var timestamp: UILabel?
+    var userName: ThemedLabel?
+    var timestamp: ThemedLabel?
     var view: UIView?
     let size: CGFloat = 44.0
     
@@ -61,12 +61,12 @@ class ChatTableViewImageMessageCell: ChatTableViewMessageCell {
         profileView.uid = message.sender
         profileView.isUserInteractionEnabled = true
 
-        let usernameView = UILabel(frame: .zero)
+        let usernameView = ThemedLabel(frame: .zero)
         self.contentView.addSubview(usernameView)
         self.userName = usernameView
         usernameView.textColor = Theme.currentTheme.textSecondary
 
-        let timeView = UILabel(frame: .zero)
+        let timeView = ThemedLabel(frame: .zero)
         self.contentView.addSubview(timeView)
         self.timestamp = timeView
         timeView.textColor = Theme.currentTheme.textSecondary
@@ -116,8 +116,7 @@ class ChatTableViewImageMessageCell: ChatTableViewMessageCell {
             timeView.bottomAnchor.constraint(equalTo: usernameView.bottomAnchor),
             
             messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin / 2),
-            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
-            messageView.widthAnchor.constraint(equalTo: messageView.heightAnchor),
+            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin)
             ]
     }
     

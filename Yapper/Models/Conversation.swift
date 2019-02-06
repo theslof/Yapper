@@ -11,7 +11,7 @@ import Firebase
 
 struct Conversation {
     private static let TAG = "ConversationManager"
-    let id: String?
+    var id: String?
     let members: [String]
     let owners: [String]
     let lastUpdated: Timestamp

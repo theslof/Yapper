@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class DetailViewController: UIViewController {
+class DetailViewController: ThemedViewController {
     private static let TAG = "DetailViewController"
 
     @IBOutlet weak var buttonAttach: RoundedButton!
@@ -34,6 +34,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = Theme.currentTheme.background
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +44,6 @@ class DetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        self.view.backgroundColor = Theme.currentTheme.background
         self.viewNewMessages.backgroundColor = Theme.currentTheme.backgroundText
         self.viewNewMessages.layer.masksToBounds = false
         self.viewNewMessages.layer.shadowColor = Theme.currentTheme.text.cgColor
@@ -50,7 +51,7 @@ class DetailViewController: UIViewController {
         self.viewNewMessages.layer.shadowRadius = 1.5
         self.viewNewMessages.layer.shadowOffset = CGSize(width: 0, height: 1.5)
 
-        self.labelNewMessages.textColor = Theme.currentTheme.text
+//        self.labelNewMessages.textColor = Theme.currentTheme.text
         self.constraintTopNewMessages.constant = -self.viewNewMessages.frame.height
         
         if detailItem?.members.count == 2,

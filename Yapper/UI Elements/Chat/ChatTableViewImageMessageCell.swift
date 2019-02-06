@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class ChatTableViewTextMessageCell: ChatTableViewMessageCell {
+class ChatTableViewImageMessageCell: ChatTableViewMessageCell {
     var profileImage: ProfileImage?
-    var userName: UILabel?
-    var timestamp: UILabel?
+    var userName: ThemedLabel?
+    var timestamp: ThemedLabel?
     var view: UIView?
     let size: CGFloat = 44.0
     
@@ -61,15 +61,13 @@ class ChatTableViewTextMessageCell: ChatTableViewMessageCell {
         profileView.uid = message.sender
         profileView.isUserInteractionEnabled = true
 
-        let usernameView = UILabel(frame: .zero)
+        let usernameView = ThemedLabel(frame: .zero)
         self.contentView.addSubview(usernameView)
         self.userName = usernameView
-        usernameView.textColor = Theme.currentTheme.textSecondary
 
-        let timeView = UILabel(frame: .zero)
+        let timeView = ThemedLabel(frame: .zero)
         self.contentView.addSubview(timeView)
         self.timestamp = timeView
-        timeView.textColor = Theme.currentTheme.textSecondary
         timeView.setContentCompressionResistancePriority(.required, for: .horizontal)
         timeView.font = timeView.font.withSize(10.0)
 
@@ -92,9 +90,6 @@ class ChatTableViewTextMessageCell: ChatTableViewMessageCell {
                 timeView.text = formattedTimeFrom(timestamp: message.timestamp)
             }
         }
-        
-        userName?.textColor = Theme.currentTheme.text
-        timestamp?.textColor = Theme.currentTheme.text
     }
     
     var commonConstraint: [NSLayoutConstraint] {
@@ -116,7 +111,9 @@ class ChatTableViewTextMessageCell: ChatTableViewMessageCell {
             timeView.bottomAnchor.constraint(equalTo: usernameView.bottomAnchor),
             
             messageView.topAnchor.constraint(equalTo: usernameView.bottomAnchor, constant: Theme.currentTheme.margin / 2),
-            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin)
+            messageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -Theme.currentTheme.margin),
+            messageView.widthAnchor.constraint(equalTo: messageView.heightAnchor),
+            messageView.widthAnchor.constraint(equalToConstant: 240)
             ]
     }
     

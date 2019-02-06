@@ -16,6 +16,13 @@
 		07152E57220053F7005EADB2 /* FriendListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E56220053F7005EADB2 /* FriendListItem.swift */; };
 		07152E592200754E005EADB2 /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E582200754E005EADB2 /* ImageMessage.swift */; };
 		07152E5B2201AF31005EADB2 /* MessageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07152E5A2201AF31005EADB2 /* MessageImageView.swift */; };
+		071BB8F9220ACFB700717221 /* ThemedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB8F8220ACFB700717221 /* ThemedViewController.swift */; };
+		071BB8FB220AD28800717221 /* ThemedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB8FA220AD28800717221 /* ThemedButton.swift */; };
+		071BB8FD220AEC5C00717221 /* ThemedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB8FC220AEC5C00717221 /* ThemedLabel.swift */; };
+		071BB8FF220B0E2E00717221 /* UserPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB8FE220B0E2E00717221 /* UserPickerViewController.swift */; };
+		071BB904220B138D00717221 /* UserPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB903220B138D00717221 /* UserPickerTableViewCell.swift */; };
+		071BB906220B13A400717221 /* UserPickerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB905220B13A400717221 /* UserPickerTableView.swift */; };
+		071BB908220B256E00717221 /* UserPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB907220B256E00717221 /* UserPickerDelegate.swift */; };
 		075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F021F1CBBD00CCABC3 /* Message.swift */; };
 		075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F221F1DEA600CCABC3 /* TextMessage.swift */; };
 		075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F621F1F83700CCABC3 /* Conversation.swift */; };
@@ -79,6 +86,13 @@
 		07152E56220053F7005EADB2 /* FriendListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListItem.swift; sourceTree = "<group>"; };
 		07152E582200754E005EADB2 /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		07152E5A2201AF31005EADB2 /* MessageImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageImageView.swift; sourceTree = "<group>"; };
+		071BB8F8220ACFB700717221 /* ThemedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedViewController.swift; sourceTree = "<group>"; };
+		071BB8FA220AD28800717221 /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
+		071BB8FC220AEC5C00717221 /* ThemedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedLabel.swift; sourceTree = "<group>"; };
+		071BB8FE220B0E2E00717221 /* UserPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPickerViewController.swift; sourceTree = "<group>"; };
+		071BB903220B138D00717221 /* UserPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPickerTableViewCell.swift; sourceTree = "<group>"; };
+		071BB905220B13A400717221 /* UserPickerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPickerTableView.swift; sourceTree = "<group>"; };
+		071BB907220B256E00717221 /* UserPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPickerDelegate.swift; sourceTree = "<group>"; };
 		075E13F021F1CBBD00CCABC3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		075E13F221F1DEA600CCABC3 /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		075E13F621F1F83700CCABC3 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -155,6 +169,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		071BB900220B132B00717221 /* Conversation list */ = {
+			isa = PBXGroup;
+			children = (
+				07152E4621F5D022005EADB2 /* ConversationTableView.swift */,
+				07152E4C21F5ECB7005EADB2 /* ConversationTableViewCell.swift */,
+			);
+			path = "Conversation list";
+			sourceTree = "<group>";
+		};
+		071BB901220B133A00717221 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				0763F84F22044B5D00C97C71 /* ChatTableViewMessageCell.swift */,
+				07152E5221F87B91005EADB2 /* ChatTableViewTextMessageCell.swift */,
+				0763F84D22043BD100C97C71 /* ChatTableViewImageMessageCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		071BB902220B136900717221 /* User picker */ = {
+			isa = PBXGroup;
+			children = (
+				071BB903220B138D00717221 /* UserPickerTableViewCell.swift */,
+				071BB905220B13A400717221 /* UserPickerTableView.swift */,
+				071BB907220B256E00717221 /* UserPickerDelegate.swift */,
+			);
+			path = "User picker";
+			sourceTree = "<group>";
+		};
 		07CA3B3C21E62A3000A53F10 = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +235,6 @@
 				07CA3B5421E62A3300A53F10 /* Assets.xcassets */,
 				07CA3B5921E62A3300A53F10 /* Info.plist */,
 				AF90043B5626A2ACA065A1E6 /* GoogleService-Info.plist */,
-				07FEF03121EF551600964B0D /* Themes.swift */,
 			);
 			path = Yapper;
 			sourceTree = "<group>";
@@ -218,6 +260,7 @@
 		07CA3B7F21E6322F00A53F10 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				071BB8F8220ACFB700717221 /* ThemedViewController.swift */,
 				07CA3B7B21E62F6100A53F10 /* LoginViewController.swift */,
 				07CA3B7D21E630CC00A53F10 /* SignupViewController.swift */,
 				07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */,
@@ -225,6 +268,7 @@
 				07FEF02A21EF1F5D00964B0D /* YapperSplitViewController.swift */,
 				0763F8472203032B00C97C71 /* ProfileViewController.swift */,
 				0763F84B220432CC00C97C71 /* ImageViewController.swift */,
+				071BB8FE220B0E2E00717221 /* UserPickerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -232,16 +276,16 @@
 		07FEF02C21EF278A00964B0D /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
+				071BB902220B136900717221 /* User picker */,
+				071BB901220B133A00717221 /* Chat */,
+				071BB900220B132B00717221 /* Conversation list */,
+				071BB8FA220AD28800717221 /* ThemedButton.swift */,
 				07FEF02F21EF286A00964B0D /* RoundedButton.swift */,
 				07152E4E21F7228C005EADB2 /* RoundedLabel.swift */,
 				07152E4A21F5E9CA005EADB2 /* RoundedImage.swift */,
 				0763F85122044ED400C97C71 /* ProfileImage.swift */,
-				07152E4621F5D022005EADB2 /* ConversationTableView.swift */,
-				07152E4C21F5ECB7005EADB2 /* ConversationTableViewCell.swift */,
-				0763F84F22044B5D00C97C71 /* ChatTableViewMessageCell.swift */,
-				07152E5221F87B91005EADB2 /* ChatTableViewTextMessageCell.swift */,
-				0763F84D22043BD100C97C71 /* ChatTableViewImageMessageCell.swift */,
 				07152E5A2201AF31005EADB2 /* MessageImageView.swift */,
+				071BB8FC220AEC5C00717221 /* ThemedLabel.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -275,8 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				07FEF04021F0A6CC00964B0D /* Log.swift */,
-				07152E5422004C99005EADB2 /* TimestampUtils.swift */,
 				0763F849220303F100C97C71 /* SaveData.swift */,
+				07FEF03121EF551600964B0D /* Themes.swift */,
+				07152E5422004C99005EADB2 /* TimestampUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -571,6 +616,7 @@
 			files = (
 				07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */,
 				0763F85022044B5D00C97C71 /* ChatTableViewMessageCell.swift in Sources */,
+				071BB904220B138D00717221 /* UserPickerTableViewCell.swift in Sources */,
 				0763F84A220303F100C97C71 /* SaveData.swift in Sources */,
 				07FEF03521F06DA200964B0D /* UserManager.swift in Sources */,
 				07FEF03721F06EA900964B0D /* DatabaseManager.swift in Sources */,
@@ -579,6 +625,7 @@
 				075E13FB21F2108000CCABC3 /* ConversationManager.swift in Sources */,
 				07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */,
 				07152E4F21F7228C005EADB2 /* RoundedLabel.swift in Sources */,
+				071BB908220B256E00717221 /* UserPickerDelegate.swift in Sources */,
 				07FEF03E21F098D300964B0D /* LoginManager.swift in Sources */,
 				07152E5321F87B91005EADB2 /* ChatTableViewTextMessageCell.swift in Sources */,
 				075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */,
@@ -592,15 +639,20 @@
 				075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */,
 				07FEF03C21F088C400964B0D /* User.swift in Sources */,
 				0763F8482203032B00C97C71 /* ProfileViewController.swift in Sources */,
+				071BB8FD220AEC5C00717221 /* ThemedLabel.swift in Sources */,
 				07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */,
+				071BB906220B13A400717221 /* UserPickerTableView.swift in Sources */,
 				075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */,
 				0763F84C220432CC00C97C71 /* ImageViewController.swift in Sources */,
 				07152E592200754E005EADB2 /* ImageMessage.swift in Sources */,
 				07152E4D21F5ECB7005EADB2 /* ConversationTableViewCell.swift in Sources */,
+				071BB8FB220AD28800717221 /* ThemedButton.swift in Sources */,
 				07152E5522004C99005EADB2 /* TimestampUtils.swift in Sources */,
+				071BB8F9220ACFB700717221 /* ThemedViewController.swift in Sources */,
 				07FEF02B21EF1F5D00964B0D /* YapperSplitViewController.swift in Sources */,
 				07152E4721F5D022005EADB2 /* ConversationTableView.swift in Sources */,
 				07152E57220053F7005EADB2 /* FriendListItem.swift in Sources */,
+				071BB8FF220B0E2E00717221 /* UserPickerViewController.swift in Sources */,
 				07FEF03921F082BE00964B0D /* FirebaseDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

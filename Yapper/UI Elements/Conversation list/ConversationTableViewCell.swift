@@ -73,7 +73,7 @@ class ConversationTableViewCell: UITableViewCell {
             var last: UIView?
             let extras = max(0, filtered.count - 5)
             filtered = Array(filtered.dropLast(extras))
-            
+
             // Draw profile images for the first five members
             filtered.forEach({ (user) in
                 let image = ProfileImage(frame: .zero, size: size)
@@ -83,14 +83,14 @@ class ConversationTableViewCell: UITableViewCell {
                 
                 if let last = last {
                     NSLayoutConstraint.activate([
-                        image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                        image.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
                         image.leadingAnchor.constraint(equalTo: last.trailingAnchor, constant: CGFloat(offset)),
                         image.heightAnchor.constraint(equalToConstant: size),
                         image.widthAnchor.constraint(equalTo: image.heightAnchor)
                         ])
                 } else {
                 NSLayoutConstraint.activate([
-                    image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                    image.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
                     image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Theme.currentTheme.margin),
                     image.heightAnchor.constraint(equalToConstant: size),
                     image.widthAnchor.constraint(equalTo: image.heightAnchor)
@@ -99,7 +99,7 @@ class ConversationTableViewCell: UITableViewCell {
                 last = image
                 image.image = UIImage(named: user.profileImage.rawValue)
             })
-            
+
             // Draw a rounded label with the number of conversation members > 5
             if extras > 0 {
                 let image = RoundedLabel(frame: .zero, size: size)
@@ -108,7 +108,7 @@ class ConversationTableViewCell: UITableViewCell {
                 image.text = "+\(extras)"
                 image.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
-                    image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                    image.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
                     image.leadingAnchor.constraint(equalTo: last!.trailingAnchor, constant: CGFloat(offset)),
                     image.heightAnchor.constraint(equalToConstant: size),
                     image.widthAnchor.constraint(equalTo: image.heightAnchor)
@@ -123,10 +123,10 @@ class ConversationTableViewCell: UITableViewCell {
                 let title = UILabel(frame: .zero)
                 title.text = other.displayName
                 
-                self.addSubview(title)
+                self.contentView.addSubview(title)
                 title.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
-                    title.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                    title.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
                     title.leadingAnchor.constraint(equalTo: _last.trailingAnchor, constant: Theme.currentTheme.margin),
                     ])
                 last = title
@@ -135,7 +135,7 @@ class ConversationTableViewCell: UITableViewCell {
             
             // Add a timestamp
             if let last = last {
-                let timestamp = UILabel(frame: .zero)
+                let timestamp = ThemedLabel(frame: .zero)
                 timestamp.text = formattedTimeFrom(timestamp: conversation.lastUpdated)
                 timestamp.font = timestamp.font.withSize(10.0)
                 timestamp.textAlignment = .right
@@ -144,19 +144,17 @@ class ConversationTableViewCell: UITableViewCell {
                     let lastUpdated = SaveData.shared.getLastUpdated(forConversation: cid) ?? Timestamp(seconds: 0, nanoseconds: 0)
                     if lastUpdated.dateValue() < conversation.lastUpdated.dateValue() {
                         timestamp.textColor = Theme.currentTheme.primary
-                    } else {
-                        timestamp.textColor = Theme.currentTheme.text
                     }
                 }
 
                 
-                self.addSubview(timestamp)
+                self.contentView.addSubview(timestamp)
                 timestamp.setContentCompressionResistancePriority(.required, for: .horizontal)
                 timestamp.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
-                    timestamp.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                    timestamp.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
                     timestamp.leadingAnchor.constraint(equalTo: last.trailingAnchor, constant: Theme.currentTheme.margin),
-                    timestamp.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Theme.currentTheme.margin)
+                    timestamp.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Theme.currentTheme.margin)
                     ])
                 self.timeLabel = timestamp
             }

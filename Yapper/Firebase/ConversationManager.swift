@@ -21,13 +21,16 @@ class ConversationManager {
         return db.collection(FirebaseDefaults.CollectionConversations.rawValue).addSnapshotListener(listener)
     }
     
-    func startConversation(user: String, members: [String] = [], listener: @escaping FIRDocumentSnapshotBlock) -> ListenerRegistration {
+    func startConversation(user: String, members: [String] = []) -> String {
         var members = members
         if !members.contains(user) {
             members.append(user)
         }
-        let conversation = Conversation(members: members)
-        return db.collection(FirebaseDefaults.CollectionConversations.rawValue).addDocument(data: conversation.toDictionary()).addSnapshotListener(listener)
+        var conversation = Conversation(members: members)
+        let doc = db.collection(FirebaseDefaults.CollectionConversations.rawValue).document()
+        conversation.id = doc.documentID
+        doc.setData(conversation.toDictionary())
+        return doc.documentID
     }
     
     func getMessages(for conversation: String, listener: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration{

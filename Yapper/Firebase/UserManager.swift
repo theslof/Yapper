@@ -114,7 +114,9 @@ class UserManager {
     func getFriendlistFor(_ user: String, completion: @escaping ([FriendListItem]?, Error?) -> Void) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)
-            .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue).getDocuments { (snapshot, error) in
+            .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue)
+            .whereField(FriendListItem.FirestoreKeys.isFriend.rawValue, isEqualTo: true)
+            .getDocuments { (snapshot, error) in
                 if let documents = snapshot?.documents {
                     completion(documents.compactMap(FriendListItem.init(from:)), error)
                 } else if let error = error {

@@ -9,13 +9,8 @@
 import UIKit
 
 @IBDesignable
-open class RoundedButton: UIButton {
-    @IBInspectable var error: Bool = false {
-        didSet {
-            setStyle()
-        }
-    }
-    
+class RoundedButton: ThemedButton {
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -34,13 +29,5 @@ open class RoundedButton: UIButton {
     }
 
     private func setStyle() {
-        if error {
-            self.layer.backgroundColor = Theme.currentTheme.error.cgColor
-            self.setTitleColor(Theme.currentTheme.textError, for: .normal)
-        } else {
-            self.layer.backgroundColor = Theme.currentTheme.primary.cgColor
-            self.setTitleColor(Theme.currentTheme.text, for: .normal)
-        }
-        self.layer.cornerRadius = Theme.currentTheme.cornerRadius
     }
 }

@@ -56,6 +56,18 @@ extension Theme {
     static let defaultTheme: Theme = Theme()
 }
 
+extension Theme {
+    static let darkTheme: Theme = Theme(
+            primary: UIColor(rgb: 0x5AC8FA),
+            primaryDark: UIColor(rgb: 0x0097c7),
+            secondary: UIColor(rgb: 0x007AFF),
+            secondaryDark: UIColor(rgb: 0x004fcb),
+            background: UIColor(rgb: 0x303030),
+            backgroundText: UIColor(rgb: 0x101010),
+            text: .white,
+            textSecondary: .black)
+}
+
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int, alpha: Int = 255) {
         assert(red >= 0 && red <= 255, "Invalid red component")

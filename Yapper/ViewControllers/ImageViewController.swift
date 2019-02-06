@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageViewController: UIViewController, UIScrollViewDelegate {
+class ImageViewController: ThemedViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!

@@ -40,6 +40,10 @@ class UserPickerViewController: ThemedViewController {
                 if let users = users {
                     self.users = [:]
                     users.forEach {user in
+                        if user.uid == uid {
+                            return
+                        }
+                        
                         self.users[user.uid] = user
                     }
                     self.filterUsersBy(string: nil)

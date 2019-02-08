@@ -12,9 +12,12 @@ import Firebase
 class UserPickerViewController: ThemedViewController {
     private static let TAG = "UserPickerViewController"
     @IBOutlet weak var tableView: UserPickerTableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    var users: [String] = []
-    var friends: [String] = []
+    var users: [String: User] = [:]
+    var friends: Set<String> = []
+    var filtered: [User] = []
+    
     var delegate: UserPickerDelegate?
 
     override func viewDidLoad() {
@@ -27,7 +30,7 @@ class UserPickerViewController: ThemedViewController {
         DatabaseManager.shared.users.getFriendlistFor(uid) { friendItems, error in
             if let friendItems = friendItems {
                 friendItems.forEach { item in
-                    self.friends.append(item.uid)
+                    self.friends.insert(item.uid)
                 }
             } else if let error = error {
                 Log.e(UserPickerViewController.TAG, error.localizedDescription)
@@ -35,21 +38,35 @@ class UserPickerViewController: ThemedViewController {
 
             DatabaseManager.shared.users.getUsers { users, error in
                 if let users = users {
-                    let notFriends: [String] = users.compactMap { user -> String? in
-                        return user.uid == uid || self.friends.contains(user.uid) ? nil : user.uid
+                    self.users = [:]
+                    users.forEach {user in
+                        self.users[user.uid] = user
                     }
-
-                    self.users.append(contentsOf: self.friends)
-                    self.users.append(contentsOf: notFriends)
-                    self.tableView.reloadData()
+                    self.filterUsersBy(string: nil)
                 }
             }
         }
     }
     
+    private func filterUsersBy(string: String?) {
+        if let string = string {
+            filtered = users.values.filter({ (user) -> Bool in
+                user.displayName.lowercased().contains(string.lowercased())
+            })
+        } else {
+            filtered = Array(users.values)
+        }
+        
+        filtered.sort { (u1, u2) -> Bool in
+            return friends.contains(u1.uid) && !friends.contains(u2.uid) || u1.displayName < u2.displayName
+        }
+        
+        self.tableView.reloadData()
+    }
+    
     @IBAction func actionAdd(_ sender: Any) {
         let users: [String] = tableView.indexPathsForSelectedRows?.compactMap({ indexPath -> String in
-            return self.users[indexPath.row]
+            return self.filtered[indexPath.row].uid
         }) ?? []
         delegate?.userPicker(self, didFinishPickingUsersWithUsers: users)
         self.navigationController?.dismiss(animated: true, completion: nil)
@@ -62,20 +79,23 @@ class UserPickerViewController: ThemedViewController {
 
 extension UserPickerViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return filtered.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? UserPickerTableViewCell ?? UserPickerTableViewCell()
 
-        DatabaseManager.shared.users.getUser(uid: users[indexPath.row]) { user, error in
-            if let user = user {
-                cell.username.text = user.displayName
-                cell.profileImage.image = UIImage(named: user.profileImage.rawValue)
-                cell.favorite.isHidden = !self.friends.contains(user.uid)
-            }
-        }
+        let user: User = filtered[indexPath.row]
+        cell.username.text = user.displayName
+        cell.profileImage.image = UIImage(named: user.profileImage.rawValue)
+        cell.favorite.isHidden = !self.friends.contains(user.uid)
         
         return cell
+    }
+}
+
+extension UserPickerViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterUsersBy(string: searchText.isEmpty ? nil : searchText)
     }
 }

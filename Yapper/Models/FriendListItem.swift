@@ -36,7 +36,7 @@ struct FriendListItem {
         guard
             let uid = dictionary[FirestoreKeys.uid.rawValue] as? String,
             let isFriend = dictionary[FirestoreKeys.isFriend.rawValue] as? Bool,
-            let isIgnored = dictionary[FirestoreKeys.isFriend.rawValue] as? Bool
+            let isIgnored = dictionary[FirestoreKeys.isIgnored.rawValue] as? Bool
             else {
                 Log.e("FriendListItem", "Failed to parse FriendListItem from dictionary")
                 return nil }

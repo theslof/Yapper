@@ -22,6 +22,10 @@ class FriendListViewController: ThemedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = Theme.currentTheme.background
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         guard let uid = Auth.auth().currentUser?.uid else {
             dismiss(animated: true, completion: nil)
@@ -44,7 +48,15 @@ class FriendListViewController: ThemedViewController {
             
             DatabaseManager.shared.users.getUsers { users, error in
                 if let users = users {
+                    self.friends = []
+                    self.ignored = []
+                    self.others = []
+                    
                     users.forEach {user in
+                        if user.uid == uid {
+                            return
+                        }
+                        
                         if friends.contains(user.uid) {
                             self.friends.append(user)
                         } else if ignored.contains(user.uid) {

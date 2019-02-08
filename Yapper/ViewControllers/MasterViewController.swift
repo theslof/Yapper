@@ -91,6 +91,9 @@ class MasterViewController: UITableViewController {
     }
     
     @IBAction func actionViewUsers(_ sender: UIBarButtonItem) {
+        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "friendListNavigationController") as? UINavigationController {
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     @IBAction func actionSettings(_ sender: UIBarButtonItem) {

@@ -49,9 +49,9 @@ class UserPickerViewController: ThemedViewController {
     }
     
     private func filterUsersBy(string: String?) {
-        if let string = string {
+        if let words = string?.lowercased().split(separator: " ") {
             filtered = users.values.filter({ (user) -> Bool in
-                user.displayName.lowercased().contains(string.lowercased())
+                words.contains(where: user.displayName.lowercased().contains)
             })
         } else {
             filtered = Array(users.values)

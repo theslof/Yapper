@@ -25,6 +25,7 @@
 		071BB908220B256E00717221 /* UserPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071BB907220B256E00717221 /* UserPickerDelegate.swift */; };
 		07391E3C220D80B000E23F0B /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07391E3B220D80B000E23F0B /* FriendListViewController.swift */; };
 		07391E3E220DA4B700E23F0B /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07391E3D220DA4B700E23F0B /* FriendListTableViewCell.swift */; };
+		07410479220DBE1E00352A1D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07410478220DBE1E00352A1D /* SettingsTableViewController.swift */; };
 		075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F021F1CBBD00CCABC3 /* Message.swift */; };
 		075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F221F1DEA600CCABC3 /* TextMessage.swift */; };
 		075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F621F1F83700CCABC3 /* Conversation.swift */; };
@@ -97,6 +98,7 @@
 		071BB907220B256E00717221 /* UserPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPickerDelegate.swift; sourceTree = "<group>"; };
 		07391E3B220D80B000E23F0B /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		07391E3D220DA4B700E23F0B /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		07410478220DBE1E00352A1D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		075E13F021F1CBBD00CCABC3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		075E13F221F1DEA600CCABC3 /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		075E13F621F1F83700CCABC3 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				0763F84B220432CC00C97C71 /* ImageViewController.swift */,
 				071BB8FE220B0E2E00717221 /* UserPickerViewController.swift */,
 				07391E3B220D80B000E23F0B /* FriendListViewController.swift */,
+				07410478220DBE1E00352A1D /* SettingsTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				07152E592200754E005EADB2 /* ImageMessage.swift in Sources */,
 				07152E4D21F5ECB7005EADB2 /* ConversationTableViewCell.swift in Sources */,
 				071BB8FB220AD28800717221 /* ThemedButton.swift in Sources */,
+				07410479220DBE1E00352A1D /* SettingsTableViewController.swift in Sources */,
 				07152E5522004C99005EADB2 /* TimestampUtils.swift in Sources */,
 				071BB8F9220ACFB700717221 /* ThemedViewController.swift in Sources */,
 				07FEF02B21EF1F5D00964B0D /* YapperSplitViewController.swift in Sources */,

@@ -587,38 +587,38 @@
             <objects>
                 <viewController storyboardIdentifier="loginViewController" id="lat-XC-t21" customClass="LoginViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cAF-CF-Yrh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnO-HS-FE7">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwz-7I-55j" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="145" y="50" width="85.5" height="43"/>
+                                        <rect key="frame" x="117.5" y="50" width="85.5" height="43"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btI-Zh-xYx">
-                                        <rect key="frame" x="8" y="113" width="359" height="30"/>
+                                        <rect key="frame" x="8" y="113" width="304" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKq-5W-89X">
-                                        <rect key="frame" x="8" y="151" width="359" height="30"/>
+                                        <rect key="frame" x="8" y="151" width="304" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gol-uh-whB" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="189" width="359" height="14.5"/>
+                                        <rect key="frame" x="8" y="189" width="304" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMU-pz-U1k" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="153.5" y="211.5" width="68" height="32"/>
+                                        <rect key="frame" x="126" y="211.5" width="68" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="rZi-NI-5qd"/>
                                         </constraints>
@@ -629,7 +629,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXg-dN-jkH">
-                                        <rect key="frame" x="20" y="323.5" width="335" height="32"/>
+                                        <rect key="frame" x="20" y="323.5" width="280" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Don't have an account? Sign up here!"/>
                                         <connections>
@@ -855,8 +855,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <view key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="V75-CK-bwn">
-                            <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                        <view key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="HVM-cm-hQH">
+                            <rect key="frame" x="0.0" y="132" width="375" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>
                         <sections>
@@ -1030,13 +1030,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="67R-PW-E9E" customClass="ThemedTextView" customModule="Yapper" customModuleProvider="target">
-                                <rect key="frame" x="8" y="72" width="359" height="587"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.
+                                <rect key="frame" x="37.5" y="88" width="300" height="571"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Ix0-jg-LzI"/>
+                                </constraints>
+                                <string key="text">This application was developed in six weeks as a student assignment in Application Development Continuation course at Newton Vocational College.
 
-http://github.com/theslof
-
-Jonas Theslöf, 2019</mutableString>
+Jonas Theslöf, 2019
+http://github.com/theslof</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -1044,10 +1045,10 @@ Jonas Theslöf, 2019</mutableString>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="67R-PW-E9E" firstAttribute="leading" secondItem="ePc-Tg-TqM" secondAttribute="leading" constant="8" id="F77-3u-hew"/>
+                            <constraint firstItem="67R-PW-E9E" firstAttribute="centerX" secondItem="LzY-ol-uv5" secondAttribute="centerX" id="1qg-sS-tB3"/>
                             <constraint firstItem="ePc-Tg-TqM" firstAttribute="bottom" secondItem="67R-PW-E9E" secondAttribute="bottom" constant="8" id="Gz9-ma-zh3"/>
-                            <constraint firstItem="67R-PW-E9E" firstAttribute="top" secondItem="ePc-Tg-TqM" secondAttribute="top" constant="8" id="KCS-LJ-Kh7"/>
-                            <constraint firstItem="ePc-Tg-TqM" firstAttribute="trailing" secondItem="67R-PW-E9E" secondAttribute="trailing" constant="8" id="lew-af-xiH"/>
+                            <constraint firstItem="67R-PW-E9E" firstAttribute="top" secondItem="ePc-Tg-TqM" secondAttribute="top" constant="24" id="KCS-LJ-Kh7"/>
+                            <constraint firstItem="67R-PW-E9E" firstAttribute="centerX" secondItem="LzY-ol-uv5" secondAttribute="centerX" id="VP3-s3-Sn3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ePc-Tg-TqM"/>
                     </view>

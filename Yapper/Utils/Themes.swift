@@ -9,6 +9,9 @@
 import UIKit
 
 class Theme {
+    private(set) static var themes: [String: Theme] = ["default": Theme(), "dark": Theme.darkTheme]
+
+    let name: String
     let primary: UIColor
     let primaryDark: UIColor
     let secondary: UIColor
@@ -22,7 +25,8 @@ class Theme {
     let cornerRadius: CGFloat
     let margin: CGFloat
 
-    static var currentTheme: Theme = defaultTheme
+    private(set) static var currentTheme: Theme = themes[SaveData.shared.theme] ?? Theme()
+    private static let name: String = "Default"
     private static let primary: UIColor = UIColor(rgb: 0x007AFF)
     private static let primaryDark: UIColor = UIColor(rgb: 0x004fcb)
     private static let secondary: UIColor = UIColor(rgb: 0x5AC8FA)
@@ -36,7 +40,8 @@ class Theme {
     private static let cornerRadius: CGFloat = 8
     private static let margin: CGFloat = 8
 
-    init(primary: UIColor = primary, primaryDark: UIColor = primaryDark, secondary: UIColor = secondary, secondaryDark: UIColor = secondaryDark, error: UIColor = error, background: UIColor = background, backgroundText: UIColor = backgroundText, text: UIColor = text, textSecondary: UIColor = textSecondary, textError: UIColor = textError, cornerRadius: CGFloat = cornerRadius, margin: CGFloat = margin) {
+    init(name: String = name, primary: UIColor = primary, primaryDark: UIColor = primaryDark, secondary: UIColor = secondary, secondaryDark: UIColor = secondaryDark, error: UIColor = error, background: UIColor = background, backgroundText: UIColor = backgroundText, text: UIColor = text, textSecondary: UIColor = textSecondary, textError: UIColor = textError, cornerRadius: CGFloat = cornerRadius, margin: CGFloat = margin) {
+        self.name = name
         self.primary = primary
         self.primaryDark = primaryDark
         self.secondary = secondary
@@ -50,22 +55,23 @@ class Theme {
         self.cornerRadius = cornerRadius
         self.margin = margin
     }
-}
+    
+    static func setTheme(_ theme: String) {
+        guard let newTheme = themes[theme] else { return }
+        currentTheme = newTheme
+        SaveData.shared.saveTheme(theme)
+    }
 
-extension Theme {
-    static let defaultTheme: Theme = Theme()
-}
-
-extension Theme {
     static let darkTheme: Theme = Theme(
-            primary: UIColor(rgb: 0x5AC8FA),
-            primaryDark: UIColor(rgb: 0x0097c7),
-            secondary: UIColor(rgb: 0x007AFF),
-            secondaryDark: UIColor(rgb: 0x004fcb),
-            background: UIColor(rgb: 0x303030),
-            backgroundText: UIColor(rgb: 0x101010),
-            text: .white,
-            textSecondary: .black)
+        name: "Dark",
+        primary: UIColor(rgb: 0x5AC8FA),
+        primaryDark: UIColor(rgb: 0x0097c7),
+        secondary: UIColor(rgb: 0x007AFF),
+        secondaryDark: UIColor(rgb: 0x004fcb),
+        background: UIColor(rgb: 0x303030),
+        backgroundText: UIColor(rgb: 0x101010),
+        text: .white,
+        textSecondary: .black)
 }
 
 extension UIColor {

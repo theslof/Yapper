@@ -13,8 +13,8 @@ class ConversationTableViewCell: UITableViewCell {
     private static let TAG = "ConversationTableViewCell"
     private var profileImages: [RoundedImage] = []
     private var numberImage: RoundedLabel?
-    private var title: UILabel?
-    private var timeLabel: UILabel?
+    private var title: ThemedLabel?
+    private var timeLabel: ThemedLabel?
     
     var conversation: Conversation? {
         willSet {
@@ -120,7 +120,7 @@ class ConversationTableViewCell: UITableViewCell {
                 let other = filtered.first(where: { $0.uid != currentUser }),
                 let _last = last
             {
-                let title = UILabel(frame: .zero)
+                let title = ThemedLabel(frame: .zero)
                 title.text = other.displayName
                 
                 self.contentView.addSubview(title)

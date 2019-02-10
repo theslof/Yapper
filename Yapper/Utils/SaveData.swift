@@ -12,9 +12,11 @@ import Firebase
 class SaveData {
     static var shared = SaveData()
     private var lastUpdatedCache: [String: Date] = [:]
+    private(set) var theme: String = "default"
     
     private init(){
         getAllLastUpdated()
+        loadTheme()
     }
 
     func update(lastUpdated: Timestamp, forConversation conversation: String) {
@@ -27,6 +29,16 @@ class SaveData {
     func getLastUpdated(forConversation conversation: String) -> Timestamp? {
         guard let timestamp = lastUpdatedCache[conversation] else { return nil }
         return Timestamp(date: timestamp)
+    }
+    
+    private func loadTheme() {
+        if let temp = UserDefaults.standard.string(forKey: Keys.selectedTheme.rawValue) {
+            self.theme = temp
+        }
+    }
+    
+    func saveTheme(_ theme: String) {
+        UserDefaults.standard.set(theme, forKey: Keys.selectedTheme.rawValue)
     }
 
     private func set(lastUpdated: Timestamp, forConversation conversation: String) {
@@ -46,5 +58,6 @@ class SaveData {
     
     private enum Keys: String {
         case lastUpdated = "lastUpdated"
+        case selectedTheme = "selectedTheme"
     }
 }

@@ -20,6 +20,10 @@ class ThemedLabel: UILabel {
     }
     
     private func setTheme() {
-        self.textColor = Theme.currentTheme.text
+        overrideThemeWith(theme: Theme.currentTheme)
+    }
+    
+    func overrideThemeWith(theme: Theme) {
+        self.textColor = theme.text
     }
 }

@@ -13,21 +13,9 @@ class RoundedButton: ThemedButton {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setStyle()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        setStyle()
-    }
-    
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setStyle()
-    }
-
-    private func setStyle() {
     }
 }

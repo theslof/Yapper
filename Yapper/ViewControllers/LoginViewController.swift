@@ -20,19 +20,43 @@ class LoginViewController: ThemedViewController {
 
     var spinner: UIActivityIndicatorView?
     
+    override func viewDidLoad() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let window = UIApplication.shared.delegate?.window else { return }
+            var vc = window!.rootViewController
+            if(vc is UINavigationController){
+                vc = (vc as! UINavigationController).visibleViewController
+            }
+            
+            var newViewController: UIViewController?
+            
+            if user == nil, !(vc is LoginViewController) {
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                newViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+            } else if user != nil, vc is LoginViewController {
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                newViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController")
+            }
+            
+            if let newViewController = newViewController, let window = window {
+                UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    window.rootViewController = newViewController
+                })
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         createAndSetupSpinner()
-        errorLabel.textColor = Theme.defaultTheme.error
+        errorLabel.textColor = Theme.currentTheme.error
     }
     
     override func viewDidAppear(_ animated: Bool) {
         let auth = Auth.auth()
-        
-        if auth.currentUser != nil {
-            self.performSegue(withIdentifier: "segueShowMainView", sender: self)
-        } else {
+
+        if auth.currentUser == nil {
             self.spinner?.stopAnimating()
         }
     }
@@ -93,8 +117,6 @@ class LoginViewController: ThemedViewController {
                     self.showError(error.localizedDescription)
                 }
                 Log.e(LoginViewController.TAG, error.localizedDescription)
-            } else if result != nil {
-                self.performSegue(withIdentifier: "segueShowMainView", sender: self)
             }
         })
     }

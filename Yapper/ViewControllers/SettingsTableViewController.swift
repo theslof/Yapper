@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: ThemedTableViewController {
     
     private let rows: [String] = ["theme", "info", "signout"]
 
@@ -17,7 +17,18 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.visibleCells.forEach { cell in
+            cell.backgroundColor = Theme.currentTheme.background
+            cell.contentView.subviews.forEach({ view in
+                if let view = view as? ThemedLabel {
+                    view.overrideThemeWith(theme: Theme.currentTheme)
+                }
+            })
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -32,6 +43,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         switch rows[indexPath.row] {
         case "theme":
             performSegue(withIdentifier: "themeSelectorViewController", sender: self)

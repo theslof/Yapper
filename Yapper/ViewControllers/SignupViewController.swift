@@ -30,7 +30,7 @@ class SignupViewController: ThemedViewController {
         super.viewWillAppear(animated)
         
         createAndSetupSpinner()
-        errorLabel.textColor = Theme.defaultTheme.error
+        errorLabel.textColor = Theme.currentTheme.error
     }
     
     override func viewDidAppear(_ animated: Bool) {

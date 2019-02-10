@@ -26,6 +26,10 @@
 		07391E3C220D80B000E23F0B /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07391E3B220D80B000E23F0B /* FriendListViewController.swift */; };
 		07391E3E220DA4B700E23F0B /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07391E3D220DA4B700E23F0B /* FriendListTableViewCell.swift */; };
 		07410479220DBE1E00352A1D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07410478220DBE1E00352A1D /* SettingsTableViewController.swift */; };
+		0741047B221065F900352A1D /* ThemedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741047A221065F900352A1D /* ThemedTextView.swift */; };
+		0741047D2210682D00352A1D /* ThemeSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741047C2210682D00352A1D /* ThemeSelectionTableViewController.swift */; };
+		0741047F2210697700352A1D /* ThemeSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741047E2210697700352A1D /* ThemeSelectorTableViewCell.swift */; };
+		0741048122107A0100352A1D /* ThemedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741048022107A0100352A1D /* ThemedTableViewController.swift */; };
 		075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F021F1CBBD00CCABC3 /* Message.swift */; };
 		075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F221F1DEA600CCABC3 /* TextMessage.swift */; };
 		075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E13F621F1F83700CCABC3 /* Conversation.swift */; };
@@ -99,6 +103,10 @@
 		07391E3B220D80B000E23F0B /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		07391E3D220DA4B700E23F0B /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
 		07410478220DBE1E00352A1D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		0741047A221065F900352A1D /* ThemedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedTextView.swift; sourceTree = "<group>"; };
+		0741047C2210682D00352A1D /* ThemeSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectionTableViewController.swift; sourceTree = "<group>"; };
+		0741047E2210697700352A1D /* ThemeSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectorTableViewCell.swift; sourceTree = "<group>"; };
+		0741048022107A0100352A1D /* ThemedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedTableViewController.swift; sourceTree = "<group>"; };
 		075E13F021F1CBBD00CCABC3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		075E13F221F1DEA600CCABC3 /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
 		075E13F621F1F83700CCABC3 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -277,6 +285,8 @@
 				071BB8FE220B0E2E00717221 /* UserPickerViewController.swift */,
 				07391E3B220D80B000E23F0B /* FriendListViewController.swift */,
 				07410478220DBE1E00352A1D /* SettingsTableViewController.swift */,
+				0741047C2210682D00352A1D /* ThemeSelectionTableViewController.swift */,
+				0741048022107A0100352A1D /* ThemedTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -295,6 +305,8 @@
 				07152E5A2201AF31005EADB2 /* MessageImageView.swift */,
 				071BB8FC220AEC5C00717221 /* ThemedLabel.swift */,
 				07391E3D220DA4B700E23F0B /* FriendListTableViewCell.swift */,
+				0741047A221065F900352A1D /* ThemedTextView.swift */,
+				0741047E2210697700352A1D /* ThemeSelectorTableViewCell.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -625,9 +637,11 @@
 			files = (
 				07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */,
 				0763F85022044B5D00C97C71 /* ChatTableViewMessageCell.swift in Sources */,
+				0741047B221065F900352A1D /* ThemedTextView.swift in Sources */,
 				071BB904220B138D00717221 /* UserPickerTableViewCell.swift in Sources */,
 				0763F84A220303F100C97C71 /* SaveData.swift in Sources */,
 				07FEF03521F06DA200964B0D /* UserManager.swift in Sources */,
+				0741047F2210697700352A1D /* ThemeSelectorTableViewCell.swift in Sources */,
 				07FEF03721F06EA900964B0D /* DatabaseManager.swift in Sources */,
 				07CA3B7E21E630CC00A53F10 /* SignupViewController.swift in Sources */,
 				07152E5B2201AF31005EADB2 /* MessageImageView.swift in Sources */,
@@ -635,6 +649,7 @@
 				07FEF03021EF286A00964B0D /* RoundedButton.swift in Sources */,
 				07152E4F21F7228C005EADB2 /* RoundedLabel.swift in Sources */,
 				071BB908220B256E00717221 /* UserPickerDelegate.swift in Sources */,
+				0741048122107A0100352A1D /* ThemedTableViewController.swift in Sources */,
 				07FEF03E21F098D300964B0D /* LoginManager.swift in Sources */,
 				07152E5321F87B91005EADB2 /* ChatTableViewTextMessageCell.swift in Sources */,
 				075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */,
@@ -645,6 +660,7 @@
 				0763F84E22043BD100C97C71 /* ChatTableViewImageMessageCell.swift in Sources */,
 				07FEF04121F0A6CC00964B0D /* Log.swift in Sources */,
 				07CA3B7C21E62F6100A53F10 /* LoginViewController.swift in Sources */,
+				0741047D2210682D00352A1D /* ThemeSelectionTableViewController.swift in Sources */,
 				0763F85222044ED400C97C71 /* ProfileImage.swift in Sources */,
 				075E13F721F1F83700CCABC3 /* Conversation.swift in Sources */,
 				07FEF03C21F088C400964B0D /* User.swift in Sources */,

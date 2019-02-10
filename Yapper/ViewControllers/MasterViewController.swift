@@ -25,19 +25,6 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-        
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == nil {
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let yourViewController: LoginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                let window = appDelegate.window!
-                UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                    window.rootViewController = yourViewController
-                })
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

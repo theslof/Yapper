@@ -673,7 +673,6 @@
                         <outlet property="passwordTextField" destination="BKq-5W-89X" id="pNy-2l-cqE"/>
                         <outlet property="signupButton" destination="hXg-dN-jkH" id="rJp-IT-8aU"/>
                         <outlet property="submitButton" destination="SMU-pz-U1k" id="Hz1-ei-L9n"/>
-                        <segue destination="H1p-Uh-vWS" kind="show" identifier="segueShowMainView" id="VqY-QC-t4i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zG1-iX-dPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -781,7 +780,7 @@
         <!--Yapper Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>
-                <splitViewController id="H1p-Uh-vWS" customClass="YapperSplitViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="mainViewController" id="H1p-Uh-vWS" customClass="YapperSplitViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
@@ -856,6 +855,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <view key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="V75-CK-bwn">
+                            <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </view>
                         <sections>
                             <tableViewSection id="pcf-1f-tta">
                                 <cells>
@@ -866,7 +869,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16v-dA-HuP">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16v-dA-HuP" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
                                                     <rect key="frame" x="24" y="11" width="53.5" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -887,7 +890,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjC-2p-knc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjC-2p-knc" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
                                                     <rect key="frame" x="24" y="11" width="29" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -908,7 +911,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dd-NB-WPn">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dd-NB-WPn" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
                                                     <rect key="frame" x="24" y="11" width="63.5" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -931,8 +934,8 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="WiE-xj-T2n" kind="show" identifier="themeSelectorViewController" id="O9b-Ib-5Xc"/>
                         <segue destination="rIF-gx-tr2" kind="show" identifier="infoViewController" id="VEM-kq-zeM"/>
+                        <segue destination="sCo-m1-TSI" kind="show" identifier="themeSelectorViewController" id="esC-UW-Pnv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wW0-hA-MbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -940,34 +943,118 @@
             <point key="canvasLocation" x="1538" y="-630"/>
         </scene>
         <!--Themes-->
-        <scene sceneID="SWH-hw-9mz">
+        <scene sceneID="fxv-aw-kkB">
             <objects>
-                <viewController title="Themes" id="WiE-xj-T2n" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xtz-WH-g4I">
+                <tableViewController title="Themes" id="sCo-m1-TSI" customClass="ThemeSelectionTableViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jaJ-cY-tcc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="efF-VT-9HA"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lC8-Yj-73q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="76" id="NNV-L4-VAp" customClass="ThemeSelectorTableViewCell" customModule="Yapper" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNV-L4-VAp" id="J4y-hE-6Cr">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCV-ZB-Uhe" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
+                                            <rect key="frame" x="24" y="19" width="42" height="38"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ne-la-ftP" customClass="RoundedLabel" customModule="Yapper" customModuleProvider="target">
+                                            <rect key="frame" x="185" y="19" width="38" height="38"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="9ne-la-ftP" secondAttribute="height" id="OfZ-XM-rgU"/>
+                                            </constraints>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1e-Gp-uzd" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
+                                            <rect key="frame" x="301" y="19" width="50" height="38"/>
+                                            <state key="normal" title="  Error  "/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="error" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dbq-er-Qdy" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
+                                            <rect key="frame" x="231" y="19" width="62" height="38"/>
+                                            <state key="normal" title="  Button  "/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="error" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="9ne-la-ftP" secondAttribute="bottom" constant="8" id="83V-1s-UPR"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="nCV-ZB-Uhe" secondAttribute="bottom" constant="8" id="J7X-Bh-2ez"/>
+                                        <constraint firstItem="nCV-ZB-Uhe" firstAttribute="leading" secondItem="J4y-hE-6Cr" secondAttribute="leadingMargin" constant="8" id="Jch-YI-rwN"/>
+                                        <constraint firstItem="9ne-la-ftP" firstAttribute="top" secondItem="J4y-hE-6Cr" secondAttribute="topMargin" constant="8" id="Pdr-E4-Pmu"/>
+                                        <constraint firstItem="Dbq-er-Qdy" firstAttribute="leading" secondItem="9ne-la-ftP" secondAttribute="trailing" constant="16" id="SNL-nx-bv0"/>
+                                        <constraint firstItem="nCV-ZB-Uhe" firstAttribute="top" secondItem="J4y-hE-6Cr" secondAttribute="topMargin" constant="8" id="Ubb-T0-Rwf"/>
+                                        <constraint firstItem="Dbq-er-Qdy" firstAttribute="top" secondItem="J4y-hE-6Cr" secondAttribute="topMargin" constant="8" id="brt-Qv-AM5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="G1e-Gp-uzd" secondAttribute="trailing" constant="8" id="eTL-y7-Jd6"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="G1e-Gp-uzd" secondAttribute="bottom" constant="8" id="k9t-Zv-oC7"/>
+                                        <constraint firstItem="9ne-la-ftP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nCV-ZB-Uhe" secondAttribute="trailing" constant="8" id="kNx-I1-U3x"/>
+                                        <constraint firstItem="G1e-Gp-uzd" firstAttribute="leading" secondItem="Dbq-er-Qdy" secondAttribute="trailing" constant="8" id="pdz-q8-zuj"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Dbq-er-Qdy" secondAttribute="bottom" constant="8" id="qDO-rX-4qa"/>
+                                        <constraint firstItem="G1e-Gp-uzd" firstAttribute="top" secondItem="J4y-hE-6Cr" secondAttribute="topMargin" constant="8" id="ybm-Jj-Aae"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="Dbq-er-Qdy" id="uTp-Tj-5Ix"/>
+                                    <outlet property="error" destination="G1e-Gp-uzd" id="bjA-aa-uex"/>
+                                    <outlet property="label" destination="nCV-ZB-Uhe" id="pFc-cW-ktH"/>
+                                    <outlet property="rounded" destination="9ne-la-ftP" id="yoX-mX-8Yh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="sCo-m1-TSI" id="Bbn-3N-5dK"/>
+                            <outlet property="delegate" destination="sCo-m1-TSI" id="tEW-cL-prl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IxD-Cb-Afc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2652" y="-886"/>
+            <point key="canvasLocation" x="2432.8000000000002" y="-964.76761619190415"/>
         </scene>
         <!--Info-->
         <scene sceneID="XWU-99-Ux8">
             <objects>
-                <viewController title="Info" id="rIF-gx-tr2" sceneMemberID="viewController">
+                <viewController title="Info" id="rIF-gx-tr2" customClass="ThemedViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LzY-ol-uv5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="67R-PW-E9E" customClass="ThemedTextView" customModule="Yapper" customModuleProvider="target">
+                                <rect key="frame" x="8" y="72" width="359" height="587"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.
+
+http://github.com/theslof
+
+Jonas Theslöf, 2019</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="67R-PW-E9E" firstAttribute="leading" secondItem="ePc-Tg-TqM" secondAttribute="leading" constant="8" id="F77-3u-hew"/>
+                            <constraint firstItem="ePc-Tg-TqM" firstAttribute="bottom" secondItem="67R-PW-E9E" secondAttribute="bottom" constant="8" id="Gz9-ma-zh3"/>
+                            <constraint firstItem="67R-PW-E9E" firstAttribute="top" secondItem="ePc-Tg-TqM" secondAttribute="top" constant="8" id="KCS-LJ-Kh7"/>
+                            <constraint firstItem="ePc-Tg-TqM" firstAttribute="trailing" secondItem="67R-PW-E9E" secondAttribute="trailing" constant="8" id="lew-af-xiH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ePc-Tg-TqM"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XP2-wQ-h8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2652" y="-152"/>
+            <point key="canvasLocation" x="2433" y="-267"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -1028,6 +1115,6 @@
         <image name="star" width="6.6257667541503906" height="6.6257667541503906"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="Tll-UG-LXB"/>
     </inferredMetricsTieBreakers>
 </document>

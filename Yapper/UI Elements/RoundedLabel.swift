@@ -21,6 +21,12 @@ class RoundedLabel: UIView {
             self.label.text = newValue
         }
     }
+    
+    override var frame: CGRect {
+        didSet {
+            label.layer.cornerRadius = self.frame.height / 2
+        }
+    }
 
     init(frame: CGRect, size: CGFloat) {
         self.size = size
@@ -37,7 +43,6 @@ class RoundedLabel: UIView {
     func commonInit() {
         self.addSubview(label)
         self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.25
         self.layer.shadowRadius = 1.5
         self.layer.shadowOffset = CGSize(width: 0, height: 1.5)
@@ -50,17 +55,28 @@ class RoundedLabel: UIView {
             ])
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
-        label.backgroundColor = Theme.currentTheme.secondaryDark
-        label.textColor = Theme.currentTheme.textSecondary
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.isOpaque = true
         label.textAlignment = .center
         
         label.clipsToBounds = true
         label.layer.borderWidth = 2
-        label.layer.borderColor = Theme.currentTheme.background.cgColor
 
         label.layer.cornerRadius = self.size / 2
+        
+        self.setTheme()
+        
         prepareForInterfaceBuilder()
+    }
+    
+    private func setTheme() {
+        overrideThemeWith(theme: Theme.currentTheme)
+    }
+    
+    func overrideThemeWith(theme: Theme) {
+        self.layer.shadowColor = theme.text.cgColor
+        label.backgroundColor = theme.secondaryDark
+        label.textColor = theme.textSecondary
+        label.layer.borderColor = theme.background.cgColor
     }
 }

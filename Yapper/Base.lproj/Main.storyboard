@@ -1027,7 +1027,7 @@
         <!--Info-->
         <scene sceneID="XWU-99-Ux8">
             <objects>
-                <viewController title="Info" id="rIF-gx-tr2" customClass="ThemedViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Info" id="rIF-gx-tr2" customClass="InfoViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LzY-ol-uv5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1037,10 +1037,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Ix0-jg-LzI"/>
                                 </constraints>
-                                <string key="text">This application was developed in six weeks as a student assignment in Application Development Continuation course at Newton Vocational College.
-
-Jonas Theslöf, 2019
-http://github.com/theslof</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -1055,6 +1051,9 @@ http://github.com/theslof</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ePc-Tg-TqM"/>
                     </view>
+                    <connections>
+                        <outlet property="infoTextField" destination="67R-PW-E9E" id="ZZj-lN-G6i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XP2-wQ-h8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

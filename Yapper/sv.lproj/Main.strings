@@ -1,0 +1,102 @@
+
+/* Class = "UILabel"; text = "Theme"; ObjectID = "16v-dA-HuP"; */
+"16v-dA-HuP.text" = "Tema";
+
+/* Class = "UITableViewController"; title = "Master"; ObjectID = "7bK-jq-Zjz"; */
+"7bK-jq-Zjz.title" = "Master";
+
+/* Class = "UILabel"; text = "Sign out"; ObjectID = "9Dd-NB-WPn"; */
+"9Dd-NB-WPn.text" = "Logga ut";
+
+/* Class = "UIButton"; normalTitle = "  Cancel  "; ObjectID = "AvV-Vv-b9b"; */
+"AvV-Vv-b9b.normalTitle" = "  Avbryt  ";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "BKq-5W-89X"; */
+"BKq-5W-89X.placeholder" = "Lösenord";
+
+/* Class = "UILabel"; text = "No new messages!"; ObjectID = "C6X-Ov-4cm"; */
+"C6X-Ov-4cm.text" = "Inga nya meddelanden!";
+
+/* Class = "UIButton"; normalTitle = "  Button  "; ObjectID = "Dbq-er-Qdy"; */
+"Dbq-er-Qdy.normalTitle" = "  Knapp  ";
+
+/* Class = "UIButton"; normalTitle = "  Error  "; ObjectID = "G1e-Gp-uzd"; */
+"G1e-Gp-uzd.normalTitle" = "  Fel  ";
+
+/* Class = "UILabel"; text = "Error"; ObjectID = "Gol-uh-whB"; */
+"Gol-uh-whB.text" = "Fel";
+
+/* Class = "UIViewController"; title = "Detail"; ObjectID = "JEX-9P-axG"; */
+"JEX-9P-axG.title" = "Detail";
+
+/* Class = "UINavigationController"; title = "Master"; ObjectID = "RMx-3f-FxP"; */
+"RMx-3f-FxP.title" = "Master";
+
+/* Class = "UIButton"; normalTitle = "  Submit  "; ObjectID = "SMU-pz-U1k"; */
+"SMU-pz-U1k.normalTitle" = "  Skicka  ";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "ScR-Eu-ufA"; */
+"ScR-Eu-ufA.placeholder" = "Email-adress";
+
+/* Class = "UIButton"; normalTitle = " Send "; ObjectID = "USd-EQ-VMi"; */
+"USd-EQ-VMi.normalTitle" = " Skicka ";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "V66-Ec-UKv"; */
+"V66-Ec-UKv.title" = "Item";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "VXK-uY-xDG"; */
+"VXK-uY-xDG.placeholder" = "Lösenord";
+
+/* Class = "UILabel"; text = "Error"; ObjectID = "WHR-Z7-lbq"; */
+"WHR-Z7-lbq.text" = "Fel";
+
+/* Class = "UILabel"; text = "Friends"; ObjectID = "Z0l-Lk-nvG"; */
+"Z0l-Lk-nvG.text" = "Vänner";
+
+/* Class = "UINavigationItem"; title = "Yapper"; ObjectID = "Zdf-7t-Un8"; */
+"Zdf-7t-Un8.title" = "Yapper";
+
+/* Class = "UILabel"; text = "Info"; ObjectID = "ZjC-2p-knc"; */
+"ZjC-2p-knc.text" = "Info";
+
+/* Class = "UILabel"; text = "Ignored"; ObjectID = "Zvx-fN-mAa"; */
+"Zvx-fN-mAa.text" = "Ignorerad";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "btI-Zh-xYx"; */
+"btI-Zh-xYx.placeholder" = "Email-adress";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "bwz-7I-55j"; */
+"bwz-7I-55j.text" = "Logga in";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "bxb-Xk-9bj"; */
+"bxb-Xk-9bj.normalTitle" = "Stäng";
+
+/* Class = "UIButton"; normalTitle = "  Submit  "; ObjectID = "dDb-yk-8Vp"; */
+"dDb-yk-8Vp.normalTitle" = "  Skicka  ";
+
+/* Class = "UILabel"; text = "Signup"; ObjectID = "dhp-6y-YGB"; */
+"dhp-6y-YGB.text" = "Skapa konto";
+
+/* Class = "UITextField"; placeholder = "Display name"; ObjectID = "g5U-0u-MNr"; */
+"g5U-0u-MNr.placeholder" = "Visningsnamn";
+
+/* Class = "UIButton"; normalTitle = "Don't have an account? Sign up here!"; ObjectID = "hXg-dN-jkH"; */
+"hXg-dN-jkH.normalTitle" = "Saknar du konto? Skapa ett här!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nCV-ZB-Uhe"; */
+"nCV-ZB-Uhe.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "phy-B2-8lm"; */
+"phy-B2-8lm.normalTitle" = "Stäng";
+
+/* Class = "UIViewController"; title = "Info"; ObjectID = "rIF-gx-tr2"; */
+"rIF-gx-tr2.title" = "Info";
+
+/* Class = "UINavigationItem"; title = "Users"; ObjectID = "rNQ-Fy-ibT"; */
+"rNQ-Fy-ibT.title" = "Användare";
+
+/* Class = "UITableViewController"; title = "Themes"; ObjectID = "sCo-m1-TSI"; */
+"sCo-m1-TSI.title" = "Teman";
+
+/* Class = "UILabel"; text = "Loading user data..."; ObjectID = "zYa-I4-lOH"; */
+"zYa-I4-lOH.text" = "Laddar användardata...";

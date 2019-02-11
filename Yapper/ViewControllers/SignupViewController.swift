@@ -87,7 +87,7 @@ class SignupViewController: ThemedViewController {
             let password = passwordTextField.text, password != "",
             let displayname = displaynameTextField.text, displayname != ""
         else {
-            self.showError("Please fill in all fields!")
+            self.showError(NSLocalizedString("fillInAllFields", comment: "Please fill in all fields!"))
             self.submitButton.isEnabled = true
             self.spinner?.stopAnimating()
             return

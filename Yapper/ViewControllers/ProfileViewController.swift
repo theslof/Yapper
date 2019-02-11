@@ -59,7 +59,7 @@ class ProfileViewController: ThemedViewController {
     
     private func redrawViews(){
         profileImage.image = UIImage(named: user?.profileImage.rawValue ?? "placeholder")
-        displayName.text = user?.displayName ?? "Unknown user"
+        displayName.text = user?.displayName ?? NSLocalizedString("unknownUser", comment: "Unknown user")
     }
     
     @IBAction func actionToggleFriends(_ sender: UISwitch) {

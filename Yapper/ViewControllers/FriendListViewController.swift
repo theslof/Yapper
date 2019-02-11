@@ -13,7 +13,7 @@ class FriendListViewController: ThemedViewController {
     private static let TAG = "FriendListViewController"
     @IBOutlet weak var tableView: UITableView!
     
-    var sections = ["Friends", "Ignored", "Others"]
+    var sections = [NSLocalizedString("friends", comment: "Friends"), NSLocalizedString("ignored", comment: "Ignored"), NSLocalizedString("others", comment: "Others")]
     var friends: [User] = []
     var ignored: [User] = []
     var others: [User] = []

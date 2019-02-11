@@ -65,7 +65,7 @@ class DetailViewController: ThemedViewController {
                 }
             }
         } else if let item = detailItem {
-            self.title = "\(item.members.count) participants"
+            self.title = String(format: NSLocalizedString("numberParticipants", comment: "%d participants"), item.members.count)
         }
     }
     
@@ -131,13 +131,13 @@ class DetailViewController: ThemedViewController {
         }
         
         if newMessages > 0 {
-            labelNewMessages.text = "\(newMessages) new messages!"
+            labelNewMessages.text = String(format: NSLocalizedString("numberNewMessages", comment: "%d new messages!"), newMessages)
             labelNewMessages.isHidden = false
             UIView.animate(withDuration: 0.75) {
                 self.constraintTopNewMessages.constant = 0
             }
         } else {
-            labelNewMessages.text = "No new messages!"
+            labelNewMessages.text = NSLocalizedString("noNewMessages", comment: "No new messages!")
             UIView.animate(withDuration: 0.75, animations: {
                 self.constraintTopNewMessages.constant = -self.viewNewMessages.frame.height
             }, completion: { done in
@@ -194,11 +194,13 @@ class DetailViewController: ThemedViewController {
     }
     
     @IBAction func actionAttach() {
-        let alert = UIAlertController(title: "Send image", message: "Select an image source", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "URL", style: .default, handler: attachImageURL))
-        alert.addAction(UIAlertAction(title: "Photo library", style: .default, handler: attachImageFromLibrary))
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: attachImageFromCamera))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        let alert = UIAlertController(title:
+            NSLocalizedString("titleSendImage", comment: "Send image"), message:
+            NSLocalizedString("messageSelectImageSource", comment: "Select an image source"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("url", comment: "URL"), style: .default, handler: attachImageURL))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("photoLibrary", comment: "Photo Library"), style: .default, handler: attachImageFromLibrary))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("camera", comment: "Camera"), style: .default, handler: attachImageFromCamera))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: "Cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
@@ -224,18 +226,18 @@ class DetailViewController: ThemedViewController {
             picker!.popoverPresentationController?.sourceRect = buttonAttach.frame
         } else {
             // Camera not available
-            print("Missing camera, sorry :(")
+            Log.e(DetailViewController.TAG, "Missing camera, sorry :(")
         }
     }
     
     private func attachImageURL(_ action: UIAlertAction) {
         var text: UITextField?
-        let alert = UIAlertController(title: "Send image", message: "Input an image URL", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("titleSendImage", comment: "Send image"), message: NSLocalizedString("messageInputImageURL", comment: "Input an image URL"), preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
             text = textField
-            textField.placeholder = "Image URL"
+            textField.placeholder = NSLocalizedString("imageURL", comment: "Image URL")
         })
-        alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("send", comment: "Send"), style: .default, handler: { (action) in
             guard
                 let textField = text,
                 let urlString = textField.text,
@@ -245,7 +247,7 @@ class DetailViewController: ThemedViewController {
                     return }
             self.sendImage(url: url)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: "Cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
@@ -343,7 +345,6 @@ extension DetailViewController: UserPickerDelegate {
 extension DetailViewController: UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("ImagePicker info: \(info.description)")
         self.picker?.dismiss(animated: true, completion: nil)
         
         guard let image = info[.originalImage] as? UIImage else { return }
@@ -359,7 +360,7 @@ UINavigationControllerDelegate {
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("Cancelled the picker!")
+        Log.d(DetailViewController.TAG, "Cancelled the picker!")
         self.picker?.dismiss(animated: true, completion: nil)
     }
     

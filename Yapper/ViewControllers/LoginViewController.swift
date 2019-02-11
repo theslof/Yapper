@@ -110,9 +110,9 @@ class LoginViewController: ThemedViewController {
             if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                 switch errorCode {
                 case .invalidEmail, .userNotFound, .wrongPassword:
-                    self.showError("Incorrect username or password")
+                    self.showError(NSLocalizedString("incorrectUserPassword", comment: "Incorrect username or password"))
                 case .userDisabled:
-                    self.showError("User account disabled")
+                    self.showError(NSLocalizedString("userDisabled", comment: "User account disabled"))
                 default:
                     self.showError(error.localizedDescription)
                 }

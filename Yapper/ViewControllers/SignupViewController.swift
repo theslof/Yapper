@@ -99,11 +99,11 @@ class SignupViewController: ThemedViewController {
             if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                 switch errorCode {
                 case .invalidEmail:
-                    self.showError("Email was not acceped as a valid format")
+                    self.showError(NSLocalizedString("emailInvalid", comment: "Email was not acceped as a valid format"))
                 case .emailAlreadyInUse:
-                    self.showError("User already exists")
+                    self.showError(NSLocalizedString("userAlredyExists", comment: "User already exists"))
                 case .weakPassword:
-                    self.showError("Please create a stronger password")
+                    self.showError(NSLocalizedString("weakPassword", comment: "Please create a stronger password"))
                 default:
                     self.showError(error.localizedDescription)
                 }

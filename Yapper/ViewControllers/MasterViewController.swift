@@ -112,6 +112,6 @@ extension MasterViewController: UserPickerDelegate {
     func userPicker(_ userPicker: UserPickerViewController, didFinishPickingUsersWithUsers users: [String]) {
         print(users.description)
         guard let user = Auth.auth().currentUser?.uid, !users.isEmpty else { return }
-        let conversation = DatabaseManager.shared.messages.startConversation(user: user, members: users)
+        _ = DatabaseManager.shared.messages.startConversation(user: user, members: users)
     }
 }

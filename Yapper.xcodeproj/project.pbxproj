@@ -40,6 +40,8 @@
 		0763F84E22043BD100C97C71 /* ChatTableViewImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763F84D22043BD100C97C71 /* ChatTableViewImageMessageCell.swift */; };
 		0763F85022044B5D00C97C71 /* ChatTableViewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763F84F22044B5D00C97C71 /* ChatTableViewMessageCell.swift */; };
 		0763F85222044ED400C97C71 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763F85122044ED400C97C71 /* ProfileImage.swift */; };
+		077CAA1122116B6100A5BA99 /* CameraCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CAA1022116B6100A5BA99 /* CameraCaptureViewController.swift */; };
+		077CAA132211756000A5BA99 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CAA122211756000A5BA99 /* StorageManager.swift */; };
 		07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4821E62A3000A53F10 /* AppDelegate.swift */; };
 		07CA3B4E21E62A3000A53F10 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */; };
 		07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4F21E62A3000A53F10 /* DetailViewController.swift */; };
@@ -117,6 +119,8 @@
 		0763F84D22043BD100C97C71 /* ChatTableViewImageMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewImageMessageCell.swift; sourceTree = "<group>"; };
 		0763F84F22044B5D00C97C71 /* ChatTableViewMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewMessageCell.swift; sourceTree = "<group>"; };
 		0763F85122044ED400C97C71 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		077CAA1022116B6100A5BA99 /* CameraCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureViewController.swift; sourceTree = "<group>"; };
+		077CAA122211756000A5BA99 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		07CA3B4521E62A3000A53F10 /* Yapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CA3B4821E62A3000A53F10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -287,6 +291,7 @@
 				07410478220DBE1E00352A1D /* SettingsTableViewController.swift */,
 				0741047C2210682D00352A1D /* ThemeSelectionTableViewController.swift */,
 				0741048022107A0100352A1D /* ThemedTableViewController.swift */,
+				077CAA1022116B6100A5BA99 /* CameraCaptureViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				07FEF03821F082BE00964B0D /* FirebaseDefaults.swift */,
 				07FEF03D21F098D300964B0D /* LoginManager.swift */,
 				075E13FA21F2108000CCABC3 /* ConversationManager.swift */,
+				077CAA122211756000A5BA99 /* StorageManager.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -652,6 +658,7 @@
 				0741048122107A0100352A1D /* ThemedTableViewController.swift in Sources */,
 				07FEF03E21F098D300964B0D /* LoginManager.swift in Sources */,
 				07152E5321F87B91005EADB2 /* ChatTableViewTextMessageCell.swift in Sources */,
+				077CAA132211756000A5BA99 /* StorageManager.swift in Sources */,
 				075E13F321F1DEA600CCABC3 /* TextMessage.swift in Sources */,
 				07FEF03221EF551600964B0D /* Themes.swift in Sources */,
 				07391E3C220D80B000E23F0B /* FriendListViewController.swift in Sources */,
@@ -659,6 +666,7 @@
 				07152E4B21F5E9CA005EADB2 /* RoundedImage.swift in Sources */,
 				0763F84E22043BD100C97C71 /* ChatTableViewImageMessageCell.swift in Sources */,
 				07FEF04121F0A6CC00964B0D /* Log.swift in Sources */,
+				077CAA1122116B6100A5BA99 /* CameraCaptureViewController.swift in Sources */,
 				07CA3B7C21E62F6100A53F10 /* LoginViewController.swift in Sources */,
 				0741047D2210682D00352A1D /* ThemeSelectionTableViewController.swift in Sources */,
 				0763F85222044ED400C97C71 /* ProfileImage.swift in Sources */,

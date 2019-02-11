@@ -25,6 +25,8 @@ class DetailViewController: ThemedViewController {
     var listener: ListenerRegistration?
     private var atBottom: Bool = false
     private var firstView: Bool = true
+    private var picker: UIImagePickerController?
+    
     var detailItem: Conversation? {
         didSet {
             // Update the view.
@@ -192,6 +194,41 @@ class DetailViewController: ThemedViewController {
     }
     
     @IBAction func actionAttach() {
+        let alert = UIAlertController(title: "Send image", message: "Select an image source", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "URL", style: .default, handler: attachImageURL))
+        alert.addAction(UIAlertAction(title: "Photo library", style: .default, handler: attachImageFromLibrary))
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: attachImageFromCamera))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    private func attachImageFromLibrary(_ action: UIAlertAction) {
+        picker = UIImagePickerController()
+        picker!.delegate = self
+        picker!.allowsEditing = false
+        picker!.sourceType = .photoLibrary
+        present(picker!, animated: true, completion: nil)
+    }
+    
+    private func attachImageFromCamera(_ action: UIAlertAction) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker = UIImagePickerController()
+            picker!.delegate = self
+            picker!.allowsEditing = false
+            picker!.sourceType = .camera
+            picker!.cameraCaptureMode = .photo
+            picker!.modalPresentationStyle = .popover
+            
+            present(picker!, animated: true, completion: nil)
+
+            picker!.popoverPresentationController?.sourceRect = buttonAttach.frame
+        } else {
+            // Camera not available
+            print("Missing camera, sorry :(")
+        }
+    }
+    
+    private func attachImageURL(_ action: UIAlertAction) {
         var text: UITextField?
         let alert = UIAlertController(title: "Send image", message: "Input an image URL", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
@@ -201,18 +238,25 @@ class DetailViewController: ThemedViewController {
         alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action) in
             guard
                 let textField = text,
-                let url = textField.text,
-                !url.isEmpty,
-                URL(string: url) != nil,
-                let id = self.detailItem?.id,
-                let user = Auth.auth().currentUser?.uid else {
+                let urlString = textField.text,
+                !urlString.isEmpty,
+                let url = URL(string: urlString) else {
                     Log.e(DetailViewController.TAG, "Could not read a URL from alert input")
                     return }
-            let message = ImageMessage(sender: user, timestamp: Timestamp.init(), data: url)
-            DatabaseManager.shared.messages.add(message: message, to: id)
+            self.sendImage(url: url)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    private func sendImage(url: URL) {
+        guard
+            let id = self.detailItem?.id,
+            let user = Auth.auth().currentUser?.uid else {
+                Log.e(DetailViewController.TAG, "Could not send image")
+                return }
+        let message = ImageMessage(sender: user, timestamp: Timestamp.init(), data: url.absoluteString)
+        DatabaseManager.shared.messages.add(message: message, to: id)
     }
 }
 
@@ -234,7 +278,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             _cell.set(message: message)
             
             if let view = _cell.view {
-                let tap = UITapGestureRecognizer(target: self, action: #selector(showFullImage(_:)))
+                let tap = UITapGestureRecognizer(target: self, action: #selector(actionShowFullImage(_:)))
                 view.addGestureRecognizer(tap)
             }
             
@@ -266,14 +310,12 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    @objc func showFullImage(_ sender: UITapGestureRecognizer? = nil) {
-        print("Image was tapped")
+    @objc func actionShowFullImage(_ sender: UITapGestureRecognizer? = nil) {
         if let message = sender?.view as? MessageImageView,
             let data = message.message?.data,
             let url = URL(string: data),
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "imageViewController") as? ImageViewController {
             controller.imageURL = url
-//            self.show(controller, sender: self)
             self.present(controller, animated: true, completion: nil)
         } else {
             Log.e(DetailViewController.TAG, "Tapped on message, failed to parse")
@@ -296,4 +338,29 @@ extension DetailViewController: UserPickerDelegate {
         guard let id = detailItem?.id else { return }
         DatabaseManager.shared.messages.addUsersToConversation(users: users, conversation: id)
     }
+}
+
+extension DetailViewController: UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("ImagePicker info: \(info.description)")
+        self.picker?.dismiss(animated: true, completion: nil)
+        
+        guard let image = info[.originalImage] as? UIImage else { return }
+        
+        StorageManager.shared.uploadImage(image) { (url, error) in
+            if let url = url {
+                Log.d(DetailViewController.TAG, "Uploaded image, attempting to send message")
+                self.sendImage(url: url)
+            } else if let error = error {
+                Log.e(DetailViewController.TAG, error.localizedDescription)
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("Cancelled the picker!")
+        self.picker?.dismiss(animated: true, completion: nil)
+    }
+    
 }

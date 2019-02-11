@@ -587,38 +587,38 @@
             <objects>
                 <viewController storyboardIdentifier="loginViewController" id="lat-XC-t21" customClass="LoginViewController" customModule="Yapper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cAF-CF-Yrh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnO-HS-FE7">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwz-7I-55j" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="117.5" y="50" width="85.5" height="43"/>
+                                        <rect key="frame" x="145" y="50" width="85.5" height="43"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btI-Zh-xYx">
-                                        <rect key="frame" x="8" y="113" width="304" height="30"/>
+                                        <rect key="frame" x="8" y="113" width="359" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKq-5W-89X">
-                                        <rect key="frame" x="8" y="151" width="304" height="30"/>
+                                        <rect key="frame" x="8" y="151" width="359" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gol-uh-whB" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="189" width="304" height="14.5"/>
+                                        <rect key="frame" x="8" y="189" width="359" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMU-pz-U1k" customClass="RoundedButton" customModule="Yapper" customModuleProvider="target">
-                                        <rect key="frame" x="126" y="211.5" width="68" height="32"/>
+                                        <rect key="frame" x="153.5" y="211.5" width="68" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="rZi-NI-5qd"/>
                                         </constraints>
@@ -629,7 +629,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXg-dN-jkH">
-                                        <rect key="frame" x="20" y="323.5" width="280" height="32"/>
+                                        <rect key="frame" x="20" y="323.5" width="335" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Don't have an account? Sign up here!"/>
                                         <connections>
@@ -870,7 +870,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16v-dA-HuP" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
-                                                    <rect key="frame" x="24" y="11" width="53.5" height="22"/>
+                                                    <rect key="frame" x="24" y="11" width="301" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -880,6 +880,7 @@
                                                 <constraint firstItem="16v-dA-HuP" firstAttribute="leading" secondItem="Cj3-ot-rk6" secondAttribute="leadingMargin" constant="8" id="2yU-8s-Fh9"/>
                                                 <constraint firstItem="16v-dA-HuP" firstAttribute="top" secondItem="Cj3-ot-rk6" secondAttribute="topMargin" id="Vln-Lr-Wgq"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="16v-dA-HuP" secondAttribute="bottom" id="hn3-SK-4DQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="16v-dA-HuP" secondAttribute="trailing" constant="8" id="uYu-3q-Lsq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -891,7 +892,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjC-2p-knc" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
-                                                    <rect key="frame" x="24" y="11" width="29" height="22"/>
+                                                    <rect key="frame" x="24" y="11" width="301" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -901,6 +902,7 @@
                                                 <constraint firstItem="ZjC-2p-knc" firstAttribute="leading" secondItem="sYK-Od-NaQ" secondAttribute="leadingMargin" constant="8" id="J3S-B4-H9t"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ZjC-2p-knc" secondAttribute="bottom" id="NR8-Uy-1PU"/>
                                                 <constraint firstItem="ZjC-2p-knc" firstAttribute="top" secondItem="sYK-Od-NaQ" secondAttribute="topMargin" id="eUc-xm-137"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZjC-2p-knc" secondAttribute="trailing" constant="8" id="kDt-mz-j9B"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -912,7 +914,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dd-NB-WPn" customClass="ThemedLabel" customModule="Yapper" customModuleProvider="target">
-                                                    <rect key="frame" x="24" y="11" width="63.5" height="22"/>
+                                                    <rect key="frame" x="24" y="11" width="327" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -920,6 +922,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="9Dd-NB-WPn" secondAttribute="bottom" id="JVF-SD-4aP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9Dd-NB-WPn" secondAttribute="trailing" constant="8" id="Yrn-eL-TQR"/>
                                                 <constraint firstItem="9Dd-NB-WPn" firstAttribute="leading" secondItem="67P-7D-kBC" secondAttribute="leadingMargin" constant="8" id="pPv-fT-D8V"/>
                                                 <constraint firstItem="9Dd-NB-WPn" firstAttribute="top" secondItem="67P-7D-kBC" secondAttribute="topMargin" id="sMr-2g-MzH"/>
                                             </constraints>
@@ -966,7 +969,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ne-la-ftP" customClass="RoundedLabel" customModule="Yapper" customModuleProvider="target">
-                                            <rect key="frame" x="185" y="19" width="38" height="38"/>
+                                            <rect key="frame" x="177" y="19" width="38" height="38"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="9ne-la-ftP" secondAttribute="height" id="OfZ-XM-rgU"/>

@@ -10,6 +10,7 @@ target 'Yapper' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
 
   target 'YapperTests' do
     inherit! :search_paths

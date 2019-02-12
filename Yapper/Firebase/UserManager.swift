@@ -13,7 +13,9 @@ class UserManager {
     private static let TAG: String = "UserManager"
     private let db: Firestore
     private var users: [String: User] = [:]
+    private var friendList: [String : FriendListItem] = [:]
     private var userListener: ListenerRegistration?
+    private var friendListener: ListenerRegistration?
     private var callbacks: [([User]?, Error?) -> Void] = []
     
     init(database: Firestore) {
@@ -36,6 +38,20 @@ class UserManager {
                     }
                 }
                 self.callbacks.removeAll()
+        }
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        friendListener = db.collection(FirebaseDefaults.CollectionUsers.rawValue).document(uid)
+            .collection(FirebaseDefaults.CollectionFriendsList.rawValue)
+            .addSnapshotListener { (snapshot, error) in
+                if let documents = snapshot?.documents {
+                    documents.compactMap(FriendListItem.init(from:)).forEach({ item in
+                        self.friendList[item.uid] = item
+                    })
+                } else if let error = error {
+                    Log.e(UserManager.TAG, error.localizedDescription)
+                }
         }
     }
     
@@ -111,31 +127,33 @@ class UserManager {
             .document(user.uid).updateData(user.toDictionary(), completion: completion)
     }
     
-    func getFriendlistFor(_ user: String, completion: @escaping ([FriendListItem]?, Error?) -> Void) {
+    func updateUser(profileImage: User.ProfileImage, for user: String, completion: ((Error?) -> Void)?) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)
-            .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue)
-            .whereField(FriendListItem.FirestoreKeys.isFriend.rawValue, isEqualTo: true)
-            .getDocuments { (snapshot, error) in
-                if let documents = snapshot?.documents {
-                    completion(documents.compactMap(FriendListItem.init(from:)), error)
-                } else if let error = error {
-                    completion(nil, error)
-                }
-        }
+            .document(user).updateData([User.FirestoreKeys.profileImage.rawValue: profileImage.rawValue], completion: completion)
+    }
+    
+    func getFriendlist() -> [String : FriendListItem] {
+        return friendList
     }
     
     func setFriendFor(_ user: String, friend: String, isFriend: Bool, completion: ((Error?) -> Void)? = nil) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)
             .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue)
-            .document(friend).setData([FriendListItem.FirestoreKeys.isFriend.rawValue : isFriend], merge: true, completion: completion)
+            .document(friend).setData([
+                FriendListItem.FirestoreKeys.uid.rawValue : friend,
+                FriendListItem.FirestoreKeys.isFriend.rawValue : isFriend],
+                                      merge: true, completion: completion)
     }
     
     func setIgnoredFor(_ user: String, friend: String, isIgnored: Bool, completion: ((Error?) -> Void)? = nil) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)
             .document(user).collection(FirebaseDefaults.CollectionFriendsList.rawValue)
-            .document(friend).setData([FriendListItem.FirestoreKeys.isIgnored.rawValue : isIgnored], merge: true, completion: completion)
+            .document(friend).setData([
+                FriendListItem.FirestoreKeys.uid.rawValue : friend,
+                FriendListItem.FirestoreKeys.isIgnored.rawValue : isIgnored],
+                                      merge: true, completion: completion)
     }
 }

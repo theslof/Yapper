@@ -31,42 +31,28 @@ class FriendListViewController: ThemedViewController {
             dismiss(animated: true, completion: nil)
             return }
         
-        DatabaseManager.shared.users.getFriendlistFor(uid) { friendItems, error in
-            var friends: [String] = []
-            var ignored: [String] = []
-            if let friendItems = friendItems {
-                friendItems.forEach { item in
-                    if item.isFriend {
-                        friends.append(item.uid)
-                    } else if item.isIgnored {
-                        ignored.append(item.uid)
+        DatabaseManager.shared.users.getUsers { users, error in
+            if let users = users {
+                self.friends = []
+                self.ignored = []
+                self.others = []
+                
+                let friends = DatabaseManager.shared.users.getFriendlist()
+                
+                users.forEach {user in
+                    if user.uid == uid {
+                        return
                     }
-                }
-            } else if let error = error {
-                Log.e(FriendListViewController.TAG, error.localizedDescription)
-            }
-            
-            DatabaseManager.shared.users.getUsers { users, error in
-                if let users = users {
-                    self.friends = []
-                    self.ignored = []
-                    self.others = []
                     
-                    users.forEach {user in
-                        if user.uid == uid {
-                            return
-                        }
-                        
-                        if friends.contains(user.uid) {
-                            self.friends.append(user)
-                        } else if ignored.contains(user.uid) {
-                            self.ignored.append(user)
-                        } else {
-                            self.others.append(user)
-                        }
+                    if friends[user.uid]?.isFriend ?? false {
+                        self.friends.append(user)
+                    } else if friends[user.uid]?.isIgnored ?? false {
+                        self.ignored.append(user)
+                    } else {
+                        self.others.append(user)
                     }
-                    self.filterUsersBy(string: nil)
                 }
+                self.filterUsersBy(string: nil)
             }
         }
     }

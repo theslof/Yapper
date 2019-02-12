@@ -22,6 +22,7 @@ class DetailViewController: ThemedViewController {
     @IBOutlet weak var constraintTopNewMessages: NSLayoutConstraint!
     
     var messages: [Message] = []
+//    var ignoredList: [String] = []
     var listener: ListenerRegistration?
     private var atBottom: Bool = false
     private var firstView: Bool = true
@@ -94,6 +95,9 @@ class DetailViewController: ThemedViewController {
             // Parse messages and sort by timestamp
             self.messages = messages
                 .compactMap { Conversation.parse(message: $0.data()) }
+                .filter { (message) -> Bool in
+                    !(DatabaseManager.shared.users.getFriendlist()[message.sender]?.isIgnored ?? false)
+                }
                 .sorted(by: { $0.timestamp.dateValue() < $1.timestamp.dateValue() })
             self.tableView.reloadData()
             

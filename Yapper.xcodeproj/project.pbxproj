@@ -44,6 +44,8 @@
 		077CAA132211756000A5BA99 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CAA122211756000A5BA99 /* StorageManager.swift */; };
 		077CAA402211A3AB00A5BA99 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 077CAA3E2211A3AB00A5BA99 /* Localizable.strings */; };
 		077CAA452211C16000A5BA99 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CAA442211C16000A5BA99 /* InfoViewController.swift */; };
+		077CAA472212BB8300A5BA99 /* ProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CAA462212BB8300A5BA99 /* ProfileCollectionViewController.swift */; };
+		077CAA492212BCCE00A5BA99 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CAA482212BCCE00A5BA99 /* ProfileCollectionViewCell.swift */; };
 		07CA3B4921E62A3000A53F10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4821E62A3000A53F10 /* AppDelegate.swift */; };
 		07CA3B4E21E62A3000A53F10 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */; };
 		07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA3B4F21E62A3000A53F10 /* DetailViewController.swift */; };
@@ -128,6 +130,8 @@
 		077CAA422211A3C500A5BA99 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		077CAA432211A3C500A5BA99 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		077CAA442211C16000A5BA99 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		077CAA462212BB8300A5BA99 /* ProfileCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewController.swift; sourceTree = "<group>"; };
+		077CAA482212BCCE00A5BA99 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		07CA3B4521E62A3000A53F10 /* Yapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CA3B4821E62A3000A53F10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07CA3B4D21E62A3000A53F10 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 				0741048022107A0100352A1D /* ThemedTableViewController.swift */,
 				077CAA1022116B6100A5BA99 /* CameraCaptureViewController.swift */,
 				077CAA442211C16000A5BA99 /* InfoViewController.swift */,
+				077CAA462212BB8300A5BA99 /* ProfileCollectionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				07391E3D220DA4B700E23F0B /* FriendListTableViewCell.swift */,
 				0741047A221065F900352A1D /* ThemedTextView.swift */,
 				0741047E2210697700352A1D /* ThemeSelectorTableViewCell.swift */,
+				077CAA482212BCCE00A5BA99 /* ProfileCollectionViewCell.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -686,6 +692,8 @@
 				07FEF03C21F088C400964B0D /* User.swift in Sources */,
 				0763F8482203032B00C97C71 /* ProfileViewController.swift in Sources */,
 				071BB8FD220AEC5C00717221 /* ThemedLabel.swift in Sources */,
+				077CAA492212BCCE00A5BA99 /* ProfileCollectionViewCell.swift in Sources */,
+				077CAA472212BB8300A5BA99 /* ProfileCollectionViewController.swift in Sources */,
 				07CA3B5021E62A3000A53F10 /* DetailViewController.swift in Sources */,
 				071BB906220B13A400717221 /* UserPickerTableView.swift in Sources */,
 				075E13F121F1CBBD00CCABC3 /* Message.swift in Sources */,

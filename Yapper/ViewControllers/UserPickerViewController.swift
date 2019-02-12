@@ -15,7 +15,6 @@ class UserPickerViewController: ThemedViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var users: [String: User] = [:]
-    var friends: Set<String> = []
     var filtered: [User] = []
     
     var delegate: UserPickerDelegate?
@@ -26,28 +25,18 @@ class UserPickerViewController: ThemedViewController {
         tableView.backgroundColor = Theme.currentTheme.background
 
         guard let uid = Auth.auth().currentUser?.uid else { return }
-
-        DatabaseManager.shared.users.getFriendlistFor(uid) { friendItems, error in
-            if let friendItems = friendItems {
-                friendItems.forEach { item in
-                    self.friends.insert(item.uid)
-                }
-            } else if let error = error {
-                Log.e(UserPickerViewController.TAG, error.localizedDescription)
-            }
-
-            DatabaseManager.shared.users.getUsers { users, error in
-                if let users = users {
-                    self.users = [:]
-                    users.forEach {user in
-                        if user.uid == uid {
-                            return
-                        }
-                        
-                        self.users[user.uid] = user
+        
+        DatabaseManager.shared.users.getUsers { users, error in
+            if let users = users {
+                self.users = [:]
+                users.forEach {user in
+                    if user.uid == uid {
+                        return
                     }
-                    self.filterUsersBy(string: nil)
+                    
+                    self.users[user.uid] = user
                 }
+                self.filterUsersBy(string: nil)
             }
         }
     }
@@ -61,8 +50,10 @@ class UserPickerViewController: ThemedViewController {
             filtered = Array(users.values)
         }
         
+        let friends = DatabaseManager.shared.users.getFriendlist()
+        
         filtered.sort { (u1, u2) -> Bool in
-            return friends.contains(u1.uid) && !friends.contains(u2.uid) || u1.displayName < u2.displayName
+            return friends[u1.uid]?.isFriend ?? false && !(friends[u2.uid]?.isFriend ?? false) || u1.displayName < u2.displayName
         }
         
         self.tableView.reloadData()
@@ -92,7 +83,7 @@ extension UserPickerViewController: UITableViewDataSource, UITableViewDelegate {
         let user: User = filtered[indexPath.row]
         cell.username.text = user.displayName
         cell.profileImage.image = UIImage(named: user.profileImage.rawValue)
-        cell.favorite.isHidden = !self.friends.contains(user.uid)
+        cell.favorite.isHidden = !(DatabaseManager.shared.users.getFriendlist()[user.uid]?.isFriend ?? false)
         
         return cell
     }

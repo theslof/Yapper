@@ -46,14 +46,9 @@ class ProfileViewController: ThemedViewController {
             }
         }
         
-        DatabaseManager.shared.users.getFriendlistFor(cuid) { (friendList, error) in
-            if let friendList = friendList, let item = friendList.first(where:
-                { item -> Bool in item.uid == uid }) {
-                self.switchFriends.isOn = item.isFriend
-                self.switchIgnored.isOn = item.isIgnored
-            } else if let error = error {
-                Log.e(ProfileViewController.TAG, error.localizedDescription)
-            }
+        if let item = DatabaseManager.shared.users.getFriendlist()[uid] {
+            self.switchFriends.isOn = item.isFriend
+            self.switchIgnored.isOn = item.isIgnored
         }
     }
     

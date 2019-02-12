@@ -11,7 +11,7 @@ import Firebase
 
 class SettingsTableViewController: ThemedTableViewController {
     
-    private let rows: [String] = ["theme", "info", "signout"]
+    private let rows: [String] = ["profile", "theme", "info", "signout"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,8 @@ class SettingsTableViewController: ThemedTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch rows[indexPath.row] {
+        case "profile":
+            performSegue(withIdentifier: "profileImageSelectorViewController", sender: self)
         case "theme":
             performSegue(withIdentifier: "themeSelectorViewController", sender: self)
         case "info":

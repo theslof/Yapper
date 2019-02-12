@@ -68,7 +68,9 @@ class ConversationTableViewCell: UITableViewCell {
                 return
             }
             
-            var filtered = users.filter { $0.uid != currentUser }
+            var filtered = users.filter {
+                $0.uid != currentUser && !(DatabaseManager.shared.users.getFriendlist()[$0.uid]?.isIgnored ?? false)
+            }
             
             var last: UIView?
             let extras = max(0, filtered.count - 5)

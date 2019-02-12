@@ -1,6 +1,9 @@
 
 /* Class = "UILabel"; text = "Theme"; ObjectID = "16v-dA-HuP"; */
-"16v-dA-HuP.text" = "Tema";
+"lyP-Xi-NwH.text" = "Tema";
+
+/* Class = "UILabel"; text = "Profile image"; ObjectID = "16v-dA-HuP"; */
+"16v-dA-HuP.text" = "Profilbild";
 
 /* Class = "UITableViewController"; title = "Master"; ObjectID = "7bK-jq-Zjz"; */
 "7bK-jq-Zjz.title" = "Master";

@@ -17,8 +17,11 @@ class ConversationManager {
         self.db = database
     }
     
-    func getConversations(listener: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration {
-        return db.collection(FirebaseDefaults.CollectionConversations.rawValue).addSnapshotListener(listener)
+    func getConversations(listener: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration? {
+        guard let uid = Auth.auth().currentUser?.uid else { return nil }
+        return db.collection(FirebaseDefaults.CollectionConversations.rawValue)
+            .whereField("members", arrayContains: uid)
+            .addSnapshotListener(listener)
     }
     
     func startConversation(user: String, members: [String] = []) -> String {

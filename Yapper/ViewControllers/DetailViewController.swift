@@ -22,7 +22,6 @@ class DetailViewController: ThemedViewController {
     @IBOutlet weak var constraintTopNewMessages: NSLayoutConstraint!
     
     var messages: [Message] = []
-//    var ignoredList: [String] = []
     var listener: ListenerRegistration?
     private var atBottom: Bool = false
     private var firstView: Bool = true

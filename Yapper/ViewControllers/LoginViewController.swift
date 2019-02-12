@@ -59,6 +59,8 @@ class LoginViewController: ThemedViewController {
         if auth.currentUser == nil {
             self.spinner?.stopAnimating()
         }
+        
+        self.view.backgroundColor = Theme.currentTheme.background
     }
     
     private func createAndSetupSpinner() {

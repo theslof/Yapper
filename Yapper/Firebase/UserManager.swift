@@ -20,6 +20,8 @@ class UserManager {
     
     init(database: Firestore) {
         self.db = database
+        
+        // Listen for changes to user profiles
         userListener = db.collection(FirebaseDefaults.CollectionUsers.rawValue)
             .addSnapshotListener { (snapshot, error) in
                 if let documents = snapshot?.documents {
@@ -42,6 +44,7 @@ class UserManager {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        // Listen for changes to Friends/Ignored list
         friendListener = db.collection(FirebaseDefaults.CollectionUsers.rawValue).document(uid)
             .collection(FirebaseDefaults.CollectionFriendsList.rawValue)
             .addSnapshotListener { (snapshot, error) in
@@ -121,22 +124,34 @@ class UserManager {
             .document(user.uid).setData(user.toDictionary(), completion: completion)
     }
     
+    /**
+     * Update the user in Firebase with a new User object
+     */
     func updateUser(user: User, completion: ((Error?) -> Void)?) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)
             .document(user.uid).updateData(user.toDictionary(), completion: completion)
     }
     
+    /**
+     * Update the user profile image Firebase
+     */
     func updateUser(profileImage: User.ProfileImage, for user: String, completion: ((Error?) -> Void)?) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)
             .document(user).updateData([User.FirestoreKeys.profileImage.rawValue: profileImage.rawValue], completion: completion)
     }
     
+    /**
+     * Returns a dictionary with user IDs as keys and friend status as values
+     */
     func getFriendlist() -> [String : FriendListItem] {
         return friendList
     }
     
+    /**
+     * Update friend status for user -> friend
+     */
     func setFriendFor(_ user: String, friend: String, isFriend: Bool, completion: ((Error?) -> Void)? = nil) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)
@@ -147,6 +162,9 @@ class UserManager {
                                       merge: true, completion: completion)
     }
     
+    /**
+     * Update ignored status for user -> friend
+     */
     func setIgnoredFor(_ user: String, friend: String, isIgnored: Bool, completion: ((Error?) -> Void)? = nil) {
         db
             .collection(FirebaseDefaults.CollectionUsers.rawValue)

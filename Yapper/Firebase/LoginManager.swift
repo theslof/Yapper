@@ -14,6 +14,9 @@ class LoginManager {
 
     private let auth = Auth.auth()
     
+    /**
+     * Create a new user account and register the user in the database
+     */
     func signUp(email: String, password: String, displayName: String, completion: AuthDataResultCallback?) {
         auth.createUser(withEmail: email, password: password) { (result, error) in
             if let user = result?.user {
@@ -26,10 +29,16 @@ class LoginManager {
         }
     }
     
+    /**
+     * Sign in to Firebase
+     */
     func signIn(withEmail: String, password: String, completion: AuthDataResultCallback?) {
         auth.signIn(withEmail: withEmail, password: password, completion: completion)
     }
     
+    /**
+     * Sign out from Firebase
+     */
     func signOut() {
         do {
             try auth.signOut()

@@ -17,6 +17,9 @@ class ConversationManager {
         self.db = database
     }
     
+    /**
+     * Register a new listener for all conversations where the user is a member
+     */
     func getConversations(listener: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration? {
         guard let uid = Auth.auth().currentUser?.uid else { return nil }
         return db.collection(FirebaseDefaults.CollectionConversations.rawValue)
@@ -24,6 +27,9 @@ class ConversationManager {
             .addSnapshotListener(listener)
     }
     
+    /**
+     * Start a new conversation where all users in the members array are registered as members/owners
+     */
     func startConversation(user: String, members: [String] = []) -> String {
         var members = members
         if !members.contains(user) {
@@ -36,17 +42,26 @@ class ConversationManager {
         return doc.documentID
     }
     
+    /**
+     * Add the user as a member in a conversation
+     */
     func addUsersToConversation(users: [String], conversation: String, completion: ((Error?) -> Void)? = nil) {
         db.collection(FirebaseDefaults.CollectionConversations.rawValue).document(conversation)
             .updateData([Conversation.FirestoreKeys.members.rawValue: FieldValue.arrayUnion(users)], completion: completion)
     }
     
+    /**
+     * Register a listener that listens for all messages that belong to a conversation
+     */
     func getMessages(for conversation: String, listener: @escaping FIRQuerySnapshotBlock) -> ListenerRegistration{
         return db
             .collection(FirebaseDefaults.CollectionConversations.rawValue).document(conversation)
             .collection(FirebaseDefaults.CollectionMessages.rawValue).addSnapshotListener(listener)
     }
     
+    /**
+     * Add a message to a conversation
+     */
     func add(message: Message, to conversation: String) {
         let doc = db
             .collection(FirebaseDefaults.CollectionConversations.rawValue)
@@ -63,6 +78,9 @@ class ConversationManager {
         }
     }
     
+    /**
+     * Update the lastUpdated field in a conversation
+     */
     private func setLastUpdatedTo(_ timestamp: Timestamp, for conversation: String) {
         self.db
             .collection(FirebaseDefaults.CollectionConversations.rawValue)
@@ -74,6 +92,9 @@ class ConversationManager {
         }
     }
     
+    /**
+     * Delete a message from a conversation
+     */
     func delete(message: String, from conversation: String) {
         db
             .collection(FirebaseDefaults.CollectionConversations.rawValue)

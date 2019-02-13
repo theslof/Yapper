@@ -282,11 +282,18 @@
                                 <action selector="actionCancel:" destination="IhX-o6-cjf" id="Lwo-iO-07Q"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ae3-RQ-21X">
-                            <connections>
-                                <action selector="actionAdd:" destination="IhX-o6-cjf" id="Yae-fr-uQd"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Ae3-RQ-21X">
+                                <connections>
+                                    <action selector="actionAdd:" destination="IhX-o6-cjf" id="Yae-fr-uQd"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Select all" id="cHu-qm-PJh">
+                                <connections>
+                                    <action selector="actionSelectAll:" destination="IhX-o6-cjf" id="f3B-C2-6QN"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="vgn-Hi-jGV" id="Ib1-ds-SEC"/>

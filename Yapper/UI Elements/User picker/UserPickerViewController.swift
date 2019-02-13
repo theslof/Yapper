@@ -70,6 +70,12 @@ class UserPickerViewController: ThemedViewController {
     @IBAction func actionCancel(_ sender: Any) {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func actionSelectAll(_ sender: Any) {
+        filtered.enumerated().forEach { (offset: Int, _) in
+            tableView.selectRow(at: IndexPath(row: offset, section: 0), animated: true, scrollPosition: .none)
+        }
+    }
 }
 
 extension UserPickerViewController: UITableViewDataSource, UITableViewDelegate {

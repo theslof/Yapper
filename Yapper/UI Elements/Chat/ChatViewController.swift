@@ -301,15 +301,11 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     @objc func showProfile(_ sender: UITapGestureRecognizer? = nil) {
-        print("Fired tap event")
         if let profileImage = sender?.view as? ProfileImage,
             let uid = profileImage.uid,
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
-            print("Executing event")
             controller.uid = uid
-//            self.show(controller, sender: self)
             self.present(controller, animated: true, completion: nil)
-            print("Executed event")
         } else {
             Log.e(ChatViewController.TAG, "Tapped on profile image, failed to parse")
         }

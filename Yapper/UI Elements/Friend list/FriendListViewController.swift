@@ -140,8 +140,6 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let _user = user else { return cell }
         
-        print(user.debugDescription)
-        
         cell.username.text = _user.displayName
         cell.profileImage.image = UIImage(named: _user.profileImage.rawValue)
         cell.favorite.isHidden = true

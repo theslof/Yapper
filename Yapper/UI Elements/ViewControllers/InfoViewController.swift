@@ -14,6 +14,6 @@ class InfoViewController: ThemedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        infoTextField.text = NSLocalizedString("infoText", comment: "This application was developed in six weeks as a student assignment in Application Development Continuation course at Newton Vocational College.\n\nJonas Theslöf, 2019\nhttp://github.com/theslof")
+        infoTextField.text = NSLocalizedString("infoText", comment: "This application was developed in five weeks as a student assignment in Application Development Continuation course at Newton Vocational College.\n\nJonas Theslöf, 2019\nhttp://github.com/theslof")
     }
 }

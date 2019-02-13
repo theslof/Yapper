@@ -6,7 +6,7 @@
   Copyright © 2019 Jonas Theslöf. All rights reserved.
 */
 
-"infoText" = "Denna applikation utvecklades under sex veckor som ett studentprojekt i kursen \"Applikationsutveckling 2, fortsättning\" på Newtons Yrkeshögskola\n\nJonas Theslöf, 2019\nhttp://github.com/theslof";
+"infoText" = "Denna applikation utvecklades under fem veckor som ett studentprojekt i kursen \"Applikationsutveckling 2, fortsättning\" på Newtons Yrkeshögskola\n\nJonas Theslöf, 2019\nhttp://github.com/theslof";
 "incorrectUserPassword" = "Felaktigt användarnamn eller lösenord";
 "userDisabled" = "Användarkontot är avstängt";
 "emailInvalid" = "Email-adressen var av ett felaktigt format";

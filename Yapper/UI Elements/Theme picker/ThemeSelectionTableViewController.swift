@@ -19,7 +19,6 @@ class ThemeSelectionTableViewController: ThemedTableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return Theme.themes.count
     }
 
@@ -37,6 +36,5 @@ class ThemeSelectionTableViewController: ThemedTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         Theme.setTheme(themes[indexPath.row])
         self.navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
     }
 }

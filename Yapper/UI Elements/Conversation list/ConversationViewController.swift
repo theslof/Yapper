@@ -43,9 +43,6 @@ class ConversationViewController: UITableViewController {
         }
         
         self.view.backgroundColor = Theme.currentTheme.background
-//        tableView.backgroundColor = Theme.currentTheme.background
-//        tableView.separatorStyle = .singleLine
-//        tableView.separatorColor = Theme.currentTheme.background
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,7 +107,6 @@ class ConversationViewController: UITableViewController {
 
 extension ConversationViewController: UserPickerDelegate {
     func userPicker(_ userPicker: UserPickerViewController, didFinishPickingUsersWithUsers users: [String]) {
-        print(users.description)
         guard let user = Auth.auth().currentUser?.uid, !users.isEmpty else { return }
         _ = DatabaseManager.shared.messages.startConversation(user: user, members: users)
     }

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class DetailViewController: ThemedViewController {
+class ChatViewController: ThemedViewController {
     private static let TAG = "DetailViewController"
 
     @IBOutlet weak var buttonAttach: RoundedButton!
@@ -89,7 +89,7 @@ class DetailViewController: ThemedViewController {
     
     func onNewMessages(snapshot: QuerySnapshot?, error: Error?) {
         if let messages = snapshot?.documents {
-            Log.d(DetailViewController.TAG, "Messages updated! Found \(messages.count) messages!")
+            Log.d(ChatViewController.TAG, "Messages updated! Found \(messages.count) messages!")
             
             // Parse messages and sort by timestamp
             self.messages = messages
@@ -120,7 +120,7 @@ class DetailViewController: ThemedViewController {
                 firstView = false
             }
         } else if let error = error {
-            Log.e(DetailViewController.TAG, error.localizedDescription)
+            Log.e(ChatViewController.TAG, error.localizedDescription)
         }
     }
     
@@ -229,7 +229,7 @@ class DetailViewController: ThemedViewController {
             picker!.popoverPresentationController?.sourceRect = buttonAttach.frame
         } else {
             // Camera not available
-            Log.e(DetailViewController.TAG, "Missing camera, sorry :(")
+            Log.e(ChatViewController.TAG, "Missing camera, sorry :(")
         }
     }
     
@@ -246,7 +246,7 @@ class DetailViewController: ThemedViewController {
                 let urlString = textField.text,
                 !urlString.isEmpty,
                 let url = URL(string: urlString) else {
-                    Log.e(DetailViewController.TAG, "Could not read a URL from alert input")
+                    Log.e(ChatViewController.TAG, "Could not read a URL from alert input")
                     return }
             self.sendImage(url: url)
         }))
@@ -258,14 +258,14 @@ class DetailViewController: ThemedViewController {
         guard
             let id = self.detailItem?.id,
             let user = Auth.auth().currentUser?.uid else {
-                Log.e(DetailViewController.TAG, "Could not send image")
+                Log.e(ChatViewController.TAG, "Could not send image")
                 return }
         let message = ImageMessage(sender: user, timestamp: Timestamp.init(), data: url.absoluteString)
         DatabaseManager.shared.messages.add(message: message, to: id)
     }
 }
 
-extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
+extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -311,7 +311,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             self.present(controller, animated: true, completion: nil)
             print("Executed event")
         } else {
-            Log.e(DetailViewController.TAG, "Tapped on profile image, failed to parse")
+            Log.e(ChatViewController.TAG, "Tapped on profile image, failed to parse")
         }
     }
 
@@ -323,7 +323,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             controller.imageURL = url
             self.present(controller, animated: true, completion: nil)
         } else {
-            Log.e(DetailViewController.TAG, "Tapped on message, failed to parse")
+            Log.e(ChatViewController.TAG, "Tapped on message, failed to parse")
         }
     }
     
@@ -338,14 +338,14 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension DetailViewController: UserPickerDelegate {
+extension ChatViewController: UserPickerDelegate {
     func userPicker(_ userPicker: UserPickerViewController, didFinishPickingUsersWithUsers users: [String]) {
         guard let id = detailItem?.id else { return }
         DatabaseManager.shared.messages.addUsersToConversation(users: users, conversation: id)
     }
 }
 
-extension DetailViewController: UIImagePickerControllerDelegate,
+extension ChatViewController: UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.picker?.dismiss(animated: true, completion: nil)
@@ -354,16 +354,16 @@ UINavigationControllerDelegate {
         
         StorageManager.shared.uploadImage(image) { (url, error) in
             if let url = url {
-                Log.d(DetailViewController.TAG, "Uploaded image, attempting to send message")
+                Log.d(ChatViewController.TAG, "Uploaded image, attempting to send message")
                 self.sendImage(url: url)
             } else if let error = error {
-                Log.e(DetailViewController.TAG, error.localizedDescription)
+                Log.e(ChatViewController.TAG, error.localizedDescription)
             }
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        Log.d(DetailViewController.TAG, "Cancelled the picker!")
+        Log.d(ChatViewController.TAG, "Cancelled the picker!")
         self.picker?.dismiss(animated: true, completion: nil)
     }
     

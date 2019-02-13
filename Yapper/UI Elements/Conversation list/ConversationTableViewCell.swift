@@ -69,7 +69,7 @@ class ConversationTableViewCell: UITableViewCell {
             }
             
             var filtered = users.filter {
-                $0.uid != currentUser && !(DatabaseManager.shared.users.getFriendlist()[$0.uid]?.isIgnored ?? false)
+                $0.uid != currentUser
             }
             
             var last: UIView?
@@ -100,6 +100,15 @@ class ConversationTableViewCell: UITableViewCell {
                 }
                 last = image
                 image.image = UIImage(named: user.profileImage.rawValue)
+                
+                if let item = DatabaseManager.shared.users.getFriendlist()[user.uid] {
+                    if item.isIgnored {
+                        image.layer.borderColor = Theme.currentTheme.error.cgColor
+                    } else if item.isFriend {
+                        image.layer.borderColor = Theme.currentTheme.primary.cgColor
+                    }
+                }
+
             })
 
             // Draw a rounded label with the number of conversation members > 5

@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class MasterViewController: UITableViewController {
+class ConversationViewController: UITableViewController {
     private static let TAG = "MasterViewController"
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: ChatViewController? = nil
     
     var data: [Conversation] = []
     
@@ -23,7 +23,7 @@ class MasterViewController: UITableViewController {
         
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? ChatViewController
         }
     }
 
@@ -38,7 +38,7 @@ class MasterViewController: UITableViewController {
                 })
                 self.tableView.reloadData()
             } else if let error = error {
-                Log.e(MasterViewController.TAG, error.localizedDescription)
+                Log.e(ConversationViewController.TAG, error.localizedDescription)
             }
         }
         
@@ -60,7 +60,7 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let conversation = data[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+                let controller = (segue.destination as! UINavigationController).topViewController as! ChatViewController
                 controller.detailItem = conversation
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
@@ -108,7 +108,7 @@ class MasterViewController: UITableViewController {
     }
 }
 
-extension MasterViewController: UserPickerDelegate {
+extension ConversationViewController: UserPickerDelegate {
     func userPicker(_ userPicker: UserPickerViewController, didFinishPickingUsersWithUsers users: [String]) {
         print(users.description)
         guard let user = Auth.auth().currentUser?.uid, !users.isEmpty else { return }

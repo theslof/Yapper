@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         let db = Firestore.firestore()
         let settings = db.settings
+        settings.isPersistenceEnabled = false
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         _ = DatabaseManager.shared

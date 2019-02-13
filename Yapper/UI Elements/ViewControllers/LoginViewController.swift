@@ -34,6 +34,7 @@ class LoginViewController: ThemedViewController {
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 newViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
             } else if user != nil, vc is LoginViewController {
+                let _ = DatabaseManager.shared
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 newViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController")
             }

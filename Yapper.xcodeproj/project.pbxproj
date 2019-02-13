@@ -69,6 +69,7 @@
 		68E58A1369E592F2007DBB04 /* Pods_Yapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DED2FFA4C54F93DA2BBBEED /* Pods_Yapper.framework */; };
 		8A80E6B60FA975FCC0447760 /* Pods_YapperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B876BBCDFD05C0A108D6B3 /* Pods_YapperTests.framework */; };
 		AF90025E6E760D83903DD175 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF90043B5626A2ACA065A1E6 /* GoogleService-Info.plist */; };
+		AF900B9E60E46C663F6EB623 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = AF900B4C5ADA48F772BE2F4E /* README.md */; };
 		AF900F3D879C38912FFF2263 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AF90064BC02F1B5CE79D9153 /* .gitignore */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +166,7 @@
 		A9B876BBCDFD05C0A108D6B3 /* Pods_YapperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YapperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF90043B5626A2ACA065A1E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AF90064BC02F1B5CE79D9153 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		AF900B4C5ADA48F772BE2F4E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D44C9C152621E9082388CBCA /* Pods-Yapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yapper.debug.xcconfig"; path = "Target Support Files/Pods-Yapper/Pods-Yapper.debug.xcconfig"; sourceTree = "<group>"; };
 		DD3C8B057989642DC1BE2352 /* Pods_YapperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YapperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3967C2DE16E7308B1885DD4 /* Pods-YapperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapperTests.release.xcconfig"; path = "Target Support Files/Pods-YapperTests/Pods-YapperTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				07CA3B4621E62A3000A53F10 /* Products */,
 				AA5B29AE0AE7FC92C1969400 /* Pods */,
 				1C64ED73BFE46CA6F29BBE30 /* Frameworks */,
+				AF900B4C5ADA48F772BE2F4E /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -710,6 +713,7 @@
 				07152E57220053F7005EADB2 /* FriendListItem.swift in Sources */,
 				071BB8FF220B0E2E00717221 /* UserPickerViewController.swift in Sources */,
 				07FEF03921F082BE00964B0D /* FirebaseDefaults.swift in Sources */,
+				AF900B9E60E46C663F6EB623 /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

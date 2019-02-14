@@ -34,9 +34,19 @@ class ConversationTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
+        let color = numberImage?.label.backgroundColor
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        numberImage?.label.isOpaque = true
+        numberImage?.label.backgroundColor = color
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let color = numberImage?.label.backgroundColor
+        super.setHighlighted(highlighted, animated: true)
+        numberImage?.label.isOpaque = true
+        numberImage?.label.backgroundColor = color
     }
     
     private func clearViews() {

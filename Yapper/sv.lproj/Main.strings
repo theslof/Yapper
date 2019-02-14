@@ -8,7 +8,7 @@
 "16v-dA-HuP.text" = "Profilbild";
 
 /* Class = "UITableViewController"; title = "Master"; ObjectID = "7bK-jq-Zjz"; */
-"7bK-jq-Zjz.title" = "Master";
+"7bK-jq-Zjz.title" = "Yapper";
 
 /* Class = "UILabel"; text = "Sign out"; ObjectID = "9Dd-NB-WPn"; */
 "9Dd-NB-WPn.text" = "Logga ut";
@@ -35,7 +35,7 @@
 "JEX-9P-axG.title" = "Detail";
 
 /* Class = "UINavigationController"; title = "Master"; ObjectID = "RMx-3f-FxP"; */
-"RMx-3f-FxP.title" = "Master";
+"RMx-3f-FxP.title" = "Yapper";
 
 /* Class = "UIButton"; normalTitle = "  Submit  "; ObjectID = "SMU-pz-U1k"; */
 "SMU-pz-U1k.normalTitle" = "  Skicka  ";
